@@ -1,76 +1,88 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import list from "../components/list.vue"
+import list from "../views/Visit/list.vue"
 import home from "../views/Home/Home.vue"
-import test1 from "../components/part/test1.vue"
-import test2 from "../components/part/test2.vue"
-import echart from "../components/echarts.vue"
-import foot from "../views/Home/foot.vue"
+import test1 from "../views/Visit/part/test1.vue"
+import test2 from "../views/Visit/part/test2.vue"
+import echart from "../views/Visit/echarts.vue"
 const routes = [
   {
     path: '/',
     name: 'Home',
-    components: {
-      home,
-      list,
-      foot
-    },
+    component: home,
+    // redirect: 'visit',
     meta: {
       mainNavShow: true,
-      leftNav: true,
-      list: true,
-      foot:true
     },
+    children:[
+        {
+          path: 'visit',
+          name: 'list',
+          component: list,
+          // meta:{
+          //   list:true
+          // }
+        },
+        {
+          path: 'test1',
+          name: 'test1',
+          component: test1,
+          // meta:{
+          //   test1:true
+          // }
+        },
+        {
+          path: 'test2',
+          name: 'test2',
+          component: test2,
+          // meta:{
+          //   test2:true
+          // }
+        },
+        {
+          path: 'echarts',
+          name: 'echart',
+          component: echart,
+          // meta:{
+          //   echart:true
+          // }
+        },
+    ],
   },
   {
     path: '/login',
-    name: 'SignIn',
-    component: () => import('../views/login/UserLogin.vue'),
+    name: 'Login',
+    component: () => import('../views/Login/Login.vue'),
     meta: {
-        mainNavShow: false,
-        leftNav: false,
-        list: false,
-    }
-   },
-   {
-    path: '/test/test1',
-    name: 'test1',
-    //component: () => import('../components/part/test1.vue'),
-    components: {
-      test1
+      // requireNotAuth: true,
+      mainNavShow: true
     },
-    meta: {
-      leftNav: true,
-      mainNavShow: false,
-      list: false,
-      test1: true
-    }
   },
   {
-    path: '/test/test2',
-    name: 'test2',
-    components: {
-      test2
-    },
+    path: '/login/administrator',
+    name: 'AdministratorLogin',
+    component: () => import('../views/Login/AdministratorLogin.vue'),
     meta: {
-      leftNav: true,
-      mainNavShow: false,
-      list: false,
-      test2: true
-    }
+      // requireNotAuth: true,
+      mainNavShow: true
+    },
   },
   {
-    path: '/echarts',
-    name: 'echart',
-    // component: () => import('@/components/echarts.vue'),
-    components: {
-      echart
-    },
+    path: '/login/register',
+    name: 'Register',
+    component: () => import('../views/Login/Register.vue'),
     meta: {
-      leftNav: true,
-      mainNavShow: false,
-      list: false,
-      echart: true
-    }
+      // requireNotAuth: true,
+      mainNavShow: true
+    },
+  },
+  {
+    path: '/login/forgetpassword',
+    name: 'ForgetPassword',
+    component: () => import('../views/Login/ForgetPassword.vue'),
+    meta: {
+      // requireNotAuth: true,
+      mainNavShow: true
+    },
   }
 ];
 

@@ -1,7 +1,7 @@
 <template>
-    <div class="home">
+    <div class="home" style="z-index: 0">
       <!--  头部   -->
-      <header class="header" ref="vantaRef" style="width: 100vw; height: 100vh; opacity:0.9">
+      <header class="header" ref="vantaRef" style="width: 100vw; height: 100vh; opacity:0.9; z-index:0 ">
         <!--  轮播图   -->
         <div class="carousel-container">
           <div class="carousel-item" v-for="(item, index) in carouselItems" :key="index" :class="{ active: index === activeIndex }">
@@ -27,6 +27,109 @@
           <ul>学习和生活优质平台</ul>
         </div>
       </main>
+      <el-container style="height: 652px; border: 1px hidden #121313 z-index: 0">
+        <el-aside style="width: 250px; height: 100%">
+          <!--引入自定义左侧菜单栏-->
+          <!-- <router-view name="leftNav" style="opacity:0.7"></router-view> -->
+          <div style="opacity: 0.7">
+            <el-row>
+              <el-col>
+                <el-menu
+                    class="el-menu-vertical-demo"
+                    background-color="#E9EEF3"
+                    text-color="black"
+                    router
+                    style="height: 650px,opacity: 0.7">
+                  <!--    List    -->
+                  <el-sub-menu index="/visit" style="text-align: left">
+                      <template #title>
+                        <el-icon index="/visit"><Menu /></el-icon>
+                        <span>List</span>
+                      </template>
+                      <!--  发表年份  -->
+                      <el-sub-menu>
+                          <template #title>
+                              <span>Publication Year</span>
+                          </template>
+                          <el-menu-item index="/visit">
+                              <template #title>
+                                  <span>2021</span>
+                              </template>
+                          </el-menu-item>
+                      </el-sub-menu>
+                      <!--  作者  -->
+                      <el-sub-menu>
+                          <template #title>
+                              <span>Author</span>
+                          </template>
+                          <el-menu-item>
+                              <template #title>
+                                  <span>vouzenus</span>
+                              </template>
+                          </el-menu-item>
+                      </el-sub-menu>
+                      <!--  机构  -->
+                      <el-sub-menu>
+                          <template #title>
+                              <span>Institution</span>
+                          </template>
+                          <el-menu-item>
+                              <template #title>
+                                  <span>A</span>
+                              </template>
+                          </el-menu-item>
+                      </el-sub-menu>
+                  </el-sub-menu>
+                  <!--    Support    -->
+                  <el-sub-menu style="text-align: left">
+                    <template #title>
+                      <el-icon><tickets /></el-icon>
+                      <span>Support</span>
+                    </template>
+                    <!--入门指南-->
+                    <el-menu-item index="/test1">
+                      <template #title>
+                        <span>使用指南</span>
+                      </template>
+                    </el-menu-item>              
+                    <!--常见问题-->
+                    <el-menu-item index="/test2">
+                      <template #title>
+                        <span>常见问题</span>
+                      </template>
+                    </el-menu-item>              
+                  </el-sub-menu>
+                  <el-menu-item index="/echarts" style="text-align: left">
+                    <template #title>
+                      <el-icon ><eleme /></el-icon>
+                      <span>Echarts</span>
+                    </template>
+                  </el-menu-item>
+                  <el-menu-item  style="text-align: left">
+                      <template #title>
+                        <el-icon ><message /></el-icon>
+                        <span>Contact</span>
+                      </template>
+                    </el-menu-item>
+                </el-menu>
+              </el-col>
+            </el-row>
+          </div>
+        </el-aside>
+        <el-main>
+          <!--引入跳转路由-->
+          <router-view style="opacity:0.7" ></router-view>
+          <!-- <router-view name="test1" style="opacity:0.7" v-show="$router.meta.test1"></router-view>
+          <router-view name="test2" style="opacity:0.7" v-show="$router.meta.test2"></router-view>
+          <router-view name="echart" style="opacity:0.7" v-show="$router.meta.echart"></router-view> -->
+        </el-main>
+      </el-container>
+    </div>
+    <div class="footbottom">
+      <p>Copyright © 2021  All rights reserved.</p>
+      <p>官方邮箱：</p>
+      <p>粤ICP备2021021248号</p>
+      <!-- {{ modifiedPath }} -->
     </div>
   </template>
   
@@ -34,6 +137,7 @@
   import * as THREE from "three";
   import { ref, onMounted, onBeforeUnmount } from "vue";
   import GLOBE from "vanta/src/vanta.globe";
+
   export default {
     data() {
       return {
@@ -49,6 +153,13 @@
     mounted() {
       this.startCarousel();
     },
+    // computed: {
+    //   modifiedPath() {
+    //     const path = this.$router.path;
+    //     const modified = path.replace('/', '');
+    //     return modified; // 返回去掉 / 的字符串
+    //   },
+    // },
     methods: {
         startCarousel() {
           setInterval(() => {
@@ -89,7 +200,7 @@
           vantaRef,
         };
       },
-  };
+  }
   </script>
   
   <style scoped>
@@ -101,9 +212,6 @@
     display: flex;
     justify-content: center; /* 水平居中 */
     align-items: center; /* 垂直居中 */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url(../../assets/images/B.jpg);
     opacity: 0.8;
     position: relative;
   }
