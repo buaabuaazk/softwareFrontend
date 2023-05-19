@@ -39,7 +39,7 @@ import Dropdown from './Dropdown';
             this.$router.push('/login');
         },
         gotoHome: function(){
-            this.$router.push('./visit');
+            this.$router.push('/visit');
         }
     }
   }
