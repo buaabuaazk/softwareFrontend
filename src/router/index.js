@@ -9,7 +9,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: home,
-    // redirect: 'visit',
+    redirect: 'visit',
     meta: {
       mainNavShow: true,
     },
