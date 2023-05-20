@@ -4,6 +4,7 @@ import home from "../views/Home/Home.vue"
 import test1 from "../views/Visit/part/test1.vue"
 import test2 from "../views/Visit/part/test2.vue"
 import echart from "../views/Visit/echarts.vue"
+import guide from "../views/Visit/part/guide.vue"
 const routes = [
   {
     path: '/',
@@ -23,14 +24,14 @@ const routes = [
           //   list:true
           // }
         },
-        {
-          path: 'test1',
-          name: 'test1',
-          component: test1,
-          // meta:{
-          //   test1:true
-          // }
-        },
+        // {
+        //   path: 'test1',
+        //   name: 'test1',
+        //   component: test1,
+        //   // meta:{
+        //   //   test1:true
+        //   // }
+        // },
         {
           path: 'test2',
           name: 'test2',
@@ -46,6 +47,15 @@ const routes = [
           // meta:{
           //   echart:true
           // }
+        },
+        {
+          path: 'test1',
+          name: 'test1',
+          component: guide,
+          meta: {
+            // requireNotAuth: true,
+            //mainNavShow: true
+          },
         },
     ],
   },
@@ -84,7 +94,7 @@ const routes = [
       // requireNotAuth: true,
       mainNavShow: true
     },
-  }
+  },
 ];
 
 const router = createRouter({

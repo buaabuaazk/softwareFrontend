@@ -84,12 +84,12 @@
                   <el-sub-menu style="text-align: left">
                     <template #title>
                       <el-icon><tickets /></el-icon>
-                      <span>Support</span>
+                      <span>About</span>
                     </template>
                     <!--入门指南-->
                     <el-menu-item index="/test1">
                       <template #title>
-                        <span>使用指南</span>
+                        <span>平台介绍</span>
                       </template>
                     </el-menu-item>              
                     <!--常见问题-->
@@ -119,9 +119,6 @@
         <el-main>
           <!--引入跳转路由-->
           <router-view style="opacity:0.7" ></router-view>
-          <!-- <router-view name="test1" style="opacity:0.7" v-show="$router.meta.test1"></router-view>
-          <router-view name="test2" style="opacity:0.7" v-show="$router.meta.test2"></router-view>
-          <router-view name="echart" style="opacity:0.7" v-show="$router.meta.echart"></router-view> -->
         </el-main>
       </el-container>
     </div>

@@ -32,7 +32,7 @@
         width: 80vw;
         height: 100vh;
         /*background-color: yellow;*/
-        background-image: url('../../../assets/images/6.jpg');
+        background-image: url('../../../assets/images/guide.jpg');
         /*background-repeat: no-repeat;*/
         background-repeat: no-repeat;
         background-size: cover;
