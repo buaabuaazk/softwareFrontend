@@ -1,486 +1,229 @@
 <template>
-    <!--  -->
-    <div class="onboarding onboarding--loading">
-        <div class="onboarding__item onboarding__item--active">
-          <h1>Design System Principles</h1>
-          <p>An iterative set of 8 standards for building and maintaining empowering design systems.
-          </p>
-          <a href="https://uxdesign.cc/defining-design-system-principles-69e4790b95b0" target="_blank">Original source<svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-            </svg></a>
-        </div>
-        <div class="onboarding__item">
-          <img src="https://assets.codepen.io/344846/RoundCube-White-Matte-2.png" />
-          <h2>Tools over rules</h2>
-          <p>Think of the system as a toolbox, not an instruction manual. Support the community, don’t block them. Design systems are about empowering others with tools and information to improve upon what has already been built — not police against it.</p>
-        </div>
-        <div class="onboarding__item">
-          <img src="https://assets.codepen.io/344846/Cone-White-Matte.png" />
-          <h2>Lead by example, not by explanation</h2>
-          <p>Show best practices with real examples, not instructions on how to recreate them. Writing an instruction manual on design patterns is laborious to write and read. It’s significantly easier to adopt, understand, update, maintain and implement from live examples.</p>
-        </div>
-        <div class="onboarding__item">
-          <img src="https://assets.codepen.io/344846/Cylinder-White-Matte.png" />
-          <h2>The goal is efficiency, not consistency</h2>
-          <p>There are a lot of goals of a design system: consistency, usability, coherence, consolidation, accessibility, efficiency… the list goes on. The point of this principle is to remember the primary driver for a design system is not to enforce consistency.</p>
-        </div>
-        <div class="onboarding__item">
-          <img src="https://assets.codepen.io/344846/RoundCube-White-Matte-1.png" />
-          <h2>Remove what’s not absolutely necessary and perfect what remains</h2>
-          <p>It’s very easy to add. It’s almost impossible to remove. Every addition should fight to be included. This is a difficult line to draw but complexities that creep into the foundation of a design system propagate out and become much harder to amend if users get accustomed to it.</p>
-        </div>
-        <div class="onboarding__item">
-          <img src="https://assets.codepen.io/344846/Sphere-White-Matte.png" />
-          <h2>Think inclusively</h2>
-          <p>Accessibility is an integrated part of design system development, not a box to check at the end. Inclusivity is imperative for building successful, ethical products that scale. Not to mention, accessibility is hard and design systems are in the unique position to champion it as a fundamental standard for design, development and content strategy.</p>
-        </div>
-        <div class="onboarding__item">
-          <img src="https://assets.codepen.io/344846/RoundCube-White-Matte-3.png" />
-          <h2>Design systems speak in tokens</h2>
-          <p>How a system defines, references, talks about, and curates its design tokens is very important. They are the soul of your system’s aesthetic, the most fundamental visual building block, and the glue that holds the system together in a way no other part can. It’s also frequently the code most likely to be leveraged across code bases.</p>
-        </div>
-        <div class="onboarding__item">
-          <img src="https://assets.codepen.io/344846/SuperToroid-White-Matte.png" />
-          <h2>The system succeeds when it can be used independent of its creators</h2>
-          <p>This is more of a north star than a principle but I find it to be a particularly useful periodic gut check. The system succeeds when it equips others with the principles, knowledge, and tools to solve problems without the design systems team.</p>
-        </div>
-        <div class="onboarding__item">
-          <img src="https://assets.codepen.io/344846/RoundCube-White-Matte.png" />
-          <h2>Flexible enough for different scenarios, specific enough to be useful</h2>
-          <p>Modularity is important (especially to encourage adoption) but too much and it starts to feel like a puzzle, too little and it doesn’t leave enough room for flexibility. Finding the sweet spot depends on the team, business, product, and component.</p>
-        </div>
-        <div class="onboarding__tracker">
-          <div class="onboarding__overlay"></div>
-          <div class="onboarding__nav">
-            <button class="onboarding__nav-button onboarding__prev" data-type="prev">
-              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
-              </svg></button>
-            <button class="onboarding__nav-button onboarding__next" data-type="next"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg></button>
-          </div>
-        </div>
-      </div>
-  </template>
-  
-  <script>
-//   export default {
-//   data() {
-//     return {
-//       isLoading: true,
-//       items: [],
-//       activeItemIndex: 0,
-//       navs: []
-//     };
-//   },
-//   mounted() {
-//     this.items = this.$el.querySelectorAll('.onboarding__item');
-//     this.activeItem = this.items[this.activeItemIndex];
-//     this.tracker = this.$el.querySelector('.onboarding__tracker');
-//     this.navs = this.$el.querySelectorAll('.onboarding__nav-button');
+    <h1 style="padding: 15px">热门帖子</h1>
+<ul class="post">
+    <li style="--accent-color:#41516C">
+        <div class="date">OS上机</div>
+        <div class="title">提示</div>
+        <div class="descr">请同学们在实验课到达指定机房（周一中午在微信的实验群发布机房与座位表）。实验课内容如下：
 
-//     this.setActiveItemWithItemClick();
-//     this.setNavActions();
-//     this.stopTransition();
-//     this.handleWindowResize();
+            Lab5 第一次上机考试
+            注意：初始化分支时，请选择正确的代码版本（commit）。系统将基于选择的代码版本来初始化课上考试的分支。若误选，可在 GitLab 的个人仓库中删除分支，然后返回系统重新初始化。</div>
+    </li>
+    <li style="--accent-color:#FBCA3E">
+        <div class="date">软工大作业</div>
+        <div class="title">学习和生活优质平台</div>
+        <div class="descr">此需求规格说明书旨在描述“学习生活平台”Web系统的需求。该系统旨在为大学生提供在线的学习生
+            活资源和交流平台。本文档通过对用户角色、系统功能和系统非功能性需求的描述，详细阐述了系统的
+            需求特性。</div>
+    </li>
+    <li style="--accent-color:#E24A68">
+        <div class="date">软工大作业</div>
+        <div class="title">软工大作业</div>
+        <div class="descr">软工大作业</div>
+    </li>
+    <li style="--accent-color:#1B5F8C">
+        <div class="date">软工大作业</div>
+        <div class="title">软工大作业</div>
+        <div class="descr">软工大作业</div>
+    </li>
+    <li style="--accent-color:#4CADAD">
+        <div class="date">软工大作业</div>
+        <div class="title">软工大作业</div>
+        <div class="descr">软工大作业</div>
+    </li>
+</ul>
+<div>
+    <p style="font-size: 23px;margin-top:20px">如果还想看更多精彩帖子，请登录吧</p>
+</div>
+</template>
+  
+<style scoped>
 
-//     const timeout = setTimeout(() => {
-//       this.isLoading = false;
-//       clearTimeout(timeout);
-//     }, 640);
-//   },
-//   methods: {
-//     handleTrackerPosition(top, left, height, width) {
-//     this.tracker.style.top = `${top}px`;
-//     this.tracker.style.left = `${left}px`;
-//     this.tracker.style.height = `${height}px`;
-//     this.tracker.style.width = `${width}px`;
-//   },
-
-//   getNewActiveIndex(type) {
-//     let index = 0;
-//     if (type === "prev") {
-//       index = this.activeItemIndex - 1 >= 0 ? this.activeItemIndex - 1 : 0;
-//     } else {
-//       index =
-//         this.activeItemIndex + 1 <= this.items.length - 1
-//           ? this.activeItemIndex + 1
-//           : this.items.length - 1;
-//     }
-
-//     return index;
-//   },
-
-//   setTrackerPosition() {
-//     const {
-//       offsetTop,
-//       offsetLeft,
-//       clientHeight,
-//       clientWidth
-//     } = this.activeItem;
-//     this.handleTrackerPosition(
-//       offsetTop,
-//       offsetLeft,
-//       clientHeight,
-//       clientWidth
-//     );
-
-//     const block = innerHeight < clientHeight ? "start" : "center";
-//     this.activeItem.scrollIntoView({ block, behavior: "smooth" });
-//   },
-
-//   setActiveItemIndex() {
-//     this.items.forEach((item, index) => {
-//       if (item.classList.contains("onboarding__item--active")) {
-//         this.activeItemIndex = index;
-//       }
-//     });
-//   },
-
-//   select(el) {
-//     const node = document.querySelector(el);
-//     if (node) {
-//       return node;
-//     } else {
-//       console.error("[Onboarding] - Element is not found");
-//     }
-//   },
-
-//   selectAll(el) {
-//     const nodes = document.querySelectorAll(el);
-//     if (nodes && nodes.length > 0) {
-//       return nodes;
-//     } else {
-//       console.error("[Onboarding] - Elements are not found");
-//     }
-//   },
-
-//   setActiveItem(index) {
-//     const newActiveItem = this.items[index];
-//     this.activeItemIndex = index;
-//     this.activeItem.classList.remove("onboarding__item--active");
-//     this.activeItem = newActiveItem;
-//     this.activeItem.classList.add("onboarding__item--active");
-//     this.setTrackerPosition(this.activeItem);
-//   },
-
-//   setActiveItemWithItemClick() {
-//     this.items.forEach((item, index) => {
-//       item.addEventListener("click", () => {
-//         this.setActiveItem(index);
-//       });
-//     });
-//   },
-
-//   setNavActions() {
-//     this.navs.forEach((nav) =>
-//       nav.addEventListener("click", (e) => {
-//         const index = this.getNewActiveIndex(
-//           e.currentTarget.getAttribute("data-type")
-//         );
-//         this.setActiveItem(index);
-//       })
-//     );
-//   },
-
-//   stopTransition() {
-//     this.tracker.classList.add("onboarding__tracker--stop-t");
-//     const resizeTimer = setTimeout(() => {
-//       this.tracker.classList.remove("onboarding__tracker--stop-t");
-//       clearTimeout(resizeTimer);
-//     }, 400);
-//   },
-
-//   handleWindowResize() {
-//     window.addEventListener("resize", () => {
-//       this.setTrackerPosition();
-//       this.stopTransition();
-//     });
-//   }
-//   }
-// };
-  </script>
-  
-  <style scoped>
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-  
-    font-weight: 400;
-    font-size: 15px;
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-  
-  img {
-    max-width: 100%;
-  }
-  
-  .onboarding {
-    overflow: auto;
-    margin: auto;
-    display: grid;
-    color: #fff;
-    place-items: center;
-    position: relative;
-    padding: 40px 80px;
-    background: linear-gradient(
-      327deg,
-      #1869b7,
-      #8e50d5,
-      #3d888c,
-      #3b85b7,
-      #8458a7,
-      #31836e
-    );
-    background-size: 1200% 1200%;
-    animation: gradientAnimation 20s ease infinite;
-  }
-  
-  .onboarding:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("https://images.unsplash.com/photo-1550859492-d5da9d8e45f3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80");
-    opacity: 0.58;
-    background-size: cover;
-    background-attachment: fixed;
-  }
-  
-  @keyframes gradientAnimation {
-    0% {
-      background-position: 36% 0%;
-    }
-    50% {
-      background-position: 65% 100%;
-    }
-    100% {
-      background-position: 36% 0%;
-    }
-  }
-  
-  .onboarding__item {
-    max-width: calc(60ch + 30px);
-    width: 100%;
-    padding: 40px 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    opacity: 0.2;
-    margin: 40px 0;
-    position: relative;
-    z-index: 1;
-    transition: 0.3s;
-    border-radius: 20px;
-    border: 1px solid transparent;
-  }
-  
-  .onboarding__item h1,
-  .onboarding__item h2 {
-    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
-    font-weight: 700;
-    line-height: 1.4;
-  }
-  
-  .onboarding__item h1 {
-    margin: 0 0 16px 0;
-  }
-  
-  .onboarding__item h2 {
-    margin: 30px 0 20px;
-  }
-  
-  .onboarding__item p {
-    margin: 0;
-    line-height: 1.4;
-  }
-  
-  .onboarding__item a {
-    color: #fff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 4px 8px;
-    margin-top: 16px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
-  }
-  
-  .onboarding__item a > svg {
-    margin-left: 4px;
-  }
-  
-  .onboarding__item img {
-    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
-  }
-  
-  
-  .onboarding__item img {
-    max-width: 100px;
-    display: block;
-  }
-  
-  .onboarding__item:not(.onboarding__item--active) * {
-    user-select: none;
-  }
-  
-  .onboarding__item:not(.onboarding__item--active):hover {
-    opacity: 0.5;
-    border-color: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-  }
-  
-  .onboarding__item--active {
-    opacity: 1;
-  }
-  
-  .onboarding__tracker {
-    position: absolute;
-    max-width: 100%;
-    left: 0;
-    top: 0;
-    transition: all 0.32s ease-in-out;
-  }
-  
-  .onboarding__overlay {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.28) 0%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    backdrop-filter: blur(30px);
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 20px;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0 0.5px 0 1px rgba(255, 255, 255, 0.23) inset,
-      0 1px 0 0 rgba(255, 255, 255, 0.66) inset, 0 4px 16px rgba(0, 0, 0, 0.12);
-  }
-  
-  .onboarding__tracker--stop-t {
-    transition: none;
-  }
-  
-  .onboarding__nav {
-    position: absolute;
-    left: calc(100% + 16px);
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  .onboarding__nav-button {
-    width: 36px;
-    height: 36px;
-    backdrop-filter: blur(30px);
-    border: 0;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    box-shadow: 0 0.5px 0 1px rgba(255, 255, 255, 0.23) inset,
-      0 1px 0 0 rgba(255, 255, 255, 0.66) inset, 0 4px 16px rgba(0, 0, 0, 0.12);
-    border-radius: 20px;
-    outline: 0;
-    cursor: pointer;
-    transition: 0.2s;
-    background-color: transparent;
-    position: relative;
-  }
-  
-  .onboarding__nav-button + .onboarding__nav-button {
-    margin-top: 10px;
-  }
-  
-  .onboarding__nav-button:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.28) 0%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    transition: 0.3s;
-  }
-  
-  .onboarding__nav-button:active {
-    box-shadow: 0 -0.5px 0 1px rgba(255, 255, 255, 0.23) inset,
-      0 1px 0 0 rgba(255, 255, 255, 0.2) inset,
-      0 6px 8px rgba(0, 0, 0, 0.12) inset;
-  }
-  
-  .onboarding__nav-button:hover:before {
-    opacity: 0.3;
-  }
-  
-  .onboarding__nav-button:active:before {
-    opacity: 0;
-  }
-  
-  @media (max-width: 768px) {
-    .onboarding {
-      padding-left: 40px;
-    }
-  }
-  
-.onboarding--loading > *:not(.onboarding__tracker) {
-  opacity: 0 !important;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.onboarding--loading 
-.onboarding__overlay {
-  border-radius: 20px;
+body {
+  --color: rgba(30, 30, 30);
+  --bgColor: rgba(245, 245, 245);
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  font-family: "Poppins", sans-serif;
+  color: var(--color);
+  background: var(--bgColor);
 }
 
-.onboarding--loading 
-.onboarding__tracker {
-  top: calc(50vh - 30px) !important;
-  width: 60px !important;
-  height: 60px !important;
-  left: calc(50% - 30px) !important;
-  border-radius: 20px;
-  overflow: hidden;
-  transition: 3s;
-  opacity: 1;
-  box-shadow: 0 0.5px 0 1px rgba(255, 255, 255, 0.23) inset,
-    0 1px 0 0 rgba(255, 255, 255, 0.66) inset, 0 4px 16px rgba(0, 0, 0, 0.08);
+h1 {
+  text-align: center;
 }
 
-.onboarding--loading 
-.onboarding__tracker:after {
+ul {
+  --col-gap: 2rem;
+  --row-gap: 2rem;
+  --line-w: 0.25rem;
+  display: grid;
+  grid-template-columns: var(--line-w) 1fr;
+  grid-auto-columns: max-content;
+  column-gap: var(--col-gap);
+  list-style: none;
+  width: min(60rem, 90%);
+  margin-inline: auto;
+}
+
+/* line */
+ul::before {
+  content: "";
+  grid-column: 1;
+  grid-row: 1 / span 20;
+  background: rgb(225, 225, 225);
+  border-radius: calc(var(--line-w) / 2);
+}
+
+/* columns*/
+
+/* row gaps */
+ul li:not(:last-child) {
+  margin-bottom: var(--row-gap);
+}
+
+/* card */
+ul li {
+  grid-column: 2;
+  --inlineP: 1.5rem;
+  margin-inline: var(--inlineP);
+  grid-row: span 2;
+  display: grid;
+  grid-template-rows: min-content min-content min-content;
+}
+
+/* date */
+ul li .date {
+  --dateH: 3rem;
+  height: var(--dateH);
+  margin-inline: calc(var(--inlineP) * -1);
+
+  text-align: center;
+  background-color: var(--accent-color);
+
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  display: grid;
+  place-content: center;
+  position: relative;
+
+  border-radius: calc(var(--dateH) / 2) 0 0 calc(var(--dateH) / 2);
+}
+
+/* date flap */
+ul li .date::before {
+  content: "";
+  width: var(--inlineP);
+  aspect-ratio: 1;
+  background: var(--accent-color);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2) 100%, transparent);
+  position: absolute;
+  top: 100%;
+
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  right: 0;
+}
+
+/* circle */
+ul li .date::after {
   content: "";
   position: absolute;
-  left: 10%;
-  top: 10%;
-  width: 80%;
-  height: 80%;
-  background-size: cover;
-  background-image: url("data:image/svg+xml, %3Csvg version='1.1' id='loader-1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='40px' height='40px' viewBox='0 0 40 40' enable-background='new 0 0 40 40' xml:space='preserve'%3E%3Cpath opacity='0.2' fill='%23fff' d='M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946 s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634 c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z'/%3E%3Cpath fill='%23fff' d='M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0 C22.32,8.481,24.301,9.057,26.013,10.047z'%3E%3CanimateTransform attributeType='xml' attributeName='transform' type='rotate' from='0 20 20' to='360 20 20' dur='0.5s' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E");
+  width: 2rem;
+  aspect-ratio: 1;
+  background: var(--bgColor);
+  border: 0.3rem solid var(--accent-color);
+  border-radius: 50%;
+  top: 50%;
+
+  transform: translate(50%, -50%);
+  right: calc(100% + var(--col-gap) + var(--line-w) / 2);
 }
 
-  .onboarding--loading  
-  .onboarding__nav {
-      opacity: 0;
-    }
-  
-  </style>
+/* title descr */
+ul li .title,
+ul li .descr {
+  background: var(--bgColor);
+  position: relative;
+  padding-inline: 1.5rem;
+}
+ul li .title {
+  overflow: hidden;
+  padding-block-start: 1.5rem;
+  padding-block-end: 1rem;
+  font-weight: 500;
+}
+ul li .descr {
+  padding-block-end: 1.5rem;
+  font-weight: 300;
+}
+
+/* shadows */
+ul li .title::before,
+ul li .descr::before {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 0.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  left: 50%;
+  border-radius: 50%;
+  filter: blur(4px);
+  transform: translate(-50%, 50%);
+}
+ul li .title::before {
+  bottom: calc(100% + 0.125rem);
+}
+
+ul li .descr::before {
+  z-index: -1;
+  bottom: 0.25rem;
+}
+
+@media (min-width: 40rem) {
+  ul {
+    grid-template-columns: 1fr var(--line-w) 1fr;
+  }
+  ul::before {
+    grid-column: 2;
+  }
+  ul li:nth-child(odd) {
+    grid-column: 1;
+  }
+  ul li:nth-child(even) {
+    grid-column: 3;
+  }
+
+  /* start second card */
+  ul li:nth-child(2) {
+    grid-row: 2/4;
+  }
+
+  ul li:nth-child(odd) .date::before {
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    left: 0;
+  }
+
+  ul li:nth-child(odd) .date::after {
+    transform: translate(-50%, -50%);
+    left: calc(100% + var(--col-gap) + var(--line-w) / 2);
+  }
+  ul li:nth-child(odd) .date {
+    border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
+  }
+}
+
+</style>
   

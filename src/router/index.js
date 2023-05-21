@@ -104,6 +104,14 @@ const routes = [
       mainNavShow: true
     },
   },
+  {
+    path: '/user',
+    name: 'user',
+    component: () => import('../views/User/userHome.vue'),
+    meta: {
+      mainNavShow: true
+    }
+  }
 ];
 
 const router = createRouter({

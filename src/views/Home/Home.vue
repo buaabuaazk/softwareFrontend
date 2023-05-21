@@ -114,7 +114,7 @@
                   <el-menu-item  index="/show" style="text-align: left">
                     <template #title>
                       <el-icon ><Reading /></el-icon>
-                      <span>show</span>
+                      <span>HotPosts</span>
                     </template>
                   </el-menu-item>
                 </el-menu>
