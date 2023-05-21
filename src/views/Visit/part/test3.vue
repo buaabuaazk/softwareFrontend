@@ -1,4 +1,5 @@
 <template>
+    <!--  -->
     <div class="onboarding onboarding--loading">
         <div class="onboarding__item onboarding__item--active">
           <h1>Design System Principles</h1>
