@@ -76,10 +76,10 @@
       showAllUsers(currentPage, pageSize) {   //异步请求显示所有数据
         currentPage = currentPage ? currentPage : this.now;
         pageSize = pageSize ? pageSize : this.size;
-        this.axios.get("http://localhost:8082/user/findByPage?nowPage=" + currentPage + "&rows=" + pageSize).then(res => {
-          this.tableData = res.data.users;
-          this.total = res.data.total;
-        });
+        // this.axios.get("http://localhost:8082/user/findByPage?nowPage=" + currentPage + "&rows=" + pageSize).then(res => {
+        //   this.tableData = res.data.users;
+        //   this.total = res.data.total;
+        // });
       }
     },
     created() {

@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import list from "../views/Visit/list.vue"
 import home from "../views/Home/Home.vue"
-import test1 from "../views/Visit/part/test1.vue"
 import test2 from "../views/Visit/part/test2.vue"
 import echart from "../views/Visit/echarts.vue"
 import guide from "../views/Visit/part/guide.vue"
+import show from "../views/Visit/part/test3.vue"
 const routes = [
   {
     path: '/',
@@ -52,6 +52,15 @@ const routes = [
           path: 'test1',
           name: 'test1',
           component: guide,
+          meta: {
+            // requireNotAuth: true,
+            //mainNavShow: true
+          },
+        },
+        {
+          path: 'show',
+          name: 'show',
+          component: show,
           meta: {
             // requireNotAuth: true,
             //mainNavShow: true

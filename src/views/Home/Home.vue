@@ -1,7 +1,7 @@
 <template>
     <div class="home" style="z-index: 0">
       <!--  头部   -->
-      <header class="header" ref="vantaRef" style="width: 100vw; height: 100vh; opacity:0.9; z-index:0 ">
+      <header class="header" ref="vantaRef" style="width: 100vw; background-color: yellow;height: 100vh; opacity:0.9; z-index:0 ">
         <!--  轮播图   -->
         <div class="carousel-container">
           <div class="carousel-item" v-for="(item, index) in carouselItems" :key="index" :class="{ active: index === activeIndex }">
@@ -110,7 +110,13 @@
                         <el-icon ><message /></el-icon>
                         <span>Contact</span>
                       </template>
-                    </el-menu-item>
+                  </el-menu-item>
+                  <el-menu-item  index="/show" style="text-align: left">
+                    <template #title>
+                      <el-icon ><Reading /></el-icon>
+                      <span>show</span>
+                    </template>
+                  </el-menu-item>
                 </el-menu>
               </el-col>
             </el-row>
