@@ -65,141 +65,141 @@
   </template>
   
   <script>
-  export default {
-  data() {
-    return {
-      isLoading: true,
-      items: [],
-      activeItemIndex: 0,
-      navs: []
-    };
-  },
-  mounted() {
-    this.items = this.$el.querySelectorAll('.onboarding__item');
-    this.activeItem = this.items[this.activeItemIndex];
-    this.tracker = this.$el.querySelector('.onboarding__tracker');
-    this.navs = this.$el.querySelectorAll('.onboarding__nav-button');
+//   export default {
+//   data() {
+//     return {
+//       isLoading: true,
+//       items: [],
+//       activeItemIndex: 0,
+//       navs: []
+//     };
+//   },
+//   mounted() {
+//     this.items = this.$el.querySelectorAll('.onboarding__item');
+//     this.activeItem = this.items[this.activeItemIndex];
+//     this.tracker = this.$el.querySelector('.onboarding__tracker');
+//     this.navs = this.$el.querySelectorAll('.onboarding__nav-button');
 
-    this.setActiveItemWithItemClick();
-    this.setNavActions();
-    this.stopTransition();
-    this.handleWindowResize();
+//     this.setActiveItemWithItemClick();
+//     this.setNavActions();
+//     this.stopTransition();
+//     this.handleWindowResize();
 
-    const timeout = setTimeout(() => {
-      this.isLoading = false;
-      clearTimeout(timeout);
-    }, 640);
-  },
-  methods: {
-    handleTrackerPosition(top, left, height, width) {
-    this.tracker.style.top = `${top}px`;
-    this.tracker.style.left = `${left}px`;
-    this.tracker.style.height = `${height}px`;
-    this.tracker.style.width = `${width}px`;
-  },
+//     const timeout = setTimeout(() => {
+//       this.isLoading = false;
+//       clearTimeout(timeout);
+//     }, 640);
+//   },
+//   methods: {
+//     handleTrackerPosition(top, left, height, width) {
+//     this.tracker.style.top = `${top}px`;
+//     this.tracker.style.left = `${left}px`;
+//     this.tracker.style.height = `${height}px`;
+//     this.tracker.style.width = `${width}px`;
+//   },
 
-  getNewActiveIndex(type) {
-    let index = 0;
-    if (type === "prev") {
-      index = this.activeItemIndex - 1 >= 0 ? this.activeItemIndex - 1 : 0;
-    } else {
-      index =
-        this.activeItemIndex + 1 <= this.items.length - 1
-          ? this.activeItemIndex + 1
-          : this.items.length - 1;
-    }
+//   getNewActiveIndex(type) {
+//     let index = 0;
+//     if (type === "prev") {
+//       index = this.activeItemIndex - 1 >= 0 ? this.activeItemIndex - 1 : 0;
+//     } else {
+//       index =
+//         this.activeItemIndex + 1 <= this.items.length - 1
+//           ? this.activeItemIndex + 1
+//           : this.items.length - 1;
+//     }
 
-    return index;
-  },
+//     return index;
+//   },
 
-  setTrackerPosition() {
-    const {
-      offsetTop,
-      offsetLeft,
-      clientHeight,
-      clientWidth
-    } = this.activeItem;
-    this.handleTrackerPosition(
-      offsetTop,
-      offsetLeft,
-      clientHeight,
-      clientWidth
-    );
+//   setTrackerPosition() {
+//     const {
+//       offsetTop,
+//       offsetLeft,
+//       clientHeight,
+//       clientWidth
+//     } = this.activeItem;
+//     this.handleTrackerPosition(
+//       offsetTop,
+//       offsetLeft,
+//       clientHeight,
+//       clientWidth
+//     );
 
-    const block = innerHeight < clientHeight ? "start" : "center";
-    this.activeItem.scrollIntoView({ block, behavior: "smooth" });
-  },
+//     const block = innerHeight < clientHeight ? "start" : "center";
+//     this.activeItem.scrollIntoView({ block, behavior: "smooth" });
+//   },
 
-  setActiveItemIndex() {
-    this.items.forEach((item, index) => {
-      if (item.classList.contains("onboarding__item--active")) {
-        this.activeItemIndex = index;
-      }
-    });
-  },
+//   setActiveItemIndex() {
+//     this.items.forEach((item, index) => {
+//       if (item.classList.contains("onboarding__item--active")) {
+//         this.activeItemIndex = index;
+//       }
+//     });
+//   },
 
-  select(el) {
-    const node = document.querySelector(el);
-    if (node) {
-      return node;
-    } else {
-      console.error("[Onboarding] - Element is not found");
-    }
-  },
+//   select(el) {
+//     const node = document.querySelector(el);
+//     if (node) {
+//       return node;
+//     } else {
+//       console.error("[Onboarding] - Element is not found");
+//     }
+//   },
 
-  selectAll(el) {
-    const nodes = document.querySelectorAll(el);
-    if (nodes && nodes.length > 0) {
-      return nodes;
-    } else {
-      console.error("[Onboarding] - Elements are not found");
-    }
-  },
+//   selectAll(el) {
+//     const nodes = document.querySelectorAll(el);
+//     if (nodes && nodes.length > 0) {
+//       return nodes;
+//     } else {
+//       console.error("[Onboarding] - Elements are not found");
+//     }
+//   },
 
-  setActiveItem(index) {
-    const newActiveItem = this.items[index];
-    this.activeItemIndex = index;
-    this.activeItem.classList.remove("onboarding__item--active");
-    this.activeItem = newActiveItem;
-    this.activeItem.classList.add("onboarding__item--active");
-    this.setTrackerPosition(this.activeItem);
-  },
+//   setActiveItem(index) {
+//     const newActiveItem = this.items[index];
+//     this.activeItemIndex = index;
+//     this.activeItem.classList.remove("onboarding__item--active");
+//     this.activeItem = newActiveItem;
+//     this.activeItem.classList.add("onboarding__item--active");
+//     this.setTrackerPosition(this.activeItem);
+//   },
 
-  setActiveItemWithItemClick() {
-    this.items.forEach((item, index) => {
-      item.addEventListener("click", () => {
-        this.setActiveItem(index);
-      });
-    });
-  },
+//   setActiveItemWithItemClick() {
+//     this.items.forEach((item, index) => {
+//       item.addEventListener("click", () => {
+//         this.setActiveItem(index);
+//       });
+//     });
+//   },
 
-  setNavActions() {
-    this.navs.forEach((nav) =>
-      nav.addEventListener("click", (e) => {
-        const index = this.getNewActiveIndex(
-          e.currentTarget.getAttribute("data-type")
-        );
-        this.setActiveItem(index);
-      })
-    );
-  },
+//   setNavActions() {
+//     this.navs.forEach((nav) =>
+//       nav.addEventListener("click", (e) => {
+//         const index = this.getNewActiveIndex(
+//           e.currentTarget.getAttribute("data-type")
+//         );
+//         this.setActiveItem(index);
+//       })
+//     );
+//   },
 
-  stopTransition() {
-    this.tracker.classList.add("onboarding__tracker--stop-t");
-    const resizeTimer = setTimeout(() => {
-      this.tracker.classList.remove("onboarding__tracker--stop-t");
-      clearTimeout(resizeTimer);
-    }, 400);
-  },
+//   stopTransition() {
+//     this.tracker.classList.add("onboarding__tracker--stop-t");
+//     const resizeTimer = setTimeout(() => {
+//       this.tracker.classList.remove("onboarding__tracker--stop-t");
+//       clearTimeout(resizeTimer);
+//     }, 400);
+//   },
 
-  handleWindowResize() {
-    window.addEventListener("resize", () => {
-      this.setTrackerPosition();
-      this.stopTransition();
-    });
-  }
-  }
-};
+//   handleWindowResize() {
+//     window.addEventListener("resize", () => {
+//       this.setTrackerPosition();
+//       this.stopTransition();
+//     });
+//   }
+//   }
+// };
   </script>
   
   <style scoped>
