@@ -6,6 +6,7 @@ import echart from "../views/Visit/echarts.vue"
 import guide from "../views/Visit/part/guide.vue"
 import show from "../views/Visit/part/test3.vue"
 import user from "../views/User/userHome.vue"
+import contact from "../views/Visit/contact.vue"
 const routes = [
   {
     path: '/',
@@ -67,6 +68,11 @@ const routes = [
             //mainNavShow: true
           },
         },
+        {
+          path: 'contact',
+          name: 'contact',
+          component: contact,
+        }
     ],
   },
   {

@@ -29,7 +29,7 @@
   <script setup>
   import { ref, h, resolveComponent } from "vue";
   import { ElMessageBox, ElMessage,ElButton,ElTag} from "element-plus";
-  import { request } from "../../router/index.js";
+//   import { request } from "../../router/index.js";
   //方式二
   // const ElButton = resolveComponent("ElButton");
   // const ElTag = resolveComponent("ElTag");
