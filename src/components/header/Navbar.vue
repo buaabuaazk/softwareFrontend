@@ -1,9 +1,9 @@
 <template>
     <nav>
-      <div class="menu-item"><a href="#" @click="gotoHome">Home</a></div>
-      <div class="menu-item"><a href="#" @click="gotoLogin">Login</a></div>
+      <div class="menu-item"><a  @click="gotoHome">Home</a></div>
+      <div class="menu-item"><a  @click="gotoLogin">Login</a></div>
       <Dropdown title="Resources" :items="Resources" />
-      <div class="menu-item"><a href="#">Community</a></div>
+      <div class="menu-item"><a @click="gotoUserHome">Community</a></div>
     </nav>
 </template>
   
@@ -40,6 +40,9 @@ import Dropdown from './Dropdown';
         },
         gotoHome: function(){
             this.$router.push('./visit');
+        },
+        gotoUserHome: function(){
+          this.$router.push('./user');
         }
     }
   }

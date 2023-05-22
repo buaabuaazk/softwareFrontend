@@ -5,6 +5,7 @@ import test2 from "../views/Visit/part/test2.vue"
 import echart from "../views/Visit/echarts.vue"
 import guide from "../views/Visit/part/guide.vue"
 import show from "../views/Visit/part/test3.vue"
+import user from "../views/User/userHome.vue"
 const routes = [
   {
     path: '/',
@@ -74,7 +75,7 @@ const routes = [
     component: () => import('../views/Login/Login.vue'),
     meta: {
       // requireNotAuth: true,
-      mainNavShow: true
+      mainNavShow: true,
     },
   },
   {
@@ -83,7 +84,7 @@ const routes = [
     component: () => import('../views/Login/AdministratorLogin.vue'),
     meta: {
       // requireNotAuth: true,
-      mainNavShow: true
+      mainNavShow: true,
     },
   },
   {
@@ -92,7 +93,7 @@ const routes = [
     component: () => import('../views/Login/Register.vue'),
     meta: {
       // requireNotAuth: true,
-      mainNavShow: true
+      mainNavShow: true,
     },
   },
   {
@@ -101,16 +102,68 @@ const routes = [
     component: () => import('../views/Login/ForgetPassword.vue'),
     meta: {
       // requireNotAuth: true,
-      mainNavShow: true
+      mainNavShow: true,
     },
   },
   {
     path: '/user',
     name: 'user',
-    component: () => import('../views/User/userHome.vue'),
+    component: user,
     meta: {
-      mainNavShow: true
-    }
+      mainNavShow: false,
+    },
+    children:[
+      {
+        path: 'introduce',
+        name: 'introduce',
+        component: () => import('../views/User/introduce.vue'),
+        // meta:{
+        //   list:true
+        // }
+      },
+      // {
+      //   path: 'test1',
+      //   name: 'test1',
+      //   component: test1,
+      //   // meta:{
+      //   //   test1:true
+      //   // }
+      // },
+      {
+        path: 'resource',
+        name: 'resource',
+        component: () => import('../views/User/resource.vue'),
+        // meta:{
+        //   test2:true
+        // }
+      },
+      {
+        path: 'focus',
+        name: 'focus',
+        component: () => import('../views/User/focus.vue'),
+        // meta:{
+        //   echart:true
+        // }
+      },
+      {
+        path: 'pop',
+        name: 'pop',
+        component: () => import('../views/User/pop.vue'),
+        meta: {
+          // requireNotAuth: true,
+          //mainNavShow: true
+        },
+      },
+      {
+        path: 'postAndChat',
+        name: 'postAndChat',
+        component: () => import('../views/User/postAndChat.vue'),
+        meta: {
+          // requireNotAuth: true,
+          //mainNavShow: true
+        },
+      },
+    ],
   }
 ];
 
