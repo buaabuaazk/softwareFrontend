@@ -112,6 +112,42 @@ const routes = [
     },
   },
   {
+    path: '/profile',
+    name: 'profile',
+    component: () => import('../views/Profile/Profile.vue'),
+    meta: {
+      // requireNotAuth: true,
+      mainNavShow: false
+    },
+  },
+  {
+    path: '/profile/collection',
+    name: 'collection',
+    component: () => import('../views/Profile/Collection.vue'),
+    meta: {
+      // requireNotAuth: true,
+      mainNavShow: false
+    },
+  },
+  {
+    path: '/profile/release',
+    name: 'release',
+    component: () => import('../views/Profile/Release.vue'),
+    meta: {
+      // requireNotAuth: true,
+      mainNavShow: false
+    },
+  },
+  {
+    path: '/profile/modify',
+    name: 'modify',
+    component: () => import('../views/Profile/Modify.vue'),
+    meta: {
+      // requireNotAuth: true,
+      mainNavShow: false
+    },
+  },
+  {
     path: '/user',
     name: 'user',
     component: user,

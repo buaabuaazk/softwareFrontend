@@ -14,7 +14,11 @@ export default {
   },
   data() {
     return {
-
+      globalData: {
+        // 定义全局变量
+        username_global: '',
+        token_global: '',
+      }
     }
   }
 }
