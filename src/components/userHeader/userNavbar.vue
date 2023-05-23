@@ -27,11 +27,8 @@
       
       <el-sub-menu index="/user/message" class="message">
         <template #title>消息</template>
-        <el-menu-item index="/user/">查看私信</el-menu-item>
-        <el-menu-item index="/user/introduce">查看回复</el-menu-item>
-        <el-menu-item index="/user/at">查看@提到我</el-menu-item>
-        <el-menu-item index="/user/friend">查看好友申请</el-menu-item>
-        <el-menu-item index="/user/collect">查看收藏</el-menu-item>
+        <el-menu-item index="/user/response">查看回复</el-menu-item>
+        <el-menu-item index="/user/friend">查看点赞</el-menu-item>
       </el-sub-menu>
       <el-sub-menu index="" class="more">
         <template #title>更多</template>

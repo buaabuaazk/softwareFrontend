@@ -31,6 +31,7 @@ export default {
       remember: false
     }
   },
+
   mounted() {
     // 在页面加载时检查localStorage中是否有存储用户名
     const storedUsername = localStorage.getItem('username');

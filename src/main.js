@@ -20,5 +20,5 @@ app.use(ElementPlus);
 app.use(router);
 app.use(VueAxios, axios);
 app.config.globalProperties.$echarts = echarts;
-
+axios.defaults.baseURL = "http://81.70.17.242.8000";
 app.mount('#app');

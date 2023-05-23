@@ -50,7 +50,7 @@ body {
 }
 
 .background-img {
-  background-image: url("https://3.bp.blogspot.com/-piZWCW2uUbg/W2fPXxkWZgI/AAAAAAAAOu0/eydmMjTIqcwLMHEEr2H7imqoRTxMw4o9QCLcBGAs/s1600/among_trees_night_dribbble.png");
+  background-image: url("../../../assets/images/commonQuestion.png");
   height: 550px;
   width: 1000px;
   background-repeat: no-repeat;

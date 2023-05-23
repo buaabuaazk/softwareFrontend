@@ -29,29 +29,110 @@
   <script setup>
   import { ref, h, resolveComponent } from "vue";
   import { ElMessageBox, ElMessage,ElButton,ElTag} from "element-plus";
-//   import { request } from "../../router/index.js";
-  //方式二
-  // const ElButton = resolveComponent("ElButton");
-  // const ElTag = resolveComponent("ElTag");
-  const tableData = ref([]);
-  //获取表格数据（mockjs生成）的方法
+  const tableData = ref([  {
+    id: 1,
+    name: "文件1",
+    type: "类型1",
+    subject: "学科1",
+    time: "2023-05-19",
+    size: "10MB",
+    status: "可发放",
+  },
+  {
+    id: 2,
+    name: "文件2",
+    type: "类型2",
+    subject: "学科2",
+    time: "2023-05-20",
+    size: "5MB",
+    status: "不可发放",
+  },
+  {
+    id: 3,
+    name: "文件3",
+    type: "类型3",
+    subject: "学科3",
+    time: "2023-05-21",
+    size: "8MB",
+    status: "可发放",
+  },
+  {
+    id: 4,
+    name: "文件4",
+    type: "类型4",
+    subject: "学科4",
+    time: "2023-05-22",
+    size: "12MB",
+    status: "不可发放",
+  },
+  {
+    id: 5,
+    name: "文件5",
+    type: "类型5",
+    subject: "学科5",
+    time: "2023-05-23",
+    size: "6MB",
+    status: "可发放",
+  },
+  {
+    id: 6,
+    name: "文件6",
+    type: "类型6",
+    subject: "学科6",
+    time: "2023-05-24",
+    size: "15MB",
+    status: "不可发放",
+  },
+  {
+    id: 7,
+    name: "文件7",
+    type: "类型7",
+    subject: "学科7",
+    time: "2023-05-25",
+    size: "9MB",
+    status: "可发放",
+  },
+  {
+    id: 8,
+    name: "文件8",
+    type: "类型8",
+    subject: "学科8",
+    time: "2023-05-26",
+    size: "7MB",
+    status: "不可发放",
+  },
+  {
+    id: 9,
+    name: "文件9",
+    type: "类型9",
+    subject: "学科9",
+    time: "2023-05-27",
+    size: "11MB",
+    status: "可发放",
+  },
+  {
+    id: 10,
+    name: "文件10",
+    type: "类型10",
+    subject: "学科10",
+    time: "2023-05-28",
+    size: "4MB",
+    status: "不可发放",
+  },
+]);
   const getApiData = () => {
-    // request("table2").then((res) => {
-    //   tableData.value = res.data;
-    // });
   };
   getApiData();
-  //columns 是一个数组，里面的值为每一列的配置信息
   const columns = [
     {
       key: "id",
-      dataKey: "id",//需要渲染当前列的数据字段，如{id:9527,name:'Mike'}，则填id
+      dataKey: "id",//需要渲染当前列的数据字段
       title: "id",//显示在单元格表头的文本
       width: 80,//当前列的宽度，必须设置
     },
     {
       key: "name",
-      dataKey: "name",//需要渲染当前列的数据字段，如{id:9527,name:'Mike'}，则填name
+      dataKey: "name",//需要渲染当前列的数据字段
       title: "名称",
       width: 100,
     },
