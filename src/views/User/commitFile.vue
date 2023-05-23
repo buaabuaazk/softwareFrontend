@@ -1,13 +1,12 @@
 <template>
     <el-upload
-      ref="photoRef"
-      :auto-upload="false"
+      ref="file"
+      :auto-upload="true"
       :http-request="upload"
     >
       <template #trigger>
         <el-button type="primary">选择文件</el-button>
-      </template>
-   
+      </template>   
       <el-button class="ml-3" type="success" @click="submitUpload">
         上传文件
       </el-button>
@@ -16,35 +15,59 @@
    
   <script setup>
   import { ref } from 'vue'
-  import server from '../../router/index.js'
   import axios from 'axios'
    
-  let photoRef = ref()
-   
+  let file = ref()
+  let formData1 = new FormData()
   function upload(params) {
-    let formData = new FormData()
-    formData.append('photoRef', params.file)
-    formData.append('str', '测试字符')
-    server({
-      url: 'http://81.70.17.242:8000/source/post/',
-      method: 'post',
-      data: formData,
-    }).then((resp) => {
-      console.log('success')
-    })
-  }
-  function submitUpload() {
-    // photoRef.value.submit()
-    axios.post('http://81.70.17.242:8000/source/post/', "file='formData' &name='1' &author='1' &description='1'&subject='10'")
+    formData1.append('file', params.file)
+    formData1.append('name', '1')
+    formData1.append('author', '1')
+    formData1.append('description', '1')
+    formData1.append('subject', '1')
+    axios.post('http://81.70.17.242:8000/source/post', formData1)
     .then(response => {
           // 处理登录成功的情况
-          const token = response.data.token
+          const code = response.data.code
+          const message = response.data.message
+          const error = response.data.error;
           // 将token存储到本地，以便之后使用
-          localStorage.setItem('token', token)
+          //localStorage.setItem('token', token)
           //打印一下
-          console.log(token)
+          console.log(code)
+          console.log(message)
+          console.log(error)
+          // console.log(file.value);
           // 进行页面跳转等操作
-          window.location.href = 'https://www.baidu.com'
+        })
+  }
+  function submitUpload(params) 
+  {
+    formData1.append('file', params.file)
+    formData1.append('name', '1')
+    formData1.append('author', '1')
+    formData1.append('description', '1')
+    formData1.append('subject', '1')
+    // photoRef.value.submit()
+    axios.post('http://81.70.17.242:8000/source/post', formData1)
+    .then(response => {
+          // 处理登录成功的情况
+          const code = response.data.code
+          const message = response.data.message
+          const error = response.data.error;
+          // 将token存储到本地，以便之后使用
+          //localStorage.setItem('token', token)
+          //打印一下
+          console.log(code)
+          console.log(message)
+          console.log(error)
+          console.log(formData1.get('file')); // 打印文件对象
+          console.log(formData1.get('name')); // 打印文件名
+          console.log(formData1.get('author')); // 打印文件作者
+          console.log(formData1.get('description')); // 打印文件描述
+          // console.log(formData1.get('subject'));
+          console.log(file.value);
+          // 进行页面跳转等操作
         })
   }
    
