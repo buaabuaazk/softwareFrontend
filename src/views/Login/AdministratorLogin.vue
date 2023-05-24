@@ -14,7 +14,7 @@
       </label>
       <button type="submit">登录</button>
       <div style="display: flex; justify-content: space-between;">
-        <a href="/">忘记密码</a>
+        <a href="/login/forgetpassword">忘记密码</a>
         <a href="/login">用户登录</a>
       </div>
     </form>
@@ -22,14 +22,16 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
       username: '',
       password: '',
-      remember: false
+     // remember: false
     }
   },
+
   mounted() {
     // 在页面加载时检查localStorage中是否有存储用户名
     const storedUsername = localStorage.getItem('username');
@@ -40,6 +42,10 @@ export default {
   },
   methods: {
     submitForm() {
+      const data = {
+        username: this.username,
+        password: this.password
+      };
       console.log('Username:', this.username);
       console.log('Password:', this.password);
       // 如果用户勾选了记住用户名，则将其存储到localStorage中
@@ -49,9 +55,49 @@ export default {
         localStorage.removeItem('username');
       }
       // 在这里，你可以添加发送请求到后端的代码
+      console.log('start');
+      axios.post('http://81.70.17.242:8000/admin/login',data)
+        .then(response => {
+          console.log('start_success');
+          // 处理登录成功的情况
+          console.log('success')
+          var code = ''
+          code = response.data.code
+          console.log('code:'+code)
+          if (code === 10201) {
+            alert('用户名不存在！')
+          } else if (code === 10202) {
+            alert('密码错误！')
+          } else if(code === 200){
+            var token = ''
+            token = response.data.data.token
+            //打印一下
+            console.log(token)
+            console.log(code)
+            //将username存到全局变量
+            this.$root.globalData.username_global=this.username
+            this.$root.globalData.token_global=token
+            console.log(this.$root.globalData.username_global)
+            console.log(this.$root.globalData.token_global)
+            // 进行页面跳转等操作
+            //有个bug，登录后再登录，好像就不能alert“登录成功”了
+            //不知道登录后退出登录会不会有这种情况
+            alert('登录成功')
+            window.location.href = '/profile'
+          }
+          //将token存储到本地，以便之后使用
+          //localStorage.setItem('token', token)
+        })
+        .catch(error => {
+          console.log('start_error');
+          var code = ''
+          code = error.code
+          console.log(code)
+        })
+    }
     }
   }
-}
+
 </script>
 
 <style scoped>
