@@ -73,7 +73,7 @@
                 <span>Echarts</span>
               </template>
             </el-menu-item>
-            <el-menu-item  style="text-align: left">
+            <el-menu-item  index="/contact" style="text-align: left">
                 <template #title>
                   <el-icon ><message /></el-icon>
                   <span>Contact</span>

@@ -6,7 +6,6 @@ import echart from "../views/Visit/echarts.vue"
 import guide from "../views/Visit/part/guide.vue"
 import show from "../views/Visit/part/test3.vue"
 import user from "../views/User/userHome.vue"
-import contact from "../views/Visit/contact.vue"
 const routes = [
   {
     path: '/',
@@ -22,41 +21,22 @@ const routes = [
           path: 'visit',
           name: 'list',
           component: list,
-          // meta:{
-          //   list:true
-          // }
         },
-        // {
-        //   path: 'test1',
-        //   name: 'test1',
-        //   component: test1,
-        //   // meta:{
-        //   //   test1:true
-        //   // }
-        // },
         {
           path: 'test2',
           name: 'test2',
           component: test2,
-          // meta:{
-          //   test2:true
-          // }
         },
         {
           path: 'echarts',
           name: 'echart',
           component: echart,
-          // meta:{
-          //   echart:true
-          // }
         },
         {
           path: 'test1',
           name: 'test1',
           component: guide,
           meta: {
-            // requireNotAuth: true,
-            //mainNavShow: true
           },
         },
         {
@@ -64,14 +44,12 @@ const routes = [
           name: 'show',
           component: show,
           meta: {
-            // requireNotAuth: true,
-            //mainNavShow: true
           },
         },
         {
           path: 'contact',
           name: 'contact',
-          component: contact,
+          component: () => import('../views/Visit/contact.vue'),
         }
     ],
   },
@@ -111,6 +89,7 @@ const routes = [
       mainNavShow: true,
     },
   },
+  //个人主页
   {
     path: '/profile',
     name: 'profile',
@@ -120,6 +99,7 @@ const routes = [
       mainNavShow: false
     },
   },
+  
   {
     path: '/profile/collection',
     name: 'collection',
@@ -147,6 +127,7 @@ const routes = [
       mainNavShow: false
     },
   },
+  //用户区
   {
     path: '/user',
     name: 'user',
@@ -205,8 +186,27 @@ const routes = [
           //mainNavShow: true
         },
       },
+      {
+        path: 'userProfile',
+        name: 'userProfile',
+        component: () => import('../views/User/userProfile.vue'),
+        meta: {
+          
+        }
+      },
+      {
+        path: 'chatGpt',
+        name: 'chatGpt',
+        component: () => import('../views/User/chatGpt.vue'),
+      },
+      {
+        path: 'contact',
+        name: 'contact',
+        component: () => import('../views/User/contact.vue'),
+      }
     ],
-  }
+  },
+  
 ];
 
 const router = createRouter({

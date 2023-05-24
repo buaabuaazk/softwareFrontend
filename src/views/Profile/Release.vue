@@ -320,7 +320,7 @@
     margin: 0 auto;
   }
 
-  table[Attributes Style] {
+  table[AttributesStyle] {
     -webkit-border-horizontal-spacing: 0px;
     -webkit-border-vertical-spacing: 0px;
     border-top-width: 0px;
@@ -346,7 +346,7 @@
     vertical-align: inherit;
     border-color: inherit;
   }
-  td[Attributes Style] {
+  td[AttributesStyle] {
     width: 110px;
     text-align: -webkit-left;
   }

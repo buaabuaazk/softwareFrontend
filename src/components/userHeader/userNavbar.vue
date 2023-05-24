@@ -11,7 +11,7 @@
       @select="handleSelect"
     >
       <el-menu-item index="/visit" class="user"><span style="color: #00a7d0;font-size:28px">趣学交流</span></el-menu-item>
-      <el-sub-menu index="/user" class="firstPage">
+      <el-sub-menu index="/user/introduce" class="firstPage">
         <template #title>首页</template>
         <el-menu-item index="/user/focus"><template #title><span>关注</span></template></el-menu-item>
         <el-menu-item index="/user/introduce"><template #title><span>推荐</span></template></el-menu-item>
@@ -32,7 +32,8 @@
       </el-sub-menu>
       <el-sub-menu index="" class="more">
         <template #title>更多</template>
-        <el-menu-item index="/user/person">个人中心</el-menu-item>
+        <el-menu-item index="/user/userProfile">个人中心</el-menu-item>
+        <el-menu-item index="/user/chatGpt">chatGpt</el-menu-item>
         <el-menu-item index="/user/contact">问题反馈</el-menu-item>
         <el-menu-item index="/user/set">设置</el-menu-item>
       </el-sub-menu>
