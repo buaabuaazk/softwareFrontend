@@ -89,16 +89,7 @@ export default {
           //localStorage.setItem('token', token)
         })
         .catch(error => {
-          /*
-          // 处理登录失败的情况
-          if (error.data.code === 10201) {
-            // 用户不存在的情况
-          } else if (error.code === 10202) {
-            // 密码错误的情况
-          } else {
-            // 其他错误情况
-          }
-          */
+
         })
     }
     }

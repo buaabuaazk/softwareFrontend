@@ -10,7 +10,7 @@
         <div class="info">
           <h1>{{ nickname }}</h1>
           <p class="role">{{ role }}</p>
-          <p>电子邮箱: {{ email }}</p>
+          <p>电子邮箱: {{ this.$root.globalData.username_global }}</p>
           <p>经验值: {{ experience }}</p>
           <p>等级: {{ level }}</p>
         </div>
