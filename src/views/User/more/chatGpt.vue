@@ -8,7 +8,7 @@
   </template>
    
   <script>
-  import chatgptAPI from '../../api/chatgpt.js';
+  import chatgptAPI from '../../../api/chatgpt.js';
    
   export default {
     data() {

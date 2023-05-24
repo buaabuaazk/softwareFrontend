@@ -8,14 +8,26 @@
             <el-input placeholder="请输入内容"
             v-model="queryInfo.query" clearable @clear="getUserList">
             <template #append>
-             <el-button @click="getUserList"><el-icon><search /></el-icon></el-button>
+             <el-button ><el-icon><search /></el-icon></el-button>
             </template>
             </el-input>
         </el-col>
         <el-col :span="4">
-          <el-button type="primary">搜索资料</el-button>
+          <el-button type="primary" @click="getUserList">搜索资料</el-button>
         </el-col>
       </el-row>
+      <div class="select">
+        <el-select v-model="value" placeholder="Select" class="left-aligned-select">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+            :disabled="item.disabled"
+          />
+        </el-select>
+        <p class="p">选择学科</p>
+      </div>
       <!-- 用户列表区域  -->
       <el-table :data="userlist" border stripe>
         <el-table-column type="index"></el-table-column>
@@ -36,7 +48,7 @@
           <el-button type="danger" size="mini"><el-icon><delete /></el-icon></el-button>
           <!-- 分配角色按钮 -->
           <el-tooltip effect="dark" content="分配角色" placement="top" :enterable="false">
-            <el-button type="warning" size="mini"><el-icon><setting /></el-icon></el-button>
+            <el-button type="warning" size="mini"><el-icon><setting /></el-icon></el-button> 
          </el-tooltip>
           </template>
         </el-table-column>
@@ -50,8 +62,8 @@
     </el-card>
     </div>
   </template>
-   
-  <script >
+  <script>
+    import axios from "axios";
   export default {
     data () {
       return {
@@ -64,21 +76,34 @@
         // 用户列表
         userlist: [],
         // 总数据条数
-        total: 0
+        total: 0,
+        options : [
+    {
+      value: 'OS',
+      label: 'subject',
+    },
+    {
+      value: 'Math',
+      label: 'type',
+    },
+    {
+      value: 'English',
+      label: 'author',
+    },
+  ]
       }
     },
-    created () {
-      this.getUserList()
-    },
+    // created () {
+    //   this.getUserList()
+    // },
     methods: {
       async getUserList () {
-        // const { data: res } = await this.$http.get('users', {
-        //   params: this.queryInfo
-        // })
-        // if (res.meta.status !== 200) return this.$message.error('获取用户列表失败')
-        // this.userlist = res.data.users
-        // this.total = res.data.total
-        // console.log(res)
+    axios.get('http://81.70.17.242:8000/source/get_subject','math')
+    .then(response => {
+      const tableData = response.data;
+      console.log(tableData); // 在控制台打印数据或进行其他操作
+    })
+  } 
       },
       // 监听 page size 改变的事件
       handleSizeChange (newSize) {
@@ -101,9 +126,22 @@
     //   }
     }
    
-  }
   </script>
    
   <style lang="less" scoped>
-   
+    .select{
+      display: flex;
+      margin-top: 5px;
+      left:0;
+      width: 10vw;
+      height: 60px;
+    }
+    .left-aligned-select .el-input__inner {
+      text-align: left !important;
+    }
+    .p{
+      font-size:5px;
+      padding: 3px;
+      color: #222;
+    }
   </style>

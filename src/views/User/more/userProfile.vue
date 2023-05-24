@@ -36,79 +36,12 @@
         experience: 500,
         level: 5,
         registrationDate: '2023-05-22',
-        avatar: require('../../assets/images/background1.jpg'),
+        avatar: require('../../../assets/images/background1.jpg'),
         signature: 'This is my signature.',
       }
     },
   }
   </script>
-  
-  <!--
-  <style scoped>
-  .container {
-    display: flex;
-  }
-  
-  .menu {
-    flex-shrink: 0;
-    width: 100px;
-  }
-  
-  .menu button {
-    border: none; /* 删除边框 */
-    padding: 10px 20px; /* 增大按钮 */
-    cursor: pointer; /* 按钮鼠标形状为手形 */
-    background-color: #ddd; /* 设置背景颜色 */
-    margin-bottom: 10px; /* 按钮间的间距 */
-    width: 100%; /* 宽度填满父容器 */
-  }
-  
-  .menu button:hover {
-    background-color: #bbb; /* 鼠标悬停时的背景颜色 */
-  }
-  
-  .content {
-    flex-grow: 1;
-  }
-  
-  .profile {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding-top: 50px;
-  }
-  
-  .avatar img {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-  }
-  
-  .info {
-    margin-left: 20px;
-    text-align: left;
-  }
-  
-  .info p, .info h1 {
-    margin: 5px 0;
-  }
-  .app-content {
-    display: flex; /* 使子元素沿着水平线排列 */
-    padding-top: 50px;
-  }
-  
-  .sidebar {
-    flex-shrink: 0; /* 防止侧边栏在空间不足时缩小 */
-  }
-  
-  .main-content {
-    flex-grow: 1; /* 让 main-content 元素占用剩余的空间 */
-    /* 其他样式 */
-  }
-  </style>
-  -->
-  
   <style scoped>
   .app-content {
     display: flex; 

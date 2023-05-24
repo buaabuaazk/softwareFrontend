@@ -17,7 +17,7 @@
         </div>
         <button type="submit" class="btn btn-primary btn-lg">提交</button>
       </form>
-      <img src="../../assets/images/contact.jpg"  align="center" width="200px" alt="网络图片" title="图片示例"/>
+      <img src="../../../assets/images/contact.jpg"  align="center" width="200px" alt="网络图片" title="图片示例"/>
     </div>
   </template>
   

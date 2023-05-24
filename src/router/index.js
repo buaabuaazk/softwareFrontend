@@ -139,31 +139,20 @@ const routes = [
       {
         path: 'introduce',
         name: 'introduce',
-        component: () => import('../views/User/introduce.vue'),
+        component: () => import('../views/User/firstPage/introduce.vue'),
         // meta:{
         //   list:true
         // }
       },
-      // {
-      //   path: 'test1',
-      //   name: 'test1',
-      //   component: test1,
-      //   // meta:{
-      //   //   test1:true
-      //   // }
-      // },
       {
         path: 'resource',
         name: 'resource',
-        component: () => import('../views/User/resource.vue'),
-        // meta:{
-        //   test2:true
-        // }
+        component: () => import('../views/User/resource/resource.vue'),
       },
       {
         path: 'focus',
         name: 'focus',
-        component: () => import('../views/User/focus.vue'),
+        component: () => import('../views/User/firstPage/focus.vue'),
         // meta:{
         //   echart:true
         // }
@@ -182,14 +171,12 @@ const routes = [
         name: 'postAndChat',
         component: () => import('../views/User/postAndChat.vue'),
         meta: {
-          // requireNotAuth: true,
-          //mainNavShow: true
         },
       },
       {
         path: 'userProfile',
         name: 'userProfile',
-        component: () => import('../views/User/userProfile.vue'),
+        component: () => import('../views/User/more/userProfile.vue'),
         meta: {
           
         }
@@ -197,12 +184,12 @@ const routes = [
       {
         path: 'chatGpt',
         name: 'chatGpt',
-        component: () => import('../views/User/chatGpt.vue'),
+        component: () => import('../views/User/more/chatGpt.vue'),
       },
       {
         path: 'contact',
         name: 'contact',
-        component: () => import('../views/User/contact.vue'),
+        component: () => import('../views/User/more/contact.vue'),
       }
     ],
   },
