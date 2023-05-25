@@ -1,122 +1,95 @@
 <template>
   <div class="app-content">
-    <sidebar>
-    </sidebar>
+    <sidebar></sidebar>
     <div class="main-content">
-        <div class="profile">
+      <div class="profile">
         <div class="avatar">
           <img :src="avatar" alt="User avatar" />
         </div>
         <div class="info">
           <h1>{{ nickname }}</h1>
-          <p class="role">{{ role }}</p>
-          <p>电子邮箱: {{ this.$root.globalData.username_global }}</p>
-          <p>经验值: {{ experience }}</p>
+          <p>账号：{{ getUsername_glo() }}</p>
+          <p>手机号：{{ phonenumber }}</p>
+          <p>电子邮箱: {{ getToken_glo() }}</p>
           <p>等级: {{ level }}</p>
+          <p>经验值: {{ experience }}</p>
+          <div class="demo-progress">
+            <el-progress :percentage="60" />
+          </div>
+          <p>个性签名：{{ signature }}</p>
         </div>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import Sidebar from '@/components/Sidebar.vue';
+import { mapState, mapMutations } from 'vuex'
+
 export default {
   name: 'App',
-    components: {
-      Sidebar
-    },
+  components: {
+    Sidebar
+  },
   data() {
     return {
+      username: 'zk3',
+      phonenumber: '15832369597',
       currentTab: '基本信息',
       password: 'encryptedpassword',
       email: 'user@email.com',
       nickname: 'Nickname',
-      role: 'User',
-      experience: 500,
+      experience: 30,
       level: 5,
-      registrationDate: '2023-05-22',
       avatar: require('../../assets/images/background1.jpg'),
       signature: 'This is my signature.',
     }
   },
+  computed: {
+    ...mapState([
+      'count',
+      'username_glo',
+      'token_glo'
+    ])
+  },
+  methods: {
+    ...mapMutations([
+      'increment',
+      'decrement'
+    ]),
+    incrementAndLog() {
+      this.increment();
+      console.log(this.count);
+    },
+    decrementAndLog() {
+      this.decrement();
+      console.log(this.count);
+    },
+    getUsername_glo() {
+      return this.username_glo;
+    },
+    getToken_glo(){
+      return this.token_glo;
+    }
+  }
 }
 </script>
 
-<!--
 <style scoped>
-.container {
+.app-content {
   display: flex;
+  padding-top: 50px;
 }
 
-.menu {
+.demo-progress .el-progress--line {
+  margin-bottom: 15px;
+  width: 250px;
+}
+
+.sidebar {
   flex-shrink: 0;
-  width: 100px;
-}
-
-.menu button {
-  border: none; /* 删除边框 */
-  padding: 10px 20px; /* 增大按钮 */
-  cursor: pointer; /* 按钮鼠标形状为手形 */
-  background-color: #ddd; /* 设置背景颜色 */
-  margin-bottom: 10px; /* 按钮间的间距 */
-  width: 100%; /* 宽度填满父容器 */
-}
-
-.menu button:hover {
-  background-color: #bbb; /* 鼠标悬停时的背景颜色 */
-}
-
-.content {
-  flex-grow: 1;
-}
-
-.profile {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding-top: 50px;
-}
-
-.avatar img {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-}
-
-.info {
-  margin-left: 20px;
-  text-align: left;
-}
-
-.info p, .info h1 {
-  margin: 5px 0;
-}
-.app-content {
-  display: flex; /* 使子元素沿着水平线排列 */
-  padding-top: 50px;
-}
-
-.sidebar {
-  flex-shrink: 0; /* 防止侧边栏在空间不足时缩小 */
-}
-
-.main-content {
-  flex-grow: 1; /* 让 main-content 元素占用剩余的空间 */
-  /* 其他样式 */
-}
-</style>
--->
-
-<style scoped>
-.app-content {
-  display: flex; 
-  padding-top: 50px;
-}
-
-.sidebar {
-  flex-shrink: 0; 
 }
 
 .main-content {
@@ -128,10 +101,12 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 50px;  /* Increased vertical padding */
-  background: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 50px;
+  margin-right: 20px;
+  background: linear-gradient(to bottom right, #ffffff, #f2f2f2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  padding-bottom: 20px;
 }
 
 .avatar img {
@@ -141,20 +116,22 @@ export default {
 }
 
 .info {
-  margin-left: 50px;  /* Increased margin to create more space between the image and the text */
+  margin-left: 50px;
+  margin-bottom: 20px;
   text-align: left;
 }
 
 .info h1 {
   margin: 0;
   padding: 0;
-  font-size: 1.5em;
-  color: #333;
+  font-size: 2em;
+  color: #000;
 }
 
 .info p {
   margin: 5px 0;
   color: #666;
+  line-height: 1.5;
 }
 
 .info .role {
@@ -163,4 +140,3 @@ export default {
   color: #333;
 }
 </style>
-

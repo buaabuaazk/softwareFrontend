@@ -91,7 +91,7 @@
             else if(code == 200){
               alert('重置密码成功');
               console.log(response.data.code);
-              window.location.href = '/login';
+              this.$router.push('/login');
             }
             else{
               alert("未知错误ahhhhh");
