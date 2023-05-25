@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import router from './router';
 import App from './App.vue';
+import store from './store' // 导入 Vuex 的 store 对象
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import axios from "axios";
@@ -18,6 +19,7 @@ app.use(ElementPlus, {
 })
 app.use(ElementPlus);
 app.use(router);
+app.use(store);//store
 app.use(VueAxios, axios);
 app.config.globalProperties.$echarts = echarts;
 axios.defaults.baseURL = "http://81.70.17.242.8000";

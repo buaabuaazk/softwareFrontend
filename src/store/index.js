@@ -1,23 +1,29 @@
-import { createApp } from 'vue'
 import { createStore } from 'vuex'
-import user from './user'
-
+import createPersistedState from 'vuex-persistedstate'
 const store = createStore({
   state() {
-    return {}
+    return {
+      count: 0,//测试用的
+      username_glo: 'null',
+      token_glo:''
+    }
   },
-  mutations: {},
-  actions: {
-    clear({ commit }) {
-      commit('$_removeStorage')
+  mutations: {
+    increment(state) {
+      state.count++
     },
+    decrement(state) {
+      state.count--
+    },
+    updateUsername_glo(state,un){
+        state.username_glo = un;
+    },
+    updateToken_glo(state,tok){
+      state.token_glo = tok;
+    }
+
   },
-  modules: {
-    user,
-  },
+  //plugins: [createPersistedState()]
 })
 
-const app = createApp({})
-app.use(store)
-
-export default app
+export default store

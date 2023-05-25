@@ -25,6 +25,7 @@
 
 <script>
 import axios from 'axios'
+import { mapState, mapMutations } from 'vuex'
 export default {
   data() {
     return {
@@ -33,7 +34,13 @@ export default {
      // remember: false
     }
   },
-
+  computed: {
+      ...mapState([
+        'count',
+        'username_glo',
+        'token_glo'
+      ])
+    },
   mounted() {
     // 在页面加载时检查localStorage中是否有存储用户名
     const storedUsername = localStorage.getItem('username');
@@ -43,6 +50,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+        'increment',
+        'decrement',
+        'updateUsername_glo',
+        'updateToken_glo'
+      ]),
     submitForm() {
       const data = {
         username: this.username,
@@ -75,15 +88,19 @@ export default {
             console.log(token)
             console.log(code)
             //将username存到全局变量
+            /*废弃root办法
             this.$root.globalData.username_global=this.username
             this.$root.globalData.token_global=token
             console.log(this.$root.globalData.username_global)
             console.log(this.$root.globalData.token_global)
+            */
+            this.updateUsername_glo(this.username);
+            this.updateToken_glo(token);
             // 进行页面跳转等操作
             //有个bug，登录后再登录，好像就不能alert“登录成功”了
             //不知道登录后退出登录会不会有这种情况
             alert('登录成功')
-            window.location.href = '/user'
+            this.$router.push('/user');
           }
           //将token存储到本地，以便之后使用
           //localStorage.setItem('token', token)
@@ -98,6 +115,17 @@ export default {
 </script>
 
 <style scoped>
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-img {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
 .Login {
   width: 100%;
   height: 100%;
