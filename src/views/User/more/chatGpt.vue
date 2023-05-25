@@ -21,11 +21,11 @@
       async sendMessage() {
         try {
         console.log(this.message);
+        this.messages='';
         const response = await chatgptAPI.getResponse(this.message);
         const content = response['choices'][0]['message']['content'];
         console.log(content)
         this.messages.push(content);
-        this.message = '';
         console.log(this.messages);
         }
         catch (error){

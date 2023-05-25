@@ -12,7 +12,7 @@ export default {
       "top_p": 1,
       "n": 2,
       "stream": false,
-      "max_tokens": 700,
+      "max_tokens": 7000,
       "stop": "\n"
     }
     ,{
