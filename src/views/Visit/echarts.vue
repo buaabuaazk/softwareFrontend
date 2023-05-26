@@ -5,13 +5,25 @@
   </template>
   
   <script>
+  import axios from 'axios';
   export default {
     name: 'echarts',
     data() {
-      return {};
+      return {
+        data:{
+          MathNum: "",
+          ChineseNum: "",
+          OSNum: "",
+          EnglishNum: "",
+          OthersNum: "",
+        }
+      };
     },
     mounted() {
       this.myEcharts()
+    },
+    created(){
+      this.getSubjectData();
     },
     methods: {
       myEcharts() {
@@ -20,25 +32,47 @@
         // 指定图表的配置项和数据
         const option = {
           title: {
-            text: 'ECharts 统计图'
+            text: '资源统计图'
           },
           tooltip: {},
           // legend: {
           //   data: ['销量']
           // },
           xAxis: {
-            data: ["类型1", "类型2", "类型3", "类型4", "类型5", "类型6"]
+            data: ["math", "Chinese", "OS", "English", "Others"]
           },
           yAxis: {},
           series: [{
             name: '销量',
             type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
+            data: [this.data.MathNum, this.data.ChineseNum, this.data.OSNum, this.data.EnglishNum, this.data.OthersNum]
           }]
         };
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
-      }
+      },
+      async getSubjectData(){
+        const { data: res } = await axios.post(`http://81.70.17.242:8000/source/get_subject`, {
+          "subject": "math"
+        });
+        this.data.MathNum = res.resource_info_list;
+        const { data: res1 } = await axios.post(`http://81.70.17.242:8000/source/get_subject`, {
+          "subject": "Chinese"
+        });
+        this.data.ChineseNum = res1.resource_info_list;
+        const { data: res2 } = await axios.post(`http://81.70.17.242:8000/source/get_subject`, {
+          "subject": "English"
+        });
+        this.data.EnglishNum = res2.resource_info_list;
+        const { data: res3 } = await axios.post(`http://81.70.17.242:8000/source/get_subject`, {
+          "subject": "OS"
+        });
+        this.data.OSNum = res3.resource_info_list;
+        const { data: res4 } = await axios.post(`http://81.70.17.242:8000/source/get_subject`, {
+          "subject": "Others"
+        });
+        this.data.OthersNum = res4.resource_info_list;
+      } 
     },
   };
   </script>
