@@ -1,149 +1,159 @@
 <template>
-    <div class="">
-      <div class="title">已下载资源</div>
-      <el-divider></el-divider>
-      <div style="width: 100%; height: 500px">
-        <el-auto-resizer>
-          <template #default="{ height, width }">
-            <el-table-v2
-              :columns="columns"
-              :data="tableData"
-              :width="width"
-              :height="height"
-              :row-class="tableRowClassName"
-              fixed
-            />
+    <div>
+      <div class="head">
+        已下载资源
+      </div>
+    <el-card>
+        <el-table
+          :data="userlist.slice((queryInfo.pagenum-1)*queryInfo.pagesize,queryInfo.pagenum*queryInfo.pagesize)"
+      @row-click="handleRowClick"
+      :border="border" 
+      :stripe="stripe">
+        <el-table-column type="index"></el-table-column>
+        <el-table-column label="文件名" prop="name" width="120px"></el-table-column>
+        <el-table-column label="作者" prop="author" width="80px"></el-table-column>
+        <el-table-column label="学科" prop="subject" width="80px"></el-table-column>
+        <el-table-column label="修改时间" prop="description" width="120px"></el-table-column>
+        <el-table-column label="上传时间" prop="upload_time" width="120px">
+        </el-table-column>
+        <el-table-column label="操作" width="280px">
+          <template v-slot="scope">
+            <!-- 下载按钮 -->
+          <!-- <el-button type="primary" content="下载" placement="top" :enterable="false" @click="DownloadResource(scope.row)" ><el-button type="warning" ></el-button><el-icon><Download /></el-icon></el-button> -->
+          <el-tooltip effect="dark" content="下载" placement="top" :enterable="false" @click="DownloadResource(scope.row)">
+            <el-button type="primary" @click="DownloadResource(scope.row)"><el-icon><Download /></el-icon></el-button> 
+          </el-tooltip>
+          <!-- 删除按钮 -->
+          <!-- <el-button type="danger" content="删除" placement="top" :enterable="false" @click="deleteResource(scope.row)"><el-icon><delete /></el-icon></el-button> -->
+          <el-tooltip effect="dark" content="删除" placement="top" :enterable="false" @click="deleteResource(scope.row)">
+            <el-button type="danger"  @click="deleteResource(scope.row)"><el-icon><delete /></el-icon></el-button> 
+          </el-tooltip>
+          <!-- 举报按钮 -->
+          <el-tooltip effect="dark" content="举报" placement="top" :enterable="false" @click="ReportResource(scope.row)">
+            <el-button type="warning" ><el-icon><WarnTriangleFilled /></el-icon></el-button> 
+          </el-tooltip>
           </template>
-        </el-auto-resizer>
-      </div>
-      <div style="margin-top: 10px">
-        共
-        <el-link type="primary" style="font-size: 20px">{{
-          tableData.length
-        }}</el-link>
-        条数据
-      </div>
+        </el-table-column>
+      </el-table>
+      <el-pagination :current-page="queryInfo.pagenum" :page-sizes="[1, 2, 5, 10]"
+        :page-size="queryInfo.pagesize" layout="total, sizes, prev, pager, next, jumper"
+        :total="userlist.length" @size-change="handleSizeChange" @current-change="handleCurrentChange"
+      >
+      </el-pagination>
+    </el-card>
     </div>
   </template>
   
-  <script setup>
-  import { ref, h, resolveComponent } from "vue";
-  import { ElMessageBox, ElMessage,ElButton,ElTag} from "element-plus";
-  import axios from "axios";
-  const tableData = ref([]); 
-  const fetchData = async () => {
-  // try {
-  //   axios.get('http://81.70.17.242:8000/source/get_author')
-  //   .then(response => {
-  //     tableData.value = response.data.resources;
-  //     console.log(tableData.value); // 在控制台打印数据或进行其他操作
-  //     //console.log(tableData.resource_data)
-  //   })
-  // } catch (error) {
-  //   console.error(error); // 处理请求错误
-  //  }
-};
-const fetchData1 = async () => {
-  // try {
-  //   axios.get('http://81.70.17.242:8000/source/get_subject',{'subject':'math'})
-  //   .then(response => {
-  //     tableData.value = response.data;
-  //     console.log(tableData.value); // 在控制台打印数据或进行其他操作
-  //     //console.log(tableData.resource_data)
-  //   })
-  // } catch (error) {
-  //   console.error(error); // 处理请求错误
-  //  }
-};
-  fetchData1();
-  fetchData();
-  //console.log(tableData.value);
-  //console.log(tableData.rawValue);
-  const columns = [
-    {
-      key: "name",
-      //dataKey: "id",//需要渲染当前列的数据字段
-      title: "name",//显示在单元格表头的文本
-      width: 80,//当前列的宽度，必须设置
+  <script >
+import axios from 'axios'
+import { ref } from 'vue';
+import { mapState, mapMutations } from 'vuex'
+  export default {
+    data() {
+        return {
+            stripe: true,
+            // 获取用户列表的参数对象
+            queryInfo: {
+                query2: "",
+                query1: "",
+                pagenum: 1,
+                pagesize: 2,
+                total: 20
+            },
+            userlist1: [],
+            // 用户列表
+            userlist: [{
+                    "name": "1",
+                    "author": "1",
+                    "subject": "1",
+                    "description": "111111",
+                    "upload_time":"1"
+                }, {
+                    "name": "1",
+                    "author": "1",
+                    "subject": "1",
+                    "description": "111111",
+                    "upload_time":"1"
+                }, {
+                    "name": "1",
+                    "author": "1",
+                    "subject": "1",
+                    "description": "111111",
+                    "upload_time":"1"
+                }, {
+                    "name": "1",
+                    "author": "1",
+                    "subject": "1",
+                    "description": "111111",
+                    "upload_time":"1"
+                }, {
+                    "name": "1",
+                    "author": "1",
+                    "subject": "1",
+                    "description": "111111",
+                    "upload_time":"1"
+                }, {
+                    "name": "1",
+                    "author": "1",
+                    "subject": "1",
+                    "description": "111111",
+                    "upload_time":"1"
+                }, {
+                    "name": "1",
+                    "author": "1",
+                    "subject": "1",
+                    "description": "111111",
+                    "upload_time":"1"
+                }
+            ],
+            // 总数据条数
+            total: 0,
+        };
     },
-    {
-      key: "author",
-      //dataKey: "文件",//需要渲染当前列的数据字段
-      title: "作者",
-      width: 100,
+    created() {
+        this.getPersonalResource()
     },
-    {
-      key: "subject",
-      dataKey: "subject",
-      title: "学科",
-      width: 180,
+    computed: {
+    ...mapState([
+      'count',
+      'username_glo',
+      'token_glo',
+     ])
     },
-    {
-      key: "decription",
-      dataKey: "decription",
-      title: "描述",
-      minWidth: 100,
-      width: 110,
-    },
-    {
-      key: "file_size",
-      title: "文件大小",
-      width: 100,
-    },
-    {
-      key: "upload_time",
-      dataKey: "upload_time",
-      title: "上传时间",
-      width: 240,
-    },
-    {
-      key: "handle",
-      title: "操作",
-      width: 100,
-      align: "center",
-      cellRenderer: (data) =>
-        h(
-          ElButton,
-          { onClick: () => handleDelete(data), type: "danger", icon: "Delete" },
-          { default: () => "删除" }
-        ),
-    },
-  ];
-
-  //自定义渲染带状态的表格（每隔一行显示不同的背景色）
-  const tableRowClassName = ({ row, rowIndex }) => {
-    let step = 4;
-    for (let i in tableData.value) {
-      if (rowIndex === step * i - 3) {
-        return "warning-row";
-      }
-      if (rowIndex === step * i - 1) {
-        return "success-row";
-      }
+    methods: {
+      ...mapMutations([
+        'increment',
+        'decrement'
+        ]),
+        getToken_glo(){
+            return this.token_glo;
+        },
+      async getPersonalResource() {
+            try {
+                const { data: res } = await axios.get(`http://81.70.17.242:8000/source/get_author`,
+                    {headers: {
+                        Authorization: this.getToken_glo()
+                    }
+                    }
+                );
+                if (res.code !== 200)
+                    return this.$message.error("获取用户列表失败");
+                console.log(res);
+                console.log(res.resource_info_list);
+                console.log(res.resource_info_list.length);
+                this.userlist = ref([...res.resource_info_list]);
+                console.log(this.userlist1);
+            }
+            catch (error) {
+                console.log(error);
+            }
+        },
     }
-    return "";
-  };
-  //删除操作
-  const handleDelete = (data) => {
-    ElMessageBox.confirm(`确定删除 ${data.rowData.name}?`, "提 示", {
-      confirmButtonText: "确定",
-      cancelButtonText: "取消",
-      type: "warning",
-    })
-      .then(() => {
-        tableData.value.splice(data.rowIndex, 1);
-        ElMessage({
-          type: "success",
-          message: "删除成功",
-        });
-      })
-      .catch(() => {
-        ElMessage({
-          type: "info",
-          message: "取消删除",
-        });
-      });
-  };
-
+  }
   </script>
+  <style>
+  .head{
+    margin-bottom:80px;
+  }
+  </style>
     

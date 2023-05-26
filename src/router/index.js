@@ -160,7 +160,7 @@ const routes = [
       {
         path: 'pop',
         name: 'pop',
-        component: () => import('../views/User/pop.vue'),
+        component: () => import('../views/User/firstPage/pop.vue'),
         meta: {
           // requireNotAuth: true,
           //mainNavShow: true

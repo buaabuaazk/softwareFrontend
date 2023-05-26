@@ -41,45 +41,12 @@
                     router
                     style="height: 650px,opacity: 0.7">
                   <!--    List    -->
-                  <el-sub-menu index="/visit" style="text-align: left">
+                  <el-menu-item index="/visit" style="text-align: left">
                       <template #title>
                         <el-icon index="/visit"><Menu /></el-icon>
                         <span>List</span>
                       </template>
-                      <!--  发表年份  -->
-                      <el-sub-menu>
-                          <template #title>
-                              <span>Publication Year</span>
-                          </template>
-                          <el-menu-item index="/visit">
-                              <template #title>
-                                  <span>2021</span>
-                              </template>
-                          </el-menu-item>
-                      </el-sub-menu>
-                      <!--  作者  -->
-                      <el-sub-menu>
-                          <template #title>
-                              <span>Author</span>
-                          </template>
-                          <el-menu-item>
-                              <template #title>
-                                  <span>vouzenus</span>
-                              </template>
-                          </el-menu-item>
-                      </el-sub-menu>
-                      <!--  机构  -->
-                      <el-sub-menu>
-                          <template #title>
-                              <span>Institution</span>
-                          </template>
-                          <el-menu-item>
-                              <template #title>
-                                  <span>A</span>
-                              </template>
-                          </el-menu-item>
-                      </el-sub-menu>
-                  </el-sub-menu>
+                  </el-menu-item>
                   <!--    Support    -->
                   <el-sub-menu style="text-align: left">
                     <template #title>

@@ -1,3 +1,3 @@
 <template>
-    <div>5</div>
+    发帖区
 </template>

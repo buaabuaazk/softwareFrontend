@@ -1,6 +1,8 @@
 <template>
+  <div>
+  <div>
     <el-upload
-      ref="file"
+      ref="formData1"
       :auto-upload="true"
       :http-request="upload"
     >
@@ -11,8 +13,9 @@
         上传文件
       </el-button>
     </el-upload>
-    <div class="select">
-      <el-select v-model="value" placeholder="Select" class="left-aligned-select">
+  </div>
+  <div >
+      <el-select v-model="options.value" placeholder="Select" class="left-aligned-select">
         <el-option
           v-for="item in options"
           :key="item.value"
@@ -22,14 +25,21 @@
         />
       </el-select>
       <p class="p">选择学科</p>
-    </div>
+      <el-input v-model="description" placeholder="对文件的描述" class="input"/>
+  </div>
+</div>
   </template>
    
-  <script setup>
-  import { ref } from 'vue'
+  <script>
   import axios from 'axios' 
-  const value = ref('')
-  const options = [
+  import { mapState, mapMutations } from 'vuex'
+import { ref } from 'vue'
+  export default{
+    data(){
+    return{
+      description: "",
+      formData1: new FormData(),
+      options : [
     {
       value: 'OS',
       label: 'OS',
@@ -51,23 +61,68 @@
       label: 'Others',
     },
   ]
-  let formData1 = new FormData()
-  function upload(params) {
-    formData1.append('file', params.file)
-    formData1.append('name', params.file.name)
+    }
+  },
+  computed: {
+    ...mapState([
+      'count',
+       'username_glo',
+       'token_glo'
+     ])
+    },
+  methods :{
+      ...mapMutations([
+        'increment',
+       'decrement'
+      ]),
+    getToken_glo(){
+      return this.token_glo;
+    },
+  async upload(params) {  
+    this.formData1.append('file', params.file)
+    this.formData1.append('name', params.file.name)
+    this.formData1.append('file_size',params.file.size)
     // formData1.append('author', null)
-    formData1.append('description', params.file.lastModifiedDate)
-    formData1.append('subject', value.value)
-    console.log(value.value);
-    console.log(formData1.get('file'));
-    console.log(formData1.get('description'));
-    console.log(formData1.get('name'));
-    console.log(formData1.get('subject'));
+    this.formData1.append('description', params.file.lastModifiedDate)
+    this.formData1.append('subject', this.options.value)
+    //console.log(token_glo)
+    //console.log(this.formData1.get('token'));
+    console.log(this.options.value);
+    console.log(this.formData1.get('file'));
+    console.log(this.formData1.get('description'));
+    console.log(this.formData1.get('name'));
+    console.log(this.formData1.get('subject'));
     // console.log(this.$root.globalData.token_global);
-  }
-  function submitUpload()
+  },
+  //获取个人文件
+  async getPersonalResource() {
+            try {
+                const { data: res } = await axios.get(`http://81.70.17.242:8000/source/get_author`,
+                    {headers: {
+                        Authorization: this.getToken_glo()
+                    }
+                    }
+                );
+                console.log(res);
+                console.log(res.resource_info_list);
+                console.log(res.resource_info_list.length);
+                this.userlist = res.resource_info_list;
+                //this.userlist = ref([...res.resource_info_list]);
+                console.log(this.userlist);
+                console.log(this.getToken_glo())
+            }
+            catch (error) {
+                console.log(error);
+            }
+        },
+        //上传文件
+  async submitUpload()
   {
-    axios.post('http://81.70.17.242:8000/source/post', formData1)
+    axios.post('http://81.70.17.242:8000/source/post', this.formData1,{
+      headers: {
+        Authorization: this.getToken_glo()
+      }
+    })
     .then(response => {
           const code = response.data.code
           const message = response.data.message
@@ -75,17 +130,27 @@
           console.log(code)
           console.log(message)
           console.log(error)
-          console.log(formData1.getAll('name'))
+          console.log(this.formData1)
+          //console.log(this.formData1.get('authorization'))
+          this.getPersonalResource();
           // console.log(params.file)
           // console.log(params.file.name)
           if(code === 200){
-            formData1= new FormData();
+            this.formData1= new FormData();
             alert('上传成功');
           }
           else if(code === 400){
             alert(error);
           }
         })
+      }
+    }
   }
    
   </script>
+  <style>
+  .input{
+    width: 30vw;
+    height: 35vh;
+  }
+</style>

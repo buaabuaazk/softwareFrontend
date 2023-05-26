@@ -1,7 +1,9 @@
 <template>
     <findResource></findResource>
-    <commitFile></commitFile>
-    <personalFile></personalFile>
+    <div class="main">
+      <commitFile class="commitFile"></commitFile>
+      <personalFile class="personalFile"></personalFile>
+    </div>
 </template>
    
   <script >
@@ -18,6 +20,16 @@ import personalFile from './personalFile.vue';
   </script>
    
   <style lang="less" scoped>
-   
+  .main{
+    display: flex;
+  }
+  .commitFile{
+    width: 45vw;
+    height: 50vh;
+  }
+  .personalFile{
+    width: 55vw;
+    height: 50vh;
+   }
   </style>
   

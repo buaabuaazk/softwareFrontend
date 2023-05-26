@@ -1,10 +1,6 @@
 import { createStore } from 'vuex'
-<<<<<<< HEAD
-import user from './modules/user'
-
-=======
 import createPersistedState from 'vuex-persistedstate'
->>>>>>> 9840fdb111f6ef14b116b2933df14ec1a2c0de0d
+
 const store = createStore({
   state() {
     return {
