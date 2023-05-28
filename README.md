@@ -1,24 +1,5 @@
-# try4
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# 2023buaa软工大作业
+不知道怎么用？
+1、在vscode中拉取仓库
+2、安装环境依赖，在项目终端npm install
+3、运行即可,npm run serve
