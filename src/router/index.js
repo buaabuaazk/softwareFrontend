@@ -137,12 +137,36 @@ const routes = [
     },
     children:[
       {
-        path: 'introduce',
-        name: 'introduce',
+        path: 'firstPage',
+        name: 'firstPage',
         component: () => import('../views/User/firstPage/introduce.vue'),
         // meta:{
         //   list:true
         // }
+        // children:[
+        //   {
+        //     path: 'introduce',
+        //     name: 'introduce',
+        //     component: () => import('../views/User/firstPage/introducePost.vue')
+        //   },
+        //   {
+        //     path: 'focus',
+        //     name: 'focus',
+        //     component: () => import('../views/User/firstPage/focusPost.vue'),
+        //     // meta:{
+        //     //   echart:true
+        //     // }
+        //   },
+        //   {
+        //     path: 'pop',
+        //     name: 'pop',
+        //     component: () => import('../views/User/firstPage/popPost.vue'),
+        //     meta: {
+        //       // requireNotAuth: true,
+        //       //mainNavShow: true
+        //     },
+        //   },
+        // ]
       },
       {
         path: 'resource',
@@ -185,6 +209,11 @@ const routes = [
         path: 'chatGpt',
         name: 'chatGpt',
         component: () => import('../views/User/more/chatGpt.vue'),
+      },
+      {
+        path: 'set',
+        name: 'set',
+        component: ()=> import('../views/User/more/set.vue'),
       },
       {
         path: 'contact',

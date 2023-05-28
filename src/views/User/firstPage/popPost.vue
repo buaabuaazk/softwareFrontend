@@ -3,7 +3,7 @@
 </template>
 <style scoped>
     .posts{
-        border: hidden;
+        border: solid;
         border-left: 100px;
         height: 150vh;
         width: 50vw;

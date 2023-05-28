@@ -42,7 +42,7 @@ import Dropdown from './Dropdown';
             this.$router.push('./visit');
         },
         gotoUserHome: function(){
-          this.$router.push('./user/introduce');
+          this.$router.push('./user/firstPage');
         }
     }
   }

@@ -14,7 +14,7 @@
       <el-sub-menu index="/user/introduce" class="firstPage">
         <template #title>首页</template>
         <el-menu-item index="/user/focus"><template #title><span>关注</span></template></el-menu-item>
-        <el-menu-item index="/user/introduce"><template #title><span>推荐</span></template></el-menu-item>
+        <el-menu-item index="/user/firstPage"><template #title><span>推荐</span></template></el-menu-item>
         <el-menu-item index="/user/pop"><template #title><span>热榜</span></template></el-menu-item>
       </el-sub-menu>
       <el-menu-item index="/user/resource" class="resource"><template #title><span>资源库</span></template></el-menu-item>
@@ -33,7 +33,7 @@
       <el-sub-menu index="" class="more">
         <template #title>更多</template>
         <el-menu-item index="/user/userProfile">个人中心</el-menu-item>
-        <el-menu-item index="/user/chatGpt">chatGpt</el-menu-item>
+        <el-menu-item index="/user/chatGpt">vouzenusGPT</el-menu-item>
         <el-menu-item index="/user/contact">问题反馈</el-menu-item>
         <el-menu-item index="/user/set">设置</el-menu-item>
       </el-sub-menu>

@@ -100,7 +100,7 @@ export default {
             //有个bug，登录后再登录，好像就不能alert“登录成功”了
             //不知道登录后退出登录会不会有这种情况
             //alert('登录成功')
-            this.$router.push('/user/introduce');
+            this.$router.push('/user/firstPage/introduce');
           }
           //将token存储到本地，以便之后使用
           //localStorage.setItem('token', token)

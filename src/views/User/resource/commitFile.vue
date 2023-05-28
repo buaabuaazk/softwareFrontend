@@ -25,7 +25,12 @@
         />
       </el-select>
       <p class="p">选择学科</p>
-      <el-input v-model="description" placeholder="对文件的描述" class="input"/>
+      <el-input v-model="description" placeholder="对文件的描述" class="input"
+      clearable
+      rows="12"
+      show-word-limit
+      maxlength="30"
+      type="textarea"/>
   </div>
 </div>
   </template>
@@ -152,5 +157,12 @@ import { ref } from 'vue'
   .input{
     width: 30vw;
     height: 35vh;
+  }
+  .placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 6px;
+    color: #999;
   }
 </style>

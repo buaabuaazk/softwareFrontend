@@ -121,6 +121,15 @@ import { mapState, mapMutations } from 'vuex'
      ])
     },
     methods: {
+      handleSizeChange(newSize) {
+            this.queryInfo.pagesize = newSize;
+            //this.getUserList();
+        },
+        // 监听 页码值 改变的事件
+        handleCurrentChange(newPage) {
+            this.queryInfo.pagenum = newPage;
+            //this.getUserList();
+        },
       ...mapMutations([
         'increment',
         'decrement'
