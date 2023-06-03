@@ -1,7 +1,6 @@
 <template>
     <div class="app-content">
-      <sidebar>
-      </sidebar>
+      <sidebar></sidebar>
       <div class="main-content">
           <div class="profile">
           <div class="avatar">
@@ -14,6 +13,7 @@
   
   <script>
   import Sidebar from '@/components/Sidebar.vue';
+  import { mapState, mapMutations } from 'vuex'
   export default {
     name: 'App',
       components: {
@@ -33,6 +33,22 @@
         signature: 'This is my signature.',
       }
     },
+    computed: {
+    ...mapState([
+      'count',
+      'username_glo',
+      'token_glo'
+    ])
+  },
+    methods:{
+      ...mapMutations([
+      'increment',
+      'decrement'
+    ]),
+      getToken_glo(){
+        return this.token_glo;
+      }
+    }
   }
   </script>
   

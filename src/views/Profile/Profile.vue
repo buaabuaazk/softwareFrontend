@@ -7,16 +7,18 @@
           <img :src="avatar" alt="User avatar" />
         </div>
         <div class="info">
-          <h1>{{ nickname }}</h1>
-          <p>账号：{{ getUsername_glo() }}</p>
-          <p>手机号：{{ phonenumber }}</p>
-          <p>电子邮箱: {{ getToken_glo() }}</p>
-          <p>等级: {{ level }}</p>
-          <p>经验值: {{ experience }}</p>
+          <h1>{{ user.nickname }}</h1>
+          <p>账号:{{ getUsername_glo() }}</p>
+          <p>电子邮箱: {{ user.email }}</p>
+          <p>等级: {{ user.level }}</p>
+          <p>经验值: {{ user.experience }}</p>
+          <template>
+        <font-awesome-icon icon="hotjar" />
+      </template>
           <div class="demo-progress">
-            <el-progress :percentage="60" />
+            <el-progress :percentage=user.experience/2 />
           </div>
-          <p>个性签名：{{ signature }}</p>
+          <p>个性签名：{{ user.signature }}</p>
         </div>
       </div>
     </div>
@@ -35,6 +37,7 @@ export default {
   },
   data() {
     return {
+      user: '',
       username: 'zk3',
       phonenumber: '15832369597',
       currentTab: '基本信息',
@@ -53,20 +56,36 @@ export default {
       'username_glo',
       'token_glo'
     ])
+
+  },
+  mounted(){
+    const data = {
+
+    }
+    axios.get('http://81.70.17.242:8000/user/'+this.username_glo+'/info',data)
+        .then(response => {
+          const data = response.data;
+          const code = response.data.code;
+          if(code==200){
+            this.user = data.data;
+            console.log("cgl")
+          }
+          else{
+            console.log(code)
+          }
+        })
+        .catch(error =>{
+            console.log(error)
+            alert("未知错误，大概率没连服务器")
+        })
   },
   methods: {
+    /*
     ...mapMutations([
       'increment',
       'decrement'
-    ]),
-    incrementAndLog() {
-      this.increment();
-      console.log(this.count);
-    },
-    decrementAndLog() {
-      this.decrement();
-      console.log(this.count);
-    },
+    ]),*/
+    
     getUsername_glo() {
       return this.username_glo;
     },

@@ -30,7 +30,9 @@ const user = {
         clearUserInfo({ commit }) {
             commit('$_removeStorage');
         }
-    }
+    },
+    //全局变量保存在浏览器里（感觉也合理，并且方便测试:可以直接输入对应url，不会丢失全局变量）
+    plugins: [createPersistedState()]
 };
 
 export default user

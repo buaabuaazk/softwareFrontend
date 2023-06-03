@@ -127,6 +127,15 @@ const routes = [
       mainNavShow: false
     },
   },
+  {
+    path: '/profile/myrelease',
+    name: 'myrelease',
+    component: () => import('../views/Profile/MyRelease.vue'),
+    meta: {
+      // requireNotAuth: true,
+      mainNavShow: false
+    },
+  },
   //用户区
   {
     path: '/user',

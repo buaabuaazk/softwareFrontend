@@ -98,7 +98,7 @@
                 <form action>
                   <textarea name="post" cols="100" rows="18" v-model="text"></textarea>
                 </form>
-                <!--
+                
                 <div class="cell">
                   <select
                     name="node_name"
@@ -108,14 +108,14 @@
                     tabindex="-1"
                     class="select2-hidden-accessible"
                     aria-hidden="true"
-                    v-model="select"
+                    v-model="level"
                   >
-                    <option value="1" data-select2-id="1069">篮球</option>
-                    <option value="2" data-select2-id="1070">足球</option>
-                    <option value="3" data-select2-id="1069">步行街</option>
-                    <option value="4" data-select2-id="1069">跳蚤市场</option>
-                    <option value="5" data-select2-id="1069">健身区</option>
-                    <option value="6" data-select2-id="1069">学习专区</option>
+                    <option value="1" data-select2-id="1069">1</option>
+                    <option value="2" data-select2-id="1070">2</option>
+                    <option value="3" data-select2-id="1069">3</option>
+                    <option value="4" data-select2-id="1069">4</option>
+                    <option value="5" data-select2-id="1069">5</option>
+                    <option value="6" data-select2-id="1069">6</option>
                   </select>
                   <span
                     class="select2 select2-container select2-container--default"
@@ -139,7 +139,7 @@
                           role="textbox"
                           aria-readonly="true"
                         >
-                          <span class="select2-selection__placeholder">请选择一个板块</span>
+                          <span class="select2-selection__placeholder">请选择一个查看等级</span>
                         </span>
                         <span class="select2-selection__arrow" role="presentation">
                           <b role="presentation"></b>
@@ -149,7 +149,7 @@
                     <span class="dropdown-wrapper" aria-hidden="true"></span>
                   </span>
                 </div>
-                -->
+                
                 <input type="hidden" name="content" value id="topic_content" />
                 <input type="hidden" name="once" value="97891" />
               </form>
@@ -158,6 +158,9 @@
                   <span id="error_message"></span> &nbsp;
                   <button type="button" class="super normal button" @click="post">
                     发布
+                  </button>
+                  <button type="button" class="super normal button" @click="() => $router.push('/profile')">
+                    返回
                   </button>
                 </div>
                 <!--
@@ -206,16 +209,76 @@
         </div>
       </div>
     </div>
-  </template>
+</template>
   
   
-  
-  <script>
-  //import { mapState } from 'vuex'
-  export default {
+<script>
+import axios from 'axios'
+import { mapState, mapMutations } from 'vuex'
+export default {
+  data() {
+    return {
+      text: '',
+      title: '',
+      level: 1,
+      username: ''
+    }
+  },
+  computed: {
+      ...mapState([
+        'username_glo',
+        'token_glo'
+      ])
+    },
+  methods: {
+    ...mapMutations([
+        'updateUsername_glo',
+        'updateToken_glo'
+      ]),
+    getUsername_glo() {
+      return this.username_glo;
+    },
+    getToken_glo(){
+      return this.token_glo;
+    },
+    post() {
+      const data = {
+        title: this.title,
+        content: this.text,
+        level: this.level
+      };
+      this.username=this.getUsername_glo();
+      console.log(this.getToken_glo());
+      console.log(this.getUsername_glo());
+      console.log(this.level);
+      console.log(this.text);
+      console.log(this.title);
+      axios.post('http://81.70.17.242:8000/post/' + this.getUsername_glo() + '/post', data, {
+        headers: {
+          Authorization: this.getToken_glo()//待更新
+        }
+      })
+        .then(response => {
+          var code = ''
+          code = response.data.code
+          console.log('code:'+code)
+          if(code === 200){
+            alert('帖子发布成功！')
+            //待增加一个跳转
+            this.$router.push('/profile');
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+        
+    }
 
-  };
-  </script>
+    }
+  }
+
+</script>
+
   
   <style scoped>
   .fade {

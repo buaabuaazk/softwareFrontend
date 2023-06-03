@@ -10,10 +10,17 @@ import * as echarts from 'echarts';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import zhLocale from 'element-plus/lib/locale/lang/zh-cn'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faThumbsUp, faComment } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faThumbsUp, faComment)
+
 const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
+app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(ElementPlus, {
     locale: zhLocale
 })
