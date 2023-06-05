@@ -81,6 +81,15 @@ const routes = [
     },
   },
   {
+    path: '/zk1',
+    name: 'Test1',
+    component: () => import('../views/Profile/Test1.vue'),
+    meta: {
+      // requireNotAuth: true,
+      mainNavShow: false,
+    },
+  },
+  {
     path: '/login/forgetpassword',
     name: 'ForgetPassword',
     component: () => import('../views/Login/ForgetPassword.vue'),
@@ -136,6 +145,11 @@ const routes = [
       mainNavShow: false
     },
   },
+  {
+    path: '/post/:id/get_post_by_id',
+    name: 'postdetail',
+    component: () => import('../views/Post/PostDetail.vue'),
+  },  
   //用户区
   {
     path: '/user',

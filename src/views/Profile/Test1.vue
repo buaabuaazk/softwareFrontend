@@ -1,20 +1,27 @@
 <template>
-    <div>
-      <!-- 其他内容 -->
-      <sidebar></sidebar>
-      <!-- 其他内容 -->
-    </div>
+  <button :class="{ red: isRed, blue: !isRed }" @click="toggleColor">点击我</button>
 </template>
-  
-  <script>
-  import Sidebar from '@/components/Sidebar.vue';
-  
-  export default {
-    name: 'App',
-    components: {
-      Sidebar
-    },
-    // 父组件的逻辑代码
+
+<script>
+export default {
+  data() {
+    return {
+      isRed: true,
+    }
+  },
+  methods: {
+    toggleColor() {
+      this.isRed = !this.isRed;
+    }
   }
-  </script>
-  
+}
+</script>
+
+<style scoped>
+.red {
+  background-color: red;
+}
+.blue {
+  background-color: blue;
+}
+</style>
