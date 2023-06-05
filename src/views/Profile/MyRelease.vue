@@ -7,8 +7,8 @@
       <div class="forum-post" v-for="(post, index) in posts" :key="index">
         <div class="post-info" @click="() => $router.push(post.url)">
           <div class="post-title">{{ post.title }}</div>
-          <div class="post-content">{{ post.content }}</div>
-          <div>ID: {{ post.id }}</div>
+          <div class="post-content">{{ truncateString(post.content) }}</div>
+          <!--<div>ID: {{ post.id }}</div>-->
           <div style="display: flex;">
             <span style="margin-right: 20px;">
               <font-awesome-icon icon="thumbs-up" /> {{ post.like_count }}
@@ -71,6 +71,14 @@ export default {
   methods: {
     jump() {
       window.location.href = '/profile'
+    },
+    truncateString(str) {
+
+      if (str.length <= 50) {
+        return str;
+      } else {
+        return str.slice(0, 50) + "...";
+      }
     },
     formatTime(isoTimeString) {
       let date = new Date(isoTimeString);

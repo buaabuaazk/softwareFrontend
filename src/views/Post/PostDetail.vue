@@ -1,5 +1,5 @@
 <template>
-  <div class="post-detail">
+  <div class="post-detail" v-if="post">
     <div class="post-author">
       <img :src="require('@/assets/images/inABind.png')" alt="作者头像" />
       <div class="author-info">
@@ -8,11 +8,9 @@
       </div>
     </div>
     <h2 class="post-title">{{ post.title }}</h2>
-
     <div class="post-content">
-      <p>{{ post.content }}</p>
+      <p v-html="formatContent(post.content)"></p>
     </div>
-
     <div class="navigation-bar">
       <p>{{ formatTime(post.update_time) }}</p>
       <!--<button @click="toggleLike" :class="{ 'liked': isLiked }">点赞11</button>-->
@@ -142,6 +140,14 @@
         })
     },
     methods: {
+      
+        formatContent(str) {
+          // 替换空格
+          let replacedSpaces = str.replace(/ /g, '&nbsp;');
+          // 替换换行符
+          let replacedNewlines = replacedSpaces.replace(/\n/g, '<br>');
+          return replacedNewlines;
+        },
       toggleLike() {
         
         this.isLiked = !this.isLiked;
@@ -350,6 +356,11 @@
   margin-top: 20px;
   font-size: 1.2em;
   line-height: 1.6;
+  text-align: justify;
+  
+}
+.post-content p {
+  margin-top: 20px;
 }
 
 .comments {
