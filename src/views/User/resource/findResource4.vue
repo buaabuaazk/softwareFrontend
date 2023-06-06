@@ -82,7 +82,6 @@
       </el-pagination>
     </el-card>
     </div>
-    <div id="yourElementId">Hello, World!</div>
   </template>
   <script >
 import axios from 'axios'
@@ -169,7 +168,7 @@ import { mapState, mapMutations } from 'vuex'
         };
     },
     created() {
-        //this.getPersonalResource()
+        this.getPersonalResource()
         //this.deleteResource()
         //this.DownloadResource()
         //this.ReportResource()
@@ -219,7 +218,6 @@ import { mapState, mapMutations } from 'vuex'
                 const select = this.options.value;
                 if(select == 'subject'){
                 const { data: res } = await axios.post(`http://81.70.17.242:8000/source/get_subject`, {
-
                         "subject": this.queryInfo.query2
                     }
                 // ,
@@ -347,6 +345,8 @@ import { mapState, mapMutations } from 'vuex'
                 // if (res.code !== 200)
                 //     return this.$message.error("获取用户列表失败");
                 console.log(res);
+                console.log(res.url);
+                window.open(res.url)
                 //var decodedString = decodeURIComponent(res);
                 //console.log(decodedString);
                 var element = document.getElementById("yourElementId");
@@ -374,7 +374,7 @@ import { mapState, mapMutations } from 'vuex'
                 }
                     );
                     console.log(res)
-                this.getSelectedUserList()
+                this.getPersonalResource()
                 if (res.code == 200)
                     return this.$message.success("删除成功");
                 else{
@@ -404,12 +404,20 @@ import { mapState, mapMutations } from 'vuex'
                 // if (res.code == 200)
                 //     return this.$message.error("获取用户列表失败");
                 console.log(res);
-                console.log(this.getToken_glo());
-                //console.log(this.queryInfo.query2);
-
-                // console.log(res.resource_info_list);
-                // console.log(res.resource_info_list.length);
-                // console.log(this.userlist);
+                console.log(res.url);
+                fetch(res.url)
+                .then(response => response.blob())
+                .then(blob => {
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = URL.createObjectURL(blob);
+                    downloadLink.download = row.name; // 可选：设置要保存的文件名
+                    downloadLink.click();
+                    URL.revokeObjectURL(downloadLink.href);
+                    this.$message.success('下载成功')
+                })
+                .catch(error => {
+                    console.error('文件下载失败', error);
+                });
 
             }
             catch (error) {
@@ -432,7 +440,7 @@ import { mapState, mapMutations } from 'vuex'
                 if (res.code == 200)
                     return this.$message.success("举报成功");
                 else{
-                    return this.$message.error("举报成功");
+                    return this.$message.error("举报失败");
                 }
 
                 console.log(res);

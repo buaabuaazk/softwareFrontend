@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import list from "../views/Visit/list.vue"
 import home from "../views/Home/Home.vue"
 import test2 from "../views/Visit/part/test2.vue"
@@ -7,6 +7,14 @@ import guide from "../views/Visit/part/guide.vue"
 import show from "../views/Visit/part/test3.vue"
 import user from "../views/User/userHome.vue"
 const routes = [
+  {
+    path: '/Admin',
+    name: 'admin',
+    component: () => import('../views/Admin/admin.vue'),
+    meta: {
+      //mainNavShow: true
+    }
+  },
   {
     path: '/',
     name: 'Home',
@@ -52,6 +60,15 @@ const routes = [
           component: () => import('../views/Visit/contact.vue'),
         }
     ],
+  },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: () => import('../views/Visit/contact.vue'),
+    meta: {
+      // requireNotAuth: true,
+      mainNavShow: true,
+    },
   },
   {
     path: '/login',
@@ -215,6 +232,22 @@ const routes = [
         }
       },
       {
+        path: 'message',
+        name: 'message',
+        component: () => import('../views/User/responseAndMessage/message.vue'),
+        meta: {
+          
+        }
+      },
+      {
+        path: 'response',
+        name: 'response',
+        component: () => import('../views/User/responseAndMessage/response.vue'),
+        meta: {
+          
+        }
+      },
+      {
         path: 'chatGpt',
         name: 'chatGpt',
         component: () => import('../views/User/more/chatGpt.vue'),
@@ -225,17 +258,22 @@ const routes = [
         component: ()=> import('../views/User/more/set.vue'),
       },
       {
-        path: 'contact',
-        name: 'contact',
-        component: () => import('../views/User/more/contact.vue'),
-      }
+        path: 'setBackground',
+        name: 'setBackground',
+        component: ()=> import('../views/User/more/setBackground.vue'),
+      },
+      // {
+      //   path: 'contact',
+      //   name: 'contact',
+      //   component: () => import('../views/User/more/contact.vue'),
+      // }
     ],
   },
   
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes
 });
 

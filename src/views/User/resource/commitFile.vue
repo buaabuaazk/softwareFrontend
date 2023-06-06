@@ -44,6 +44,7 @@ import { ref } from 'vue'
     return{
       description: "",
       formData1: new FormData(),
+      userlist: [],
       options : [
     {
       value: 'OS',
@@ -137,7 +138,7 @@ import { ref } from 'vue'
           console.log(error)
           console.log(this.formData1)
           //console.log(this.formData1.get('authorization'))
-          this.getPersonalResource();
+          window.location.reload();
           // console.log(params.file)
           // console.log(params.file.name)
           if(code === 200){
@@ -153,7 +154,7 @@ import { ref } from 'vue'
   }
    
   </script>
-  <style>
+  <style scoped>
   .input{
     width: 30vw;
     height: 35vh;

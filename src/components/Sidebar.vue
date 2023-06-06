@@ -5,9 +5,7 @@
       <ul>
         <!-- 侧边栏的链接 -->
         <li><router-link to="/profile">个人信息</router-link></li>
-        <li><router-link to="/profile/collection">我的收藏</router-link></li>
         <li><router-link to="/profile/myrelease">我的发布</router-link></li>
-        <li><router-link to="/profile/modify">修改信息</router-link></li>
         <li><router-link to="/profile/release">发布帖子</router-link></li>
       </ul>
     </div>

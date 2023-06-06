@@ -35,23 +35,25 @@
             text: '资源统计图'
           },
           tooltip: {},
-          // legend: {
-          //   data: ['销量']
-          // },
+          legend: {
+            data: ['数量']
+          },
           xAxis: {
-            data: ["math", "Chinese", "OS", "English", "Others"]
+            data: ["math", "Chinese", "English", "OS", "Others"]
           },
           yAxis: {},
           series: [{
-            name: '销量',
+            name: '数量',
             type: 'bar',
-            data: [this.data.MathNum, 2, 3, 4, 5]
+            data: [this.data.MathNum, this.data.ChineseNum, this.data.EnglishNum, this.data.OSNum, this.data.OthersNum]
           }]
         };
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
       },
       async getSubjectData(){
+        try {
+          //数学
         const { data: res } = await axios.post(`http://81.70.17.242:8000/source/get_subject`, {
           "subject": "math"
         });
@@ -60,6 +62,7 @@
         else
           this.data.MathNum = res.resource_info_list.length;
         console.log(this.data.MathNum)
+          //语文
         const { data: res1 } = await axios.post(`http://81.70.17.242:8000/source/get_subject`, {
           "subject": "Chinese"
         });
@@ -67,6 +70,8 @@
           this.data.ChineseNum = 0;
         else
           this.data.ChineseNum = res1.resource_info_list.length;
+          console.log(this.data.ChineseNum)
+          //英语
         const { data: res2 } = await axios.post(`http://81.70.17.242:8000/source/get_subject`, {
           "subject": "English"
         });
@@ -74,6 +79,8 @@
           this.data.EnglishNum = 0;
         else
         this.data.EnglishNum = res2.resource_info_list.length;
+        console.log(this.data.EnglishNum)
+          //OS
         const { data: res3 } = await axios.post(`http://81.70.17.242:8000/source/get_subject`, {
           "subject": "OS"
         });
@@ -81,6 +88,8 @@
           this.data.OSNum = 0;
         else
           this.data.OSNum = res3.resource_info_list.length;
+          console.log(this.data.OSNum)
+          //其他
         const { data: res4 } = await axios.post(`http://81.70.17.242:8000/source/get_subject`, {
           "subject": "Others"
         });
@@ -88,7 +97,11 @@
           this.data.OthersNum = 0;
         else
           this.data.OthersNum = res4.resource_info_list.length;
+          console.log(this.data.OthersNum)
         this.myEcharts();
+        } catch (error) {
+          return this.$message.error("服务器开摆了");
+        }
       } 
     },
   };

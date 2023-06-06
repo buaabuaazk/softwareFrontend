@@ -23,7 +23,7 @@
       </label>
       <button type="submit">注册</button>
       <div style="display: flex; justify-content: space-between;">
-        <a href="/login">点此登录</a>
+        <a href="/#/login">点此登录</a>
       </div>
     </form>
   </div>
@@ -109,7 +109,7 @@ export default {
             else if(code == 200){
               alert('注册成功');
               console.log(response.data.code);
-              window.location.href = '/login';
+              window.location.href = '/#/login';
             }
             else{
               alert("未知错误ahhhhh");

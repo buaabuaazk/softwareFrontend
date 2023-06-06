@@ -1,5 +1,7 @@
 <template>
     <div class="posts"></div>
+    <p>ewdueidie</p><p>ewdueidie</p><p>ewdueidie</p><p>ewdueidie</p>
+    <p>ewdueidie</p><p>ewdueidie</p><p>ewdueidie</p>
 </template>
 <style scoped>
     .posts{

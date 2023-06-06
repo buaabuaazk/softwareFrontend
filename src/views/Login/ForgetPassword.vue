@@ -33,7 +33,7 @@
         <button type="submit">确认</button>
         -->
         <div style="display: flex; justify-content: space-between;">
-          <a href="/login">想起密码了？点此登录</a>
+          <a href="/#/login">想起密码了？点此登录</a>
         </div>
       </form>
     </div>

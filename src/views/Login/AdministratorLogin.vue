@@ -14,8 +14,8 @@
       </label>
       <button type="submit">登录</button>
       <div style="display: flex; justify-content: space-between;">
-        <a href="/login/forgetpassword">忘记密码</a>
-        <a href="/login">用户登录</a>
+        <a href="/#/login/forgetpassword">忘记密码</a>
+        <a href="/#/login">用户登录</a>
       </div>
     </form>
   </div>
@@ -77,7 +77,7 @@ export default {
             //将username存到全局变量
             
             alert('登录成功')
-            this.$router.push('/profile');
+            this.$router.push('/admin');
           }
           //将token存储到本地，以便之后使用
           //localStorage.setItem('token', token)

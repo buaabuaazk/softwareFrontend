@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="head">
-        已下载资源
+        已上传资源
       </div>
     <el-card>
         <el-table
@@ -160,9 +160,9 @@ import { mapState, mapMutations } from 'vuex'
     }
   }
   </script>
-  <style>
+  <style scoped>
   .head{
-    margin-bottom:80px;
+    margin-bottom:40px;
   }
   </style>
     

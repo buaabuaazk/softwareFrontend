@@ -36,6 +36,6 @@ header {
     background-color: #222;
     padding: 15px;
     z-index: 9999;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 </style>

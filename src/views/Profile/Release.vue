@@ -13,7 +13,7 @@
                   </td>
                   <td width="auto" align="left"></td>
                   <td width="570" align="right" style="padding-top: 2px;">
-                    <a href="/" class="top">首页</a>
+                    <a href="/user/firstPage" class="top">首页</a>
                     &nbsp;&nbsp;&nbsp;
                   </td>
                 </tr>

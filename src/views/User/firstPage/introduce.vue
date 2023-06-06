@@ -12,7 +12,7 @@
             <div class="">创作中心</div>
               <!-- <a href="/user/level"> -->
                 <div class="lv">
-                  Lv 1
+                  Lv {{ level }}
                 </div>
               <!-- </a> -->
           </div>
@@ -46,21 +46,21 @@
             </div>
           </div>
         </div>
-        <div class="information">
-          <div class="informationFlex">
+        <el-carousel  direction="vertical" :autoplay="true" :interval="5000" :arrow="always" class="information">
+          <el-carousel-item class="informationFlex" style="background-color: #99a9bf;">
             <div class="information1">
               <div>
-                阅读量
+                关注数
               </div>
               <div style="justify-content: center;display: flex;">
                 <div style="border: hidden; width: 80px; height: 50px; background-color:#f1f1f1!important;align-items: center; justify-content: center; display:flex;">
-                  {{readCount}}
+                  {{ readCount }}
                 </div>
               </div>
             </div>
             <div class="information2">
               <div>
-                点赞量
+                粉丝数
               </div>
               <div style="justify-content: center;display: flex">
                 <div style="border: hidden; width: 80px; height: 50px; background-color:#f1f1f1!important;align-items: center; justify-content: center; display:flex;">
@@ -68,11 +68,36 @@
                 </div>
               </div>
             </div>
-          </div>
-          <!-- <el-carousel-item>
-            hello
-          </el-carousel-item> -->
-        </div>
+          </el-carousel-item>
+          <el-carousel-item style="background-color: #d3dce6;" class="information4">
+            <div style=" justify-content: center;display: flex;">
+            <div class="information3">
+              <div>
+                在线人数
+              </div>
+              <div style="justify-content: center;display: flex;">
+                <div style="border: hidden; width: 80px; height: 50px; background-color:#f1f1f1!important;align-items: center; justify-content: center; display:flex;">
+                  {{onlineCount}}
+                </div>
+              </div>
+            </div>
+            </div>
+          </el-carousel-item>
+          <el-carousel-item style="background-color: #777799;" class="information4">
+            <div style=" justify-content: center;display: flex;">
+            <div class="information3">
+              <div>
+                资源数量
+              </div>
+              <div style="justify-content: center;display: flex;">
+                <div style="border: hidden; width: 80px; height: 50px; background-color:#f1f1f1!important;align-items: center; justify-content: center; display:flex;">
+                  {{resourceCount}}
+                </div>
+              </div>
+            </div>
+            </div>
+          </el-carousel-item>
+        </el-carousel>
       </div>
       <div class="personLevel">
         <div style="height:8vh;align-items: center; justify-content: center; top:2px">
@@ -82,7 +107,7 @@
         </div>
         <div style="height:10vh; width:100%; position:absolute; top:7vh; justify-content:center;display:flex">
           <div style="width:90%;">
-            <el-progress :percentage="50" 
+            <el-progress :percentage= this.experience*100/20  
             :text-inside="true"
             :stroke-width="24"
             status="success"/>
@@ -107,12 +132,18 @@
 import introducePost from "./introducePost.vue";
 import focusPost from "./focusPost.vue";
 import popPostVue from './popPost.vue';
+import { mapState, mapMutations } from 'vuex';
+import axios from 'axios';
 //const format = (percentage) => (percentage === 100 ? 'Full' : `${percentage}%`)
   export default{
     data() {
       return{
         readCount: 0,
         likeCount: 0,
+        onlineCount: 0,
+        resourceCount: 10,
+        level: 1,
+        experience: 1,
         isFirstLine: true,
       }
     },
@@ -121,7 +152,24 @@ import popPostVue from './popPost.vue';
     focusPost,
     popPostVue
   },
+  computed: {
+    ...mapState([
+      'count',
+       'username_glo',
+       'token_glo'
+     ])
+    },
   methods:{
+    ...mapMutations([
+        'increment',
+        'decrement'
+      ]),
+      getToken_glo(){
+        return this.token_glo;
+      },
+      getUsername_glo(){
+        return this.username_glo;
+      },
     gotoPost: function() {
       this.$router.push('/user/postAndChat');
     },
@@ -130,11 +178,102 @@ import popPostVue from './popPost.vue';
     },
     gotoResearch: function(){
       this.$router.push('/user/resource')
-    }
+    },
+    getFollowNum()
+      {
+          axios.get('http://81.70.17.242:8000/user/'+this.getUsername_glo()+'/get_follow_num',{
+          headers: {
+            Authorization: this.getToken_glo()
+          }
+        })
+        .then(response => {
+              const code = response.data.code
+              this.readCount = response.data.follow_num
+              console.log(this.readCount)
+              console.log(response.data)
+              console.log(code)
+            })    
+        // } catch (error) {
+        //   return this.$message.error("服务器开摆了");
+        // }
+      },
+      getFanNum()
+      {
+          axios.get('http://81.70.17.242:8000/user/'+this.getUsername_glo()+'/get_fans_num',{
+          headers: {
+            Authorization: this.getToken_glo()
+          }
+        })
+        .then(response => {
+              const code = response.data.code
+              this.likeCount = response.data.fans_num
+              console.log(this.likeCount)
+              console.log(response.data)
+              console.log(code)
+            })    
+        // } catch (error) {
+        //   return this.$message.error("服务器开摆了");
+        // }
+      },
+      getOnlineNum()
+      {
+          axios.get('http://81.70.17.242:8000/user/online_num')
+        .then(response => {
+              const code = response.data.code
+              this.onlineCount = response.data.data.online_user_num
+              console.log(this.onlineCount)
+              console.log(response.data)
+              console.log(code)
+            })    
+        // } catch (error) {
+        //   return this.$message.error("服务器开摆了");
+        // }
+      },
+      getLevel()
+      {
+          axios.get('http://81.70.17.242:8000/user/'+this.getUsername_glo()+'/check_level',{
+          headers: {
+            Authorization: this.getToken_glo()
+          }
+        })
+        .then(response => {
+              const code = response.data.code
+              this.level = response.data.data.level
+              this.experience = response.data.data.experience
+              console.log(this.level)
+              console.log(this.experience)
+              console.log(response.data)
+              console.log(code)
+            })    
+        // } catch (error) {
+        //   return this.$message.error("服务器开摆了");
+        // }
+      },
+      getResourceNum()
+      {
+          axios.get('http://81.70.17.242:8000/source/get_all')
+        .then(response => {
+              const code = response.data.code
+              this.resourceCount = response.data.total_resources
+              console.log(this.resourceCount)
+              console.log(response.data)
+              console.log(code)
+            })    
+        // .catch (error) {
+        //   return this.$message.error("服务器开摆了");
+        // }
+      },
+  },
+  created(){
+    this.getFanNum();
+    this.getFollowNum();
+    this.getOnlineNum();
+    this.getLevel();
+    this.getResourceNum();
   }
 }
 </script>
-<style>
+<style scoped>
   .box{
     display: flex;
     margin: 0px auto;
@@ -240,8 +379,8 @@ import popPostVue from './popPost.vue';
   }
   .informationFlex{
     display: flex;
-    width: 24vw;
-    height: 20vh;
+    width: 23.6vw;
+    height: 18vh;
   }
   .information1{
     width: 50%;
@@ -256,6 +395,19 @@ import popPostVue from './popPost.vue';
     left: 40%;
     padding: 10px;
     border-radius: 4px;
+  }
+  .information3{
+    width: 23.6vw;
+    height: 2vh;
+    position: absolute;
+    justify-content: center;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 4px;
+  }
+  .information4{
+    width: 23.6vw;
+    height: 18vh;
   }
   .personLevel{
     margin-top: 20px;

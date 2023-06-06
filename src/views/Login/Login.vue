@@ -14,9 +14,9 @@
       </label>
       <button type="submit">登录</button>
       <div style="display: flex; justify-content: space-between;">
-        <a href="/login/register">注册账号</a>
-        <a href="/login/administrator">管理员登录</a>
-        <a href="/login/forgetpassword">忘记密码</a>
+        <a href="/#/login/register">注册账号</a>
+        <a href="/#/login/administrator">管理员登录</a>
+        <a href="/#/login/forgetpassword">忘记密码</a>
       </div>
     </form>
   </div>
@@ -100,7 +100,7 @@ export default {
             //有个bug，登录后再登录，好像就不能alert“登录成功”了
             //不知道登录后退出登录会不会有这种情况
             //alert('登录成功')
-            this.$router.push('/user/firstPage/introduce');
+            this.$router.push('/user/firstPage');
           }
           //将token存储到本地，以便之后使用
           //localStorage.setItem('token', token)

@@ -52,6 +52,7 @@
   
   <script>
   import axios from 'axios';
+import { init } from 'events';
   export default {
     name: 'list',
     // props: {
@@ -126,6 +127,26 @@
       }
     },
     methods: {
+      async init(){
+        try {
+          const { data: res } = await axios.post(`http://81.70.17.242:8000/source/get_subject`, {
+                        "subject": 'math'
+                    }
+                );
+                 if (res.code !== 200)
+                     return this.$message.error("获取用户列表失败");
+                this.userlist = res.resource_info_list;
+  //              this.queryInfo.total = res.resource_info_list.length;
+                console.log(res);
+                //console.log(this.getToken_glo());
+                console.log(this.queryInfo.query);
+                console.log(res.resource_info_list);
+                console.log(res.resource_info_list.length);
+                console.log(this.userlist);
+        } catch (error) {
+          console.log(error);
+        }
+      },
       async getSelectedUserList() {
             try {
                 const select = this.options.value;
@@ -139,7 +160,7 @@
                 this.userlist = res.resource_info_list;
   //              this.queryInfo.total = res.resource_info_list.length;
                 console.log(res);
-                console.log(this.getToken_glo());
+                //console.log(this.getToken_glo());
                 console.log(this.queryInfo.query);
                 console.log(res.resource_info_list);
                 console.log(res.resource_info_list.length);
@@ -155,7 +176,7 @@
                 this.userlist = res.resource_info_list;
   //              this.queryInfo.total = res.resource_info_list.length;
                 console.log(res);
-                console.log(this.getToken_glo());
+                //console.log(this.getToken_glo());
                 console.log(this.queryInfo.query);
                 console.log(res.resource_info_list);
                 console.log(res.resource_info_list.length);
@@ -171,7 +192,7 @@
                 this.userlist = res.resource_info_list;
   //              this.queryInfo.total = res.resource_info_list.length;
                 console.log(res);
-                console.log(this.getToken_glo());
+                //console.log(this.getToken_glo());
                 console.log(this.queryInfo.query2);
                 console.log(res.resource_info_list);
                 console.log(res.resource_info_list.length);
@@ -195,7 +216,7 @@
         }
       },
     created() {
-      //this.showAllUsers();
+      this.init()
     }
   }
   </script>

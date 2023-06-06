@@ -24,10 +24,12 @@ import personalFile from './personalFile.vue';
     display: flex;
   }
   .commitFile{
+    margin-top: 15px;
     width: 45vw;
-    height: 50vh;
+    height: 100vh;
   }
   .personalFile{
+    margin-top: 15px;
     width: 55vw;
     height: 50vh;
    }

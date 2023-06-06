@@ -39,6 +39,7 @@ export default {
     return {
       message: '',
       messages: [],
+      messagesGpt: []
     };
   },
   methods: {
@@ -46,12 +47,16 @@ export default {
       try {
       //console.log(this.message);
       //this.messages=[];
+      this.messagesGpt.push({"role": "user", "content": this.message})
       this.messages.push({"role": "user", "content": this.message})
-      const response = await chatgptAPI.getResponse(this.message,this.messages);
+      const response = await chatgptAPI.getResponse(this.message,this.messagesGpt);
       const content = response['choices'][0]['message']['content'];
       console.log(content)
       this.messages.push({"role": "assistant", "content": response['choices'][0]['message']['content']});
+      this.messagesGpt.push({"role": "assistant", "content": response['choices'][0]['message']['content']});
+      this.messagesGpt.shift();
       console.log(this.messages);
+      console.log(this.messagesGpt);
       this.message='';
       }
       catch (error){
@@ -64,7 +69,8 @@ export default {
 <style lang="less" scoped>
 .box{
   width: 98vw;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   background-color: #333;
   display: block;
   justify-content: center;
