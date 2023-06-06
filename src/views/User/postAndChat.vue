@@ -6,7 +6,7 @@
       <div class="posts-container">
         <div class="forum-post" v-for="(post, index) in posts" :key="index">
           <div class="post-info" @click="navigateToPost(post.url,post.level)">
-            <img @click.stop="showUserInfo()" :src="this.avatar0[index]" alt="发帖人头像" />
+            <img @click.stop="showDialog(post.author)" :src="this.avatar0[index]" alt="发帖人头像" />
             <div>{{ post.author }}</div>
             <div class="post-title">{{ post.title }}</div>
             <div class="post-content">{{ truncateString(post.content) }}</div>
@@ -22,20 +22,15 @@
                 {{ formatTime(post.update_time) }}
               </span>
             </div>
-          <el-dialog
-            :visible.sync="dialogVisible"
-            title="用户信息"
-            width="30%">
-            <div class="user-info">
-              <!-- 用户信息显示区域 -->
-              <p>用户名: </p>
-              <p>用户等级: </p>
-              <!-- 其他信息... -->
+          </div>
+          <div>
+              <div v-if="visible" class="dialog">
+              <div class="dialog-content">
+                <p>你确定要关注此用户吗</p>
+                <button @click="confirm">确定</button>
+                <button @click="hideDialog">取消</button>
+              </div>
             </div>
-            <span slot="footer" class="dialog-footer">
-              <el-button @click="dialogVisible = false">关闭</el-button>
-            </span>
-          </el-dialog>
           </div>
         </div>
       </div>
@@ -46,20 +41,11 @@
   import axios from 'axios';
   import { mapState, mapMutations } from 'vuex'
   import BlankSidebar from '@/components/BlankSidebar.vue';
-  
+  import { ref } from 'vue';
   export default {
     name: "App",
     components: {
       BlankSidebar
-    },
-    data() {
-      return {
-        posts: [],
-        avatar0:[],
-        showUserModal: false,
-        currentUser: {},
-        dialogVisible: false, // 控制模态框的显示/隐藏
-      };
     },
     computed: {
       ...mapState([
@@ -68,6 +54,18 @@
         'token_glo',
         'exp_glo'
       ])
+    },
+
+    data() {
+      return {
+        posts: [],
+        avatar0:[],
+        showUserModal: false,
+        currentUser: {},
+        dialogVisible: false, // 控制模态框的显示/隐藏
+        visible: false,
+        f_author:'',
+      };
     },
     mounted() {
       const data = {}
@@ -115,6 +113,45 @@
         'updateToken_glo',
         'updateExp_glo'
       ]),
+      showDialog(ass){
+        this.visible = true;
+        this.f_author = ass;
+      },
+      confirm(){
+        const data={
+          follow_user_name:this.f_author
+        }
+        axios.post('http://81.70.17.242:8000/user/'+this.username_glo+'/follow',data,{
+            headers: {
+              Authorization: this.token_glo//待更新
+            }
+          }) 
+              .then(response => {
+                    const code = response.data.code;
+                    const data = response.data;
+                    if(code==200){
+                      alert('关注成功')                    
+                    }
+                    else{
+                      console.log("code_:"+code)
+                      console.log(this.token_glo)
+                      if(code==10209){
+                        alert('不能关注自己')
+                      }
+                      else if(code == 10210){
+                        alert('已关注')
+                      }
+                    }
+                  })
+              .catch(error =>{
+                console.log(error)
+                  alert("未知错误，大概率没连服务333器")
+              }) 
+              this.visible=false
+      },
+      hideDialog(){
+        this.visible=false
+      },
       jump() {
         window.location.href = '/profile'
       },
@@ -124,6 +161,8 @@
         console.log('showUserInfo method called2');
       },
       navigateToPost(url,level){
+        console.log(level)
+        console.log("2222ppp+"+Math.floor(this.exp_glo/500))
         if(level>Math.floor(this.exp_glo/500)){
           alert('这个帖子需要'+level+'级才能查看，你的等级不够');
         }
@@ -132,7 +171,6 @@
         }
       },
       truncateString(str) {
-  
         if (str.length <= 50) {
           return str;
         } else {
@@ -183,14 +221,38 @@
   .empty-sidebar {
     width: 33%;
     justify-content: left;
-}
+  }
   
   .sidebar-container {
     width: 30%;
     display: flex;
     justify-content: center;
   }
-  
+  .dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dialog-content button {
+  margin: 10px;
+}
   .posts-container {
     width: 70%;
     color: #83b2e4;
