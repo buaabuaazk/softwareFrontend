@@ -1,27 +1,28 @@
 <template>
-  <button :class="{ red: isRed, blue: !isRed }" @click="toggleColor">点击我</button>
+  <div id="app">
+    <mavon-editor v-model="value"/>
+    <div v-html="compiledMarkdown"></div>
+  </div>
 </template>
 
 <script>
+import { ref, computed } from 'vue'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+import marked from 'marked' // 或者 var marked = require('marked')
+
 export default {
-  data() {
-    return {
-      isRed: true,
-    }
+  components: {
+    mavonEditor
   },
-  methods: {
-    toggleColor() {
-      this.isRed = !this.isRed;
+  setup() {
+    const value = ref('') // Markdown input
+    const compiledMarkdown = computed(() => marked(value.value)) // Compiled HTML
+
+    return {
+      value,
+      compiledMarkdown
     }
   }
 }
 </script>
-
-<style scoped>
-.red {
-  background-color: red;
-}
-.blue {
-  background-color: blue;
-}
-</style>

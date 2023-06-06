@@ -19,6 +19,8 @@
     "devui-theme": "^0.0.4",
     "echarts": "^5.4.2",
     "element-plus": "^2.3.4",
+    "marked": "^5.0.4",
+    "mavon-editor": "^2.10.4",
     "three": "^0.121.0",
     "vanta": "^0.5.24",
     "vue": "^3.2.36",

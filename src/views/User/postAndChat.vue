@@ -5,8 +5,8 @@
         </div>
       <div class="posts-container">
         <div class="forum-post" v-for="(post, index) in posts" :key="index">
-          <div class="post-info" @click="() => $router.push(post.url)">
-            <img :src="this.avatar0[index]" alt="发帖人头像" />
+          <div class="post-info" @click="navigateToPost(post.url,post.level)">
+            <img @click.stop="showUserInfo()" :src="this.avatar0[index]" alt="发帖人头像" />
             <div>{{ post.author }}</div>
             <div class="post-title">{{ post.title }}</div>
             <div class="post-content">{{ truncateString(post.content) }}</div>
@@ -22,7 +22,20 @@
                 {{ formatTime(post.update_time) }}
               </span>
             </div>
-  
+          <el-dialog
+            :visible.sync="dialogVisible"
+            title="用户信息"
+            width="30%">
+            <div class="user-info">
+              <!-- 用户信息显示区域 -->
+              <p>用户名: </p>
+              <p>用户等级: </p>
+              <!-- 其他信息... -->
+            </div>
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="dialogVisible = false">关闭</el-button>
+            </span>
+          </el-dialog>
           </div>
         </div>
       </div>
@@ -31,7 +44,7 @@
   
   <script>
   import axios from 'axios';
-  import { mapState } from 'vuex'
+  import { mapState, mapMutations } from 'vuex'
   import BlankSidebar from '@/components/BlankSidebar.vue';
   
   export default {
@@ -43,13 +56,17 @@
       return {
         posts: [],
         avatar0:[],
+        showUserModal: false,
+        currentUser: {},
+        dialogVisible: false, // 控制模态框的显示/隐藏
       };
     },
     computed: {
       ...mapState([
         'count',
         'username_glo',
-        'token_glo'
+        'token_glo',
+        'exp_glo'
       ])
     },
     mounted() {
@@ -77,7 +94,7 @@
                   })
               .catch(error =>{
                 console.log(error)
-                  alert("未知错误，大概率没连服务333器")
+                  alert("未知错误,大概率没连服务333器")
               }) 
             }
             console.log("cgl111")
@@ -91,8 +108,28 @@
         })
     },
     methods: {
+      ...mapMutations([
+        'increment',
+        'decrement',
+        'updateUsername_glo',
+        'updateToken_glo',
+        'updateExp_glo'
+      ]),
       jump() {
         window.location.href = '/profile'
+      },
+      showUserInfo() {
+        console.log('showUserInfo method called');
+        this.dialogVisible = true;
+        console.log('showUserInfo method called2');
+      },
+      navigateToPost(url,level){
+        if(level>Math.floor(this.exp_glo/500)){
+          alert('这个帖子需要'+level+'级才能查看，你的等级不够');
+        }
+        else{
+          this.$router.push(url)
+        }
       },
       truncateString(str) {
   

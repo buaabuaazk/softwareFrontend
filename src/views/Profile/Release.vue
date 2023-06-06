@@ -227,7 +227,8 @@ export default {
   computed: {
       ...mapState([
         'username_glo',
-        'token_glo'
+        'token_glo',
+        'exp_glo'
       ])
     },
   methods: {
@@ -251,8 +252,13 @@ export default {
       console.log(this.getToken_glo());
       console.log(this.getUsername_glo());
       console.log(this.level);
-      console.log(this.text);
+      console.log(Math.floor(this.exp_glo/500));
       console.log(this.title);
+
+      if(this.level>Math.floor(this.exp_glo/500)){
+        alert("你不能发布查看等级大于你自己等级的帖子")
+        return;
+      }
       axios.post('http://81.70.17.242:8000/post/' + this.getUsername_glo() + '/post', data, {
         headers: {
           Authorization: this.getToken_glo()//待更新

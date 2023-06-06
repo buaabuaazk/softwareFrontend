@@ -54,11 +54,14 @@ export default {
     ...mapState([
       'count',
       'username_glo',
-      'token_glo'
+      'token_glo',
+      'exp_glo',
+      'Exp_glo'
     ])
 
   },
   mounted(){
+    
     const data = {
     }
     axios.get('http://81.70.17.242:8000/user/'+this.username_glo+'/info',data,)
@@ -67,6 +70,9 @@ export default {
           const code = response.data.code;
           if(code==200){
             this.user = data.data;
+            //this.exp_glo=this.user.experience;
+            this.updateExp_glo(this.user.experience);
+            console.log('exp:'+this.exp_glo);
             console.log("cgl")
           }
           else{
@@ -97,12 +103,13 @@ export default {
           }) 
   },
   methods: {
-    /*
     ...mapMutations([
-      'increment',
-      'decrement'
-    ]),*/
-    
+        'increment',
+        'decrement',
+        'updateUsername_glo',
+        'updateToken_glo',
+        'updateExp_glo'
+      ]),
     getUsername_glo() {
       return this.username_glo;
     },
