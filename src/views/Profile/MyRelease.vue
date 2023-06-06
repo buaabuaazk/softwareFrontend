@@ -121,11 +121,12 @@ export default {
 
 .posts-container {
   width: 70%;
+  color: #83b2e4;
 }
 
 .forum-post {
   display: flex;
-  border: 1px solid #ddd;
+  border: 1px solid #c37272;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -140,7 +141,7 @@ export default {
 
 .post-time {
   font-size: 14px;
-  color: #aaa;
+  color: #1e1818;
   margin-bottom: 10px;
 }
 
@@ -154,11 +155,12 @@ export default {
 .app-content {
   display: flex;
   padding-top: 50px;
+  background-color: #f3f1f1;
 }
 
 .post-content {
   font-size: 16px;
-  color: #555;
+  color: #2f2f30;
   line-height: 1.5;
 }
 

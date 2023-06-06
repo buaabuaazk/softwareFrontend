@@ -5,7 +5,6 @@
       <ul>
         <!-- 侧边栏的链接 -->
         <li><router-link to="/profile">个人信息</router-link></li>
-        <li><router-link to="/profile/collection">我的收藏</router-link></li>
         <li><router-link to="/profile/myrelease">我的发布</router-link></li>
         <li><router-link to="/profile/modify">修改信息</router-link></li>
         <li><router-link to="/profile/release">发布帖子</router-link></li>
@@ -30,7 +29,7 @@ export default {
 .sidebar {
   /* 自定义侧边栏的样式 */
   width: 300px;
-  background-color: #f0f0f0;
+  background-color: #f5f5f3;
   /* ... */
 }
 
@@ -41,12 +40,15 @@ export default {
 
 .sidebar ul li {
   list-style-type: none;
+  border: 3px solid #1f54c8; /* 添加边框样式 */
+  padding: 0px; /* 添加内边距，使边框与内容有一定间距 */
 }
+
 
 .sidebar-content {
 width: 65%; /* 侧边栏占 2/3 宽度 */
 float: left;
-background-color: #f0f0f0;
+background-color: #58c4e4;
 }
 
 .profile-content{

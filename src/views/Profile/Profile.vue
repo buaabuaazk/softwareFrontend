@@ -4,19 +4,19 @@
     <div class="main-content">
       <div class="profile">
         <div class="avatar">
-          <img :src="'data:image/png;base64,' + avatar" />
+          <img :src="avatar" />
         </div>
         <div class="info">
           <h1>{{ user.nickname }}</h1>
           <p>账号:{{ getUsername_glo() }}</p>
           <p>电子邮箱: {{ user.email }}</p>
-          <p>等级: {{ user.level }}</p>
+          <p>等级: {{  Math.floor(user.experience/500) }}</p>
           <p>经验值: {{ user.experience }}</p>
           <template>
         <font-awesome-icon icon="hotjar" />
       </template>
           <div class="demo-progress">
-            <el-progress :percentage=user.experience/2 />
+            <el-progress :percentage=user.experience%500/5 />
           </div>
           <p>个性签名：{{ user.signature }}</p>
         </div>
