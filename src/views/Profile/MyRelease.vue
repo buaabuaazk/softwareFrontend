@@ -81,14 +81,23 @@ export default {
       }
     },
     formatTime(isoTimeString) {
-      let date = new Date(isoTimeString);
-      let year = date.getUTCFullYear();
-      let month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
-      let day = date.getUTCDate().toString().padStart(2, '0');
-      let hours = (date.getUTCHours()+8).toString().padStart(2, '0');
-      let minutes = date.getUTCMinutes().toString().padStart(2, '0');
-      return `${year}-${month}-${day} ${hours}:${minutes}`;
-    },
+        let date = new Date(isoTimeString);
+        let options = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        };
+        // 指定中国的时区
+        let formattedDate = date.toLocaleString('zh-CN', options);
+
+        // 去掉日期中的 '/'，并将 ' ' 替换为 'T'，以符合 YYYY-MM-DDTHH:mm 的格式
+        formattedDate = formattedDate.replace(/\//g, '-').replace(' ', ' ');
+
+        return formattedDate;
+      },
 
     getUsername_glo() {
       return this.username_glo;

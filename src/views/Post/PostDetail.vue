@@ -24,7 +24,7 @@
         {{ post.like_count }}
       </span>
       <button @click="commentPost()">评论</button>
-      <button @click="deletePost()">删除（待实现）</button>
+      <button @click="deletePost()">删除</button>
       <button @click="reportPost()">举报</button>
     </div>
     <div class="comments">
@@ -157,7 +157,8 @@
           const code = response.data.code;
           if(code==200){
             this.post = data.data.post;
-            this.author=this.post.author
+            this.author=this.post.author;
+            this.title=this.post.title;
             console.log('0000:'+this.author)
             axios.get('http://81.70.17.242:8000/user/'+this.author+'/get_avatar',data) 
               .then(response => {
@@ -192,9 +193,7 @@
           const code = response.data.code;
           if(code==200){
             this.comment = data.data;
-            console.log("cgl200")
-            console.log(this.comment[1].content)
-            
+            console.log("cgl200")           
             for(let i=0;i<this.comment.length;i++){
               axios.get('http://81.70.17.242:8000/user/'+this.comment[i].author+'/get_avatar',data) 
               .then(response => {
@@ -453,7 +452,9 @@
         var userResponse = confirm('你确定要删除这个帖子吗');
         if(userResponse) {
             console.log('用户点击了确定按钮，现在删除');
-            const data = {}
+            const data = {
+              title:this.title
+            }
         axios.post('http://81.70.17.242:8000/post/' +this.username_glo+ '/delete', data, {
             headers: {
               Authorization: this.token_glo//待更新
@@ -463,13 +464,8 @@
             const data = response.data;
             const code = response.data.code;
             console.log(code)
-            this.isClicked[idd] = true;
-            let comment = this.comment.find(c => c.id === idd);
-            if(comment) {
-              comment.like_count++;
-            }
-            //this.comment.like_count++;
-            this.buttonColor='#87CEEB';
+            alert('删除成功');
+            this.$router.push('/profile/myrelease');
           })
           .catch(error =>{
               console.log(error)
@@ -481,7 +477,6 @@
       },
       formatTime(isoTimeString) {
         let date = new Date(isoTimeString);
-
         let options = {
             year: 'numeric',
             month: '2-digit',
