@@ -4,6 +4,10 @@
       <div class="menu-item"><a  @click="gotoLogin">Login</a></div>
       <Dropdown title="Resources" :items="Resources" />
       <div class="menu-item"><a @click="gotoUserHome">Community</a></div>
+
+      <!-- 临时加的跳转到管理界面 -->
+      <div class="menu-item"><a @click="gotoAdmin">Admin</a></div>
+
     </nav>
 </template>
   
@@ -43,6 +47,9 @@ import Dropdown from './Dropdown';
         },
         gotoUserHome: function(){
           this.$router.push('./user/firstPage');
+        },
+        gotoAdmin: function(){
+          this.$router.push('./admin');
         }
     }
   }

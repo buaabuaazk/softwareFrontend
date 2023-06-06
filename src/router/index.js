@@ -6,6 +6,11 @@ import echart from "../views/Visit/echarts.vue"
 import guide from "../views/Visit/part/guide.vue"
 import show from "../views/Visit/part/test3.vue"
 import user from "../views/User/userHome.vue"
+import contact from "../views/Visit/contact.vue"
+import admin from "../views/Admin/admin.vue"
+import managePostAndChat from "../views/Admin/managePostAndChat.vue"
+import manageResource from "../views/Admin/manageResource.vue"
+import manageUserInfo from "../views/Admin/manageUserInfo.vue"
 const routes = [
   {
     path: '/',
@@ -52,6 +57,38 @@ const routes = [
           component: () => import('../views/Visit/contact.vue'),
         }
     ],
+  },
+  {
+    path: '/Admin',
+    name: 'admin',
+    component: () => import('../views/Admin/admin.vue'),
+    meta: {
+      //mainNavShow: true
+    }
+  },
+  {
+    path: '/Admin/managePostAndChat',
+    name: 'managePostAndChat',
+    component: () => import('../views/Admin/managePostAndChat.vue'),
+    meta: {
+      //mainNavShow: true
+    }
+  },
+  {
+    path: '/Admin/manageResource',
+    name: 'manageResource',
+    component: () => import('../views/Admin/manageResource.vue'),
+    meta: {
+      //mainNavShow: true
+    }
+  },
+  {
+    path: '/Admin/manageUserInfo',
+    name: 'manageUserInfo',
+    component: () => import('../views/Admin/manageUserInfo.vue'),
+    meta: {
+      //mainNavShow: true
+    }
   },
   {
     path: '/login',
