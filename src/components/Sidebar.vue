@@ -28,7 +28,7 @@ export default {
 .sidebar {
   /* 自定义侧边栏的样式 */
   width: 300px;
-  background-color: #f0f0f0;
+  background-color: #f5f5f3;
   /* ... */
 }
 
@@ -39,12 +39,15 @@ export default {
 
 .sidebar ul li {
   list-style-type: none;
+  border: 3px solid #1f54c8; /* 添加边框样式 */
+  padding: 0px; /* 添加内边距，使边框与内容有一定间距 */
 }
+
 
 .sidebar-content {
 width: 65%; /* 侧边栏占 2/3 宽度 */
 float: left;
-background-color: #f0f0f0;
+background-color: #58c4e4;
 }
 
 .profile-content{

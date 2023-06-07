@@ -464,7 +464,10 @@
             const data = response.data;
             const code = response.data.code;
             console.log(code)
-            alert('删除成功');
+            if(code==200)
+              alert('删除成功');
+            if(code==10205)
+              alert('你不能删除别人的帖子')
             this.$router.push('/profile/myrelease');
           })
           .catch(error =>{
@@ -711,4 +714,3 @@
   cursor: pointer;
 }
 </style>
-  

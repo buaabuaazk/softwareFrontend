@@ -4,19 +4,19 @@
     <div class="main-content">
       <div class="profile">
         <div class="avatar">
-          <img :src="avatar" alt="User avatar" />
+          <img :src="avatar" />
         </div>
         <div class="info">
           <h1>{{ user.nickname }}</h1>
           <p>账号:{{ getUsername_glo() }}</p>
           <p>电子邮箱: {{ user.email }}</p>
-          <p>等级: {{ user.level }}</p>
+          <p>等级: {{  Math.floor(user.experience/500) }}</p>
           <p>经验值: {{ user.experience }}</p>
           <template>
         <font-awesome-icon icon="hotjar" />
       </template>
           <div class="demo-progress">
-            <el-progress :percentage=user.experience/2 />
+            <el-progress :percentage=user.experience%500/5 />
           </div>
           <p>个性签名：{{ user.signature }}</p>
         </div>
@@ -37,7 +37,7 @@ export default {
   },
   data() {
     return {
-      user: '',
+      user: {},
       username: 'zk3',
       phonenumber: '15832369597',
       currentTab: '基本信息',
@@ -46,7 +46,7 @@ export default {
       nickname: 'Nickname',
       experience: 30,
       level: 5,
-      avatar: require('../../assets/images/background1.jpg'),
+      avatar: '',
       signature: 'This is my signature.',
     }
   },
@@ -54,21 +54,26 @@ export default {
     ...mapState([
       'count',
       'username_glo',
-      'token_glo'
+      'token_glo',
+      'exp_glo',
+      'Exp_glo'
     ])
 
   },
   mounted(){
+    
     const data = {
-
     }
-    axios.get('http://81.70.17.242:8000/user/'+this.username_glo+'/info',data)
+    axios.get('http://81.70.17.242:8000/user/'+this.username_glo+'/info',data,)
         .then(response => {
           const data = response.data;
           const code = response.data.code;
           if(code==200){
             this.user = data.data;
-            console.log(this.user)
+            //this.exp_glo=this.user.experience;
+            this.updateExp_glo(this.user.experience);
+            console.log('exp:'+this.exp_glo);
+            console.log("cgl")
           }
           else{
             console.log(code)
@@ -78,19 +83,53 @@ export default {
             console.log(error)
             alert("未知错误，大概率没连服务器")
         })
+    axios.get('http://81.70.17.242:8000/user/' + this.username_glo + '/get_avatar', data)
+      .then(response => {
+            const code = response.data.code;
+            const data = response.data;
+            if(code==200){
+              console.log("cgl_avatar")
+              console.log("avatar:"+data.avatar);
+              this.avatar = data.avatar;
+            }
+            else{
+              console.log("code_avatar:"+code)
+              console.log(this.token_glo)
+            }
+          })
+          .catch(error =>{
+              console.log(error)
+              alert("未知错误，大概率没连服务器")
+          }) 
   },
   methods: {
-    /*
     ...mapMutations([
-      'increment',
-      'decrement'
-    ]),*/
-    
+        'increment',
+        'decrement',
+        'updateUsername_glo',
+        'updateToken_glo',
+        'updateExp_glo'
+      ]),
     getUsername_glo() {
       return this.username_glo;
     },
     getToken_glo(){
       return this.token_glo;
+    },
+    base64ToImage(base64Data) {
+      const image = new Image();
+      image.src = base64Data;
+
+      // 使用一个延迟操作来确保图片加载完成
+      return new Promise((resolve, reject) => {
+        image.onload = () => {
+          resolve(image);
+        };
+
+        image.onerror = (error) => {
+          reject(error);
+        };
+      });
     }
   }
 }

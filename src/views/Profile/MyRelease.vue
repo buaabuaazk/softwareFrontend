@@ -7,8 +7,8 @@
       <div class="forum-post" v-for="(post, index) in posts" :key="index">
         <div class="post-info" @click="() => $router.push(post.url)">
           <div class="post-title">{{ post.title }}</div>
-          <div class="post-content">{{ post.content }}</div>
-          <div>ID: {{ post.id }}</div>
+          <div class="post-content">{{ truncateString(post.content) }}</div>
+          <!--<div>ID: {{ post.id }}</div>-->
           <div style="display: flex;">
             <span style="margin-right: 20px;">
               <font-awesome-icon icon="thumbs-up" /> {{ post.like_count }}
@@ -72,15 +72,32 @@ export default {
     jump() {
       window.location.href = '/profile'
     },
+    truncateString(str) {
+
+      if (str.length <= 50) {
+        return str;
+      } else {
+        return str.slice(0, 50) + "...";
+      }
+    },
     formatTime(isoTimeString) {
-    let date = new Date(isoTimeString);
-    let year = date.getUTCFullYear();
-    let month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
-    let day = date.getUTCDate().toString().padStart(2, '0');
-    let hours = date.getUTCHours().toString().padStart(2, '0');
-    let minutes = date.getUTCMinutes().toString().padStart(2, '0');
-    return `${year}-${month}-${day} ${hours}:${minutes}`;
-  },
+        let date = new Date(isoTimeString);
+        let options = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        };
+        // 指定中国的时区
+        let formattedDate = date.toLocaleString('zh-CN', options);
+
+        // 去掉日期中的 '/'，并将 ' ' 替换为 'T'，以符合 YYYY-MM-DDTHH:mm 的格式
+        formattedDate = formattedDate.replace(/\//g, '-').replace(' ', ' ');
+
+        return formattedDate;
+      },
 
     getUsername_glo() {
       return this.username_glo;
@@ -113,11 +130,12 @@ export default {
 
 .posts-container {
   width: 70%;
+  color: #83b2e4;
 }
 
 .forum-post {
   display: flex;
-  border: 1px solid #ddd;
+  border: 1px solid #c37272;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -132,7 +150,7 @@ export default {
 
 .post-time {
   font-size: 14px;
-  color: #aaa;
+  color: #1e1818;
   margin-bottom: 10px;
 }
 
@@ -146,11 +164,12 @@ export default {
 .app-content {
   display: flex;
   padding-top: 50px;
+  background-color: #f3f1f1;
 }
 
 .post-content {
   font-size: 16px;
-  color: #555;
+  color: #2f2f30;
   line-height: 1.5;
 }
 

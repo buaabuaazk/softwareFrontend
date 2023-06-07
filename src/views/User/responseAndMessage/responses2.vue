@@ -10,8 +10,7 @@
             <el-avatar style="margin-top:5px"
             :src="this.avatar0[index]" alt="头像" class="img"
             ></el-avatar>
-            <div class="block"><p>{{item.conducter}}在{{item.timestamp}}给你的{{item.post_title}}点赞了</p></div>
-            <div><p>被点赞的类型为{{item.which_like}}</p></div>
+            <div class="block"><p v-if="item.which_like === 1">{{item.conducter}}在{{item.timestamp}}给你的{{item.post_title}}帖子点赞了</p></div>
             </div>
         </div>
     </div>
