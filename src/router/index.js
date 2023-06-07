@@ -155,6 +155,11 @@ const routes = [
   },
   //用户区
   {
+    path: '/post/:id/get_post_by_id',
+    name: 'postdetail',
+    component: () => import('../views/Post/PostDetail.vue'),
+  },  
+  {
     path: '/user',
     name: 'user',
     component: user,
