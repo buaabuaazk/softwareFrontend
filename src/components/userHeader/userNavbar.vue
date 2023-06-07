@@ -40,7 +40,6 @@
       <template #title>更多</template>
       <el-menu-item index="/user/userProfile">个人中心</el-menu-item>
       <el-menu-item index="/user/chatGpt">vouzenusGPT</el-menu-item>
-      <el-menu-item index="/user/contact">问题反馈</el-menu-item>
       <el-menu-item index="/user/set">设置</el-menu-item>
     </el-sub-menu>
   </el-menu>
