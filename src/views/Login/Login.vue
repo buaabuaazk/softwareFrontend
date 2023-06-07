@@ -66,6 +66,7 @@ export default {
       };
       console.log('Username:', this.username);
       console.log('Password:', this.password);
+      console.log('token',this.getToken_glo());
       // 如果用户勾选了记住用户名，则将其存储到localStorage中
       if (this.remember) {
         localStorage.setItem('username', this.username);

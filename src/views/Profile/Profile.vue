@@ -68,7 +68,7 @@ export default {
           const code = response.data.code;
           if(code==200){
             this.user = data.data;
-            console.log("cgl")
+            console.log(this.user)
           }
           else{
             console.log(code)
