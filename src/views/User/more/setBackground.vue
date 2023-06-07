@@ -54,13 +54,15 @@
     ...mapState([
       'count',
        'username_glo',
-       'token_glo'
+       'token_glo',
      ])
     },
     methods:{
       ...mapMutations([
         'increment',
-        'decrement'
+        'decrement',
+        'updateUsername_glo',
+        'updateToken_glo'
       ]),
       getToken_glo(){
         return this.token_glo;
@@ -103,6 +105,9 @@
               console.log(response.data)
               if(code === 200){
                 this.$router.push('/visit')
+                this.updateToken_glo('null');
+                this.updateUsername_glo('null');
+                console.log(this.getToken_glo)
                 return this.$message.success("退出成功");
               }
               else if(code === 10200){

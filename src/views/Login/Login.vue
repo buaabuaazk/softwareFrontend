@@ -73,7 +73,7 @@ export default {
         localStorage.removeItem('username');
       }
       // 在这里，你可以添加发送请求到后端的代码
-      if(this.getToken_glo()==null)
+      if(this.getToken_glo()=='null')
       axios.post('http://81.70.17.242:8000/user/login',data)
         .then(response => {
           // 处理登录成功的情况
@@ -114,6 +114,7 @@ export default {
         })
         else{
           alert('已登录')
+          console.log(this.getToken_glo());
           this.$router.push('/user/firstPage');
         }
     }

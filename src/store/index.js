@@ -6,7 +6,7 @@ const store = createStore({
     return {
       count: 0,//测试用的
       username_glo: 'null',
-      token_glo:''
+      token_glo:'null'
     }
   },
   mutations: {
