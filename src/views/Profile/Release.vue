@@ -159,7 +159,7 @@
                   <button type="button" class="super normal button" @click="post">
                     发布
                   </button>
-                  <button type="button" class="super normal button" @click="() => $router.push('/user/postAndChat')">
+                  <button type="button" class="super normal button" @click="() => $router.push('/user/userProfile')">
                     返回
                   </button>
                 </div>

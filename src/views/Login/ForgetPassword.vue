@@ -148,7 +148,7 @@
   .ForgetPassword {
     width: 100%;
     height: 100%;
-    background: url("../../assets/images/background1.jpg") no-repeat;
+    background: url("../../assets/images/rain7.jpg") no-repeat;
     background-size: cover;
     overflow: hidden;
     position: fixed;

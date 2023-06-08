@@ -3,6 +3,8 @@
     <form @submit.prevent="submitForm">
       <h2>管理员登录</h2>
       <label>
+        <div><el-icon style="font-size:33px"><User /></el-icon></div>
+        <div style="width:10px"></div>
         <input v-model="username" placeholder="账号" type="text" required>
       </label>
       <div class="remember-me">
@@ -10,6 +12,8 @@
         <p style="font-size: 12px;" for="remember">记住用户名</p>
       </div>
       <label>
+        <div><el-icon style="font-size:33px"><Lock /></el-icon></div>
+        <div style="width:10px"></div>
         <input v-model="password" placeholder="密码" type="password" required>
       </label>
       <button type="submit">登录</button>
@@ -98,7 +102,7 @@ export default {
 .AdministratorLogin {
   width: 100%;
   height: 100%;
-  background: url("../../assets/images/background1.jpg") no-repeat;
+  background: url("../../assets/images/rain7.jpg") no-repeat;
   background-size: cover;
   overflow: hidden;
   position: fixed;
@@ -117,7 +121,7 @@ form {
   border-radius: 20px;
   background-color: white;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 h2 {
@@ -128,7 +132,6 @@ h2 {
 label {
   text-align: left;
   display: flex;
-  flex-direction: column;
   font-size: 18px;
   color: #555;
 }
