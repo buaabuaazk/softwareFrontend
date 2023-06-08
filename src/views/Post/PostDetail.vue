@@ -393,6 +393,7 @@
             if(code === 200){
               alert('评论发布成功！')
               //待增加一个跳转
+              window.location.reload();
             }
           })
           .catch(error => {
@@ -418,6 +419,7 @@
         })
           .then(response => {
             alert('评论的评论发布成功')
+            window.location.reload();
           })
           .catch(error => {
             console.log(error)
@@ -653,6 +655,8 @@
 .comment-content {
   margin-top: 10px;
   font-size: 1.1em;
+  text-align: left;
+  margin-left: 20px;
 }
 
 .comment-actions {
