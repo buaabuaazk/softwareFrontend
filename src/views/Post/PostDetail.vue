@@ -3,13 +3,18 @@
     <div style="height:20px"></div>
   <div class="post-detail" v-if="post">
     <div class="post">
-    <div class="post-author">
-      <img :src="avatar"/>
-      <div class="author-info">
-        <h3>{{ post.author }}</h3>
-        <p>{{ formatTime(post.update_time) }}</p>
+      <div class="container">
+        <div class="post-author">
+          <img :src="avatar"/>
+          <div class="author-info">
+            <h3>{{ post.author }}</h3>
+            <p>{{ formatTime(post.update_time) }}</p>
+          </div>
+        </div>
+        <div class="right">
+          <button type="button" onclick="history.back()" class="button">返回</button>
+        </div>
       </div>
-    </div>
     <h2 class="post-title">{{ post.title }}</h2>
     <div class="post-content">
       <p v-html="formatContent(post.content)"></p>
@@ -528,11 +533,27 @@
   min-height: 100vh;
   height: auto;
 }
-
+.button {
+  border: #d31c1c;
+  background: #64cbe8;
+  color: #000204;
+  cursor: pointer;
+  margin: 10px;
+  padding: 12px 24px; /* 调整按钮的内边距 */
+  font-size: 18px; /* 调整按钮的字体大小 */
+  width: 160px; /* 可选，设置按钮的固定宽度 */
+  height: 48px; /* 可选，设置按钮的固定高度 */
+}
 /* 可以在此添加其他样式 */
 .spaced-between {
   display: flex;
   justify-content: space-between;
+}
+.container {
+  display: flex;
+}
+.right {
+  margin-left: auto;
 }
 .red {
   background-color: red;
@@ -597,7 +618,8 @@
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
-  padding-top:20px
+  padding-top:20px;
+  margin-right: auto;
 }
 .post-author img,
 .comment-author img {
