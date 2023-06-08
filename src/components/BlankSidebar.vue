@@ -7,7 +7,7 @@
           <li class="sidebar-item">
             <router-link to="/profile/release">发布帖子</router-link>
           </li>
-          <img width="230" height="500" src="https://tpc.googlesyndication.com/daca_images/simgad/3946611849639402086" alt="图片描述">
+          <img width="194" height="500" src="https://tpc.googlesyndication.com/daca_images/simgad/3946611849639402086" alt="图片描述">
         </ul>
       </div>  
     </div>

@@ -27,11 +27,13 @@
           </div>
         </div>
         <div>
-            <div v-if="visible" class="dialog">
+          <div v-if="visible" class="dialog">
             <div class="dialog-content">
               <p>你确定要关注此用户吗</p>
-              <button @click="confirm">确定</button>
-              <button @click="hideDialog">取消</button>
+              <div class="button-group">
+                <button @click="confirm">关注</button>
+                <button @click="hideDialog">取消关注</button>
+              </div>
             </div>
           </div>
         </div>
@@ -153,6 +155,36 @@ export default {
             this.visible=false
     },
     hideDialog(){
+      const data={
+        follow_user_name:this.f_author
+      }
+      axios.post('http://81.70.17.242:8000/user/'+this.username_glo+'/unfollow',data,{
+          headers: {
+            Authorization: this.token_glo//待更新
+          }
+        }) 
+            .then(response => {
+                  const code = response.data.code;
+                  const data = response.data;
+                  if(code==200){
+                    alert('取消关注成功')                    
+                  }
+                  else{
+                    console.log("code_:"+code)
+                    console.log(this.token_glo)
+                    if(code==10209){
+                      alert('不能取消关注自己')
+                    }
+                    else if(code == 10211){
+                      alert('还未关注此用户')
+                    }
+                  }
+                })
+            .catch(error =>{
+              console.log(error)
+                alert("未知错误，大概率没连服务333器")
+            }) 
+            this.visible=false
       this.visible=false
     },
     jump() {
@@ -228,14 +260,18 @@ export default {
   width: 33%;
   justify-content: left;
 }
-
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-left: 50%;
+}
 .sidebar-container {
   width: 30%;
   display: flex;
   justify-content: center;
 }
 .dialog {
-  background-color: #1e1818;
 position: fixed;
 top: 0;
 left: 0;
@@ -258,7 +294,17 @@ justify-content: center;
 }
 
 .dialog-content button {
-margin: 10px;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 30px;
+  background-color: #f4f4f4;
+  color: #333;
+  font-size: 16px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
 }
 .posts-container {
   width: 100%;
