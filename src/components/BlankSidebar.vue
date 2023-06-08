@@ -2,14 +2,16 @@
 <template>
   <aside class="sidebar">
     <div class="middle">
-    <div class="sidebar-content">
-      <ul>
-        <li><router-link to="/profile/release">发布帖子</router-link></li>
-      </ul>
-    </div>  
+      <div class="sidebar-content">
+        <ul>
+          <li class="sidebar-item">
+            <router-link to="/profile/release">发布帖子</router-link>
+          </li>
+          <img width="230" height="500" src="https://tpc.googlesyndication.com/daca_images/simgad/3946611849639402086" alt="图片描述">
+        </ul>
+      </div>  
     </div>
-  </aside>
-  
+</aside>
 </template>
 <script>
 export default {
@@ -38,8 +40,9 @@ export default {
 
 .sidebar ul li {
   list-style-type: none;
-  border: 3px solid #1f54c8; /* 添加边框样式 */
+   /* border: 3px solid #1f54c8;添加边框样式 */
   padding: 0px; /* 添加内边距，使边框与内容有一定间距 */
+  
 }
 
 .middle{
@@ -68,7 +71,16 @@ box-sizing: border-box;
   line-height: 24px;
   border-bottom: 1px solid #ddd;
 }
-
+.sidebar-item{
+    padding: 10px;
+    font-size: 18px;
+    background-color: #239cd8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 1.0;
+}
 .sidebar ul li a:hover {
   background-color: #ddd;
 }
