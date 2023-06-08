@@ -10,7 +10,7 @@
           <h1>{{ user.nickname }}</h1>
           <p>账号:{{ getUsername_glo() }}</p>
           <p>电子邮箱: {{ user.email }}</p>
-          <p>等级: {{  Math.floor(user.experience/500) }}</p>
+          <p>等级: {{  Math.floor((user.experience+500)/500) }}</p>
           <p>经验值: {{ user.experience }}</p>
           <template>
         <font-awesome-icon icon="hotjar" />

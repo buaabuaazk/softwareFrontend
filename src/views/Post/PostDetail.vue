@@ -49,7 +49,6 @@
           <div v-for="reply in comment.replies" :key="reply.id" class="reply">
             <!-- 评论的评论的详细内容 -->
             <div class="reply-author">
-              <img :src="avatar" alt="作者头像" />
               <p>{{ reply.author }}</p>
             </div>
             <div class="reply-content">
