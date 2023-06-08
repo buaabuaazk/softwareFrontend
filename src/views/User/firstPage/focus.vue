@@ -69,7 +69,7 @@ export default {
   },
   mounted() {
     const data = {
-      //author:this.username_glo
+      author:this.username_glo
     }
     console.log(this.token_glo)
     console.log(this.username_glo)
@@ -81,9 +81,12 @@ export default {
       .then(response => {
         const data = response.data;
         const code = response.data.code;
+        console.log('获取code:'+code)
+        console.log('token: '+this.token_glo)
+        console.log('username: '+this.username_glo)
         if(code == 200) {
           console.log('获取成功')
-          this.posts = data.data.posts
+          this.posts = data.data.post_list
           for(let i=0;i<this.posts.length;i++){
             axios.get('http://81.70.17.242:8000/user/'+this.posts[i].author+'/get_avatar',data) 
             .then(response => {
@@ -220,10 +223,16 @@ export default {
 </script>
 
 <style scoped>
-#app {
+.app {
   display: flex;
   flex-direction: row;
   font-family: Arial, sans-serif;
+  background: url("@/assets/images/background1.jpg") no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+
 }
 .empty-sidebar {
   width: 33%;
@@ -262,6 +271,8 @@ margin: 10px;
 }
 .posts-container {
   width: 70%;
+  left: 30%; /* 假设你的侧边栏宽度是30% */
+  margin-left: 30%; /* Same width as sidebar */
   color: #83b2e4;
 }
 .post-info img {
@@ -302,7 +313,9 @@ margin: 10px;
   display: flex;
   padding-top: 50px;
   background-color: #f3f1f1;
+  position: fixed;  
 }
+
 
 .post-content {
   font-size: 16px;

@@ -255,6 +255,8 @@ margin: 10px;
 }
 .posts-container {
   width: 70%;
+  left: 30%; /* 假设你的侧边栏宽度是30% */
+  margin-left: 30%; /* Same width as sidebar */
   color: #83b2e4;
 }
 .post-info img {
@@ -295,6 +297,8 @@ margin: 10px;
   display: flex;
   padding-top: 50px;
   background-color: #f3f1f1;
+  position: fixed;  
+  
 }
 
 .post-content {

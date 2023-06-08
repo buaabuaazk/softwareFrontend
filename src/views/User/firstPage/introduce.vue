@@ -1,7 +1,39 @@
 <template>
   <div class="box">
     <div class="posts">
-      <popPost></popPost>
+      <popPost>
+        <div class="posts-container">
+          <div class="forum-post" v-for="(post, index) in posts" :key="index">
+            <div class="post-info" @click="navigateToPost(post.url,post.level)">
+              <img @click.stop="showDialog(post.author)" :src="this.avatar0[index]" alt="发帖人头像" />
+              <div>{{ post.author }}</div>
+              <div class="post-title">{{ post.title }}</div>
+              <div class="post-content">{{ truncateString(post.content) }}</div>
+              <!--<div>ID: {{ post.id }}</div>-->
+              <div style="display: flex;">
+                <span style="margin-right: 20px;">
+                  <font-awesome-icon icon="thumbs-up" /> {{ post.like_count }}
+                </span>
+                <span style="margin-right: 20px;">
+                  <font-awesome-icon icon="comment" /> {{ post.comment_count }}
+                </span>
+                <span class="post-time">
+                  {{ formatTime(post.update_time) }}
+                </span>
+              </div>
+            </div>
+            <div>
+                <div v-if="visible" class="dialog">
+                <div class="dialog-content">
+                  <p>你确定要关注此用户吗</p>
+                  <button @click="confirm">确定</button>
+                  <button @click="hideDialog">取消</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </popPost>
     </div>
     <div class="person">
       <div class="personPost">
@@ -129,11 +161,11 @@
   </div>
 </template>
 <script >
+import axios from 'axios';
 import introducePost from "./introducePost.vue";
 import focusPost from "./focusPost.vue";
 import popPostVue from './popPost.vue';
 import { mapState, mapMutations } from 'vuex';
-import axios from 'axios';
 //const format = (percentage) => (percentage === 100 ? 'Full' : `${percentage}%`)
   export default{
     data() {
@@ -145,31 +177,175 @@ import axios from 'axios';
         level: 1,
         experience: 1,
         isFirstLine: true,
+        posts: [],
+        avatar0:[],
+        page: 1,
+        perPage: 10,
+        pages: [],
+        showUserModal: false,
+        currentUser: {},
+        dialogVisible: false, // 控制模态框的显示/隐藏
+        visible: false,
+        f_author:'',
       }
     },
   components: {
     introducePost,
     focusPost,
-    popPostVue
+    popPostVue,
   },
   computed: {
     ...mapState([
       'count',
        'username_glo',
        'token_glo'
-     ])
-    },
+     ]),
+     displayedPosts() {
+      return this.paginate(this.posts);
+    }
+  },
+    mounted() {
+    const data = {}
+    axios.get('http://81.70.17.242:8000/post/'+this.username_glo+'/recommend', data)
+      .then(response => {
+        const data = response.data;
+        this.posts = data.recommended_posts;
+        console.log('follow:'+data.recommended_posts[0].title)
+        if(true) {
+          for(let i=0;i<this.posts.length;i++){
+        	axios.get('http://81.70.17.242:8000/user/'+this.posts[i].author+'/get_avatar',data) 
+            .then(response => {
+                  const code = response.data.code;
+                  const data = response.data;
+                  if(code==200){
+                    console.log("cgl_avatar")
+                    this.avatar0[i]=data.avatar
+                    console.log("avatar:"+data.avatar)
+                  }
+                  else{
+                    console.log("code_avatar:"+code)
+                    console.log(this.token_glo)
+                  }
+                })
+            .catch(error =>{
+              console.log(error)
+                alert("未知错误,大概率没连服务333器")
+            }) 
+          }
+          console.log("cgl111")
+        } else {
+          console.log('error code :'+code)
+        }
+      })
+      .catch(error => {
+        console.log(error)
+        alert("未知错误，大概率没连服务器")
+      })
+  },
   methods:{
     ...mapMutations([
         'increment',
-        'decrement'
+        'decrement',
+        'updateUsername_glo',
+        'updateToken_glo',
+        'updateExp_glo'
       ]),
-      getToken_glo(){
-        return this.token_glo;
+      showDialog(ass){
+      this.visible = true;
+      this.f_author = ass;
+    },
+    paginate(posts) {
+      let page = this.page;
+      let perPage = this.perPage;
+      let from = (page - 1) * perPage;
+      let to = page * perPage;
+      return posts.slice(from, to);
+    },
+    confirm(){
+      const data={
+        follow_user_name:this.f_author
+      }
+      axios.post('http://81.70.17.242:8000/user/'+this.username_glo+'/follow',data,{
+          headers: {
+            Authorization: this.token_glo//待更新
+          }
+        }) 
+            .then(response => {
+                  const code = response.data.code;
+                  const data = response.data;
+                  if(code==200){
+                    alert('关注成功')                    
+                  }
+                  else{
+                    console.log("code_:"+code)
+                    console.log(this.token_glo)
+                    if(code==10209){
+                      alert('不能关注自己')
+                    }
+                    else if(code == 10210){
+                      alert('已关注')
+                    }
+                  }
+                })
+            .catch(error =>{
+              console.log(error)
+                alert("未知错误，大概率没连服务333器")
+            }) 
+            this.visible=false
+    },
+    hideDialog(){
+      this.visible=false
+    },
+    jump() {
+      window.location.href = '/profile'
+    },
+    showUserInfo() {
+      console.log('showUserInfo method called');
+      this.dialogVisible = true;
+      console.log('showUserInfo method called2');
+    },
+    navigateToPost(url,level){
+      console.log(level)
+      console.log("2222ppp+"+Math.floor(this.exp_glo/500))
+      if(level>Math.floor(this.exp_glo/500)){
+        alert('这个帖子需要'+level+'级才能查看，你的等级不够');
+      }
+      else{
+        this.$router.push(url)
+      }
+    },
+    truncateString(str) {
+      if (str.length <= 50) {
+        return str;
+      } else {
+        return str.slice(0, 50) + "...";
+      }
+    },
+    formatTime(isoTimeString) {
+        let date = new Date(isoTimeString);
+        let options = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        };
+        // 指定中国的时区
+        let formattedDate = date.toLocaleString('zh-CN', options);
+
+        // 去掉日期中的 '/'，并将 ' ' 替换为 'T'，以符合 YYYY-MM-DDTHH:mm 的格式
+        formattedDate = formattedDate.replace(/\//g, '-').replace(' ', ' ');
+
+        return formattedDate;
       },
-      getUsername_glo(){
-        return this.username_glo;
-      },
+
+    getUsername_glo() {
+      return this.username_glo;
+    },
+    getToken_glo(){
+      return this.token_glo;
+    },
     gotoPost: function() {
       this.$router.push('/user/postAndChat');
     },
@@ -296,6 +472,8 @@ import axios from 'axios';
     height: 150vh;
     margin-left: 30px;
     display: block;
+    
+    
   }
   .personPost{
     display: grid;
@@ -420,5 +598,93 @@ import axios from 'axios';
   .first-line {
     margin-left: 0; /* 取消第一行的上边距 */
   }
+
+  .sidebar-container {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+.dialog {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.dialog-content {
+background-color: #fff;
+padding: 20px;
+border-radius: 4px;
+width: 300px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+.dialog-content button {
+margin: 10px;
+}
+.posts-container {
+  width: 100%;
+  color: #79afea;
+}
+.post-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  }
+
+.forum-post {
+  display: flex;
+  border: 1px solid #c37272;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  width: 100%;
+}
+
+.post-info {
+  text-align: left; 
+  flex-grow: 1;
+}
+
+.post-time {
+  font-size: 14px;
+  color: #1e1818;
+  margin-bottom: 10px;
+}
+
+.post-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.app-content {
+  display: flex;
+  padding-top: 50px;
+  background-color: #f3f1f1;
+}
+
+.post-content {
+  font-size: 16px;
+  color: #2f2f30;
+  line-height: 1.5;
+}
+
+.like-button, .comment-button {
+  border: none;
+  background: none;
+  color: #007BFF;
+  cursor: pointer;
+  margin: 10px;
+}
 </style>
 

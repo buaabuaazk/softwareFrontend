@@ -1,5 +1,6 @@
 <template>
     <div class="posts"></div>
+    <h1>22222</h1>
 </template>
 <style scoped>
     .posts{
