@@ -166,7 +166,7 @@ export default {
     navigateToPost(url,level){
       console.log(level)
       console.log("2222ppp+"+Math.floor(this.exp_glo/500))
-      if(level>Math.floor(this.exp_glo/500)){
+      if(level-1>Math.floor(this.exp_glo/500)){
         alert('这个帖子需要'+level+'级才能查看，你的等级不够');
       }
       else{
