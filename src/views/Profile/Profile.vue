@@ -13,13 +13,21 @@
           <p>等级: {{  Math.floor((user.experience+500)/500) }}</p>
           <p>经验值: {{ user.experience }}</p>
           <template>
-        <font-awesome-icon icon="hotjar" />
-      </template>
+            <font-awesome-icon icon="hotjar" />
+          </template>
           <div class="demo-progress">
             <el-progress :percentage=user.experience%500/5 />
           </div>
           <p>个性签名：{{ user.signature }}</p>
         </div>
+      </div>
+      <div class="bottom-content">
+        <h2>欢迎使用我们的学习平台</h2>
+        <p>我们的学习平台提供了丰富的在线课程和学习资源，帮助你提升技能和知识水平。</p>
+        <p>如果你在学习过程中遇到问题，可以随时联系我们的客服团队，我们会尽快回复你并提供帮助。</p>
+        <p>同时，我们也欢迎你分享自己的学习心得和经验，与其他用户交流和互动。</p>
+        <p>感谢你的信任和支持，我们会不断努力，为你提供更好的学习体验。</p>
+        <div class="decor-line"></div>
       </div>
     </div>
   </div>
@@ -29,7 +37,6 @@
 import axios from 'axios'
 import Sidebar from '@/components/Sidebar.vue';
 import { mapState, mapMutations } from 'vuex'
-
 export default {
   name: 'App',
   components: {
@@ -58,10 +65,8 @@ export default {
       'exp_glo',
       'Exp_glo'
     ])
-
   },
-  mounted(){
-    
+  mounted(){    
     const data = {
     }
     axios.get('http://81.70.17.242:8000/user/'+this.username_glo+'/info',data,)
@@ -146,10 +151,6 @@ export default {
   width: 250px;
 }
 
-.sidebar {
-  flex-shrink: 0;
-}
-
 .main-content {
   flex-grow: 1;
   padding-left: 20px;
@@ -197,4 +198,27 @@ export default {
   font-weight: bold;
   color: #333;
 }
+
+  /* 底部内容样式 */
+  .bottom-content {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 300px;
+  }
+
+  .bottom-content h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .bottom-content p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    
+  }
 </style>

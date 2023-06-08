@@ -1,7 +1,7 @@
 import axios from 'axios';
  
 const API_URL = 'https://api.openai.com/v1/chat/completions';
-const API_KEY = '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';
+const API_KEY = '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';
 //const messages=[];
 const messages=new FormData();
 export default {

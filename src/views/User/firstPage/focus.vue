@@ -24,6 +24,7 @@
             </span>
           </div>
         </div>
+        <div style="height:10px"></div>
         <div>
             <div v-if="visible" class="dialog">
             <div class="dialog-content">
@@ -278,6 +279,8 @@ margin: 10px;
   left: 30%; /* 假设你的侧边栏宽度是30% */
   margin-left: 30%; /* Same width as sidebar */
   color: #83b2e4;
+  min-height: 100vh;
+  height: auto;
 }
 .post-info img {
   width: 50px;
@@ -287,9 +290,9 @@ margin: 10px;
 
 .forum-post {
   display: flex;
+  margin-bottom: 20px;
   border: 1px solid #c37272;
   padding: 20px;
-  margin-bottom: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   width: 100%;

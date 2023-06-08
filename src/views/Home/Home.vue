@@ -15,19 +15,19 @@
             <el-carousel-item >
               <div class="back">
               <h3 text="2xl" justify="center">资源区</h3>
-              <p style="color:#1989fa">查看上传下载任意资源</p>
+              <p style="color:#1989fa;font-size:25px">查看上传下载任意资源</p>
               </div>
             </el-carousel-item>
             <el-carousel-item >
               <div class="back1">
               <h3 text="2xl" justify="center">发帖区</h3>
-              <p style="color:#1989fa">和网友一起探讨学术和生活问题</p>
+              <p style="color:#1989fa;font-size:25px">和网友一起探讨学术和生活问题</p>
               </div>
             </el-carousel-item>
             <el-carousel-item>
               <div class="back2">
               <h3 text="2xl" justify="center">管理员端</h3>
-              <p style="color:#1989fa">加入管理端一起来维护秩序吧</p>
+              <p style="color:#1989fa;font-size:25px">加入管理端一起来维护秩序吧</p>
               </div>
             </el-carousel-item>
           </el-carousel>
