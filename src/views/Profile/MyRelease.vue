@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     jump() {
-      window.location.href = '/profile'
+      window.location.href = '/user/postAndChat'
     },
     truncateString(str) {
 

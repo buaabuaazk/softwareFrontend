@@ -13,7 +13,7 @@
                   </td>
                   <td width="auto" align="left"></td>
                   <td width="570" align="right" style="padding-top: 2px;">
-                    <a class="top"><router-link to="/user/userProfile">首页</router-link></a>
+                    <a class="top"><router-link to="/user/postAndChat">首页</router-link></a>
                     &nbsp;&nbsp;&nbsp;
                   </td>
                 </tr>
@@ -159,7 +159,7 @@
                   <button type="button" class="super normal button" @click="post">
                     发布
                   </button>
-                  <button type="button" class="super normal button" @click="() => $router.push('/profile')">
+                  <button type="button" class="super normal button" @click="() => $router.push('/user/postAndChat')">
                     返回
                   </button>
                 </div>
@@ -271,7 +271,7 @@ export default {
           if(code === 200){
             alert('帖子发布成功！')
             //待增加一个跳转
-            this.$router.push('/profile');
+            this.$router.push('/user/postAndChat');
           }
         })
         .catch(error => {

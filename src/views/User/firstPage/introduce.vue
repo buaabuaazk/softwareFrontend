@@ -467,7 +467,8 @@ import { mapState, mapMutations } from 'vuex';
     margin-top: 10px;
     margin-left: 100px;
     border: hidden;
-    background-color: azure;
+    opacity: 0.7;
+    background-color: #1e1818;
   }
   .person{
     background-color: antiquewhite;
@@ -476,8 +477,7 @@ import { mapState, mapMutations } from 'vuex';
     height: 100vh;
     margin-left: 30px;
     display: block;
-    
-    
+    opacity: 0.7;
   }
   .personPost{
     display: grid;
@@ -668,7 +668,7 @@ margin: 10px;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #333;
+  color: white;
 }
 
 .app-content {
@@ -679,7 +679,7 @@ margin: 10px;
 
 .post-content {
   font-size: 16px;
-  color: #2f2f30;
+  color: white;
   line-height: 1.5;
 }
 

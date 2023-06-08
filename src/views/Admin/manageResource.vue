@@ -2,8 +2,9 @@
   <div class="admin" v-show="admin">
     <div class="admin-nav">
       <adminNav />
+      <div class="title">搜索资源</div>
     </div>
-    <div class="admin-content">
+    <div class="admin-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <findResourceVue></findResourceVue>
         <commitFile></commitFile>
         <personalFile></personalFile>
@@ -63,9 +64,15 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 100px;
+  margin-top: 140px;
 }
-
+.admin-content1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 40px;
+}
 .left-content {
   display: flex;
   flex-direction: column;
@@ -97,4 +104,6 @@ export default {
     width: 100%;
   }
 }
+.title { font-size: 24px; margin-bottom: 20px; margin-top: 40px;} 
+
 </style>

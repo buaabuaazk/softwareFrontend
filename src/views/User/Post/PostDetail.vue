@@ -1,4 +1,5 @@
 <template>
+  <div class="background">
   <div class="post-detail" v-if="post">
     <div class="post-author">
       <img :src="avatar"/>
@@ -91,6 +92,7 @@
     </div>
     <!-- Feedback section -->
     <div v-if="feedbackMessage">{{ feedbackMessage }}</div>
+  </div>
   </div>
 </template>
 
@@ -513,6 +515,13 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
 
 /* 可以在此添加其他样式 */
+.background{
+  background-image: url('../../../assets/images/rain6.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: auto;
+  height: auto;
+}
 .spaced-between {
   display: flex;
   justify-content: space-between;

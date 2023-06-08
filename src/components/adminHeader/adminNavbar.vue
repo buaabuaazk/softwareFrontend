@@ -118,7 +118,7 @@
 }
 .whether{
     margin-top: 6px;
-    margin-left: 300px;
+    margin-left: 130px;
     position: relative;
     z-index: 9999;
 }

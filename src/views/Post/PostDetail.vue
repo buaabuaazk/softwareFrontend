@@ -1,5 +1,8 @@
 <template>
+  <div class="background">
+    <div style="height:20px"></div>
   <div class="post-detail" v-if="post">
+    <div class="post">
     <div class="post-author">
       <img :src="avatar"/>
       <div class="author-info">
@@ -27,7 +30,9 @@
       <button @click="deletePost()">删除</button>
       <button @click="reportPost()">举报</button>
     </div>
+    </div>
     <div class="comments">
+      <h2 style="color:bisque">评论</h2>
       <div v-for="(comment,index) in this.comment" :key="comment.id" class="comment">
         <div class="comment-author">
           <img :src="this.avatar0[index]" alt="评论者头像" />
@@ -44,8 +49,10 @@
           点赞{{ comment.like_count }}</button>
           <button @click="reportComment(comment.id)">举报</button>
           <button @click="replyComment(comment.id)">回复</button>
+          <div style="height:10px"><h2 style="height:10px"></h2></div>
         </div>
         <div class="replies">
+          <h2 style="height:40px">回复</h2>
           <div v-for="reply in comment.replies" :key="reply.id" class="reply">
             <!-- 评论的评论的详细内容 -->
             <div class="reply-author">
@@ -90,6 +97,7 @@
     </div>
     <!-- Feedback section -->
     <div v-if="feedbackMessage">{{ feedbackMessage }}</div>
+  </div>
   </div>
 </template>
 
@@ -510,6 +518,14 @@
   
 <style scoped>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+.background{
+  background-image: url('../../assets/images/rain6.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: auto;
+  min-height: 100vh;
+  height: auto;
+}
 
 /* 可以在此添加其他样式 */
 .spaced-between {
@@ -569,14 +585,17 @@
 .click-button.clicked {
   background-color: green;
 }
-
+.post{
+  background-color: #f9f9f9;
+  opacity: 0.7;
+}
 .post-author {
   display: flex;
   align-items: center;
   padding: 20px;
-  background-color: #f9f9f9;
   border-radius: 10px;
   margin-bottom: 20px;
+  padding-top:20px
 }
 .post-author img,
 .comment-author img {
@@ -598,6 +617,7 @@
 }
 
 .post-content {
+  margin-left:20px;
   margin-top: 20px;
   font-size: 1.2em;
   line-height: 1.6;
@@ -610,6 +630,7 @@
 
 .comments {
   margin-top: 40px;
+  opacity: 0.7;
 }
 
 .comment {
@@ -617,8 +638,6 @@
   padding: 10px;
   background-color: #f9f9f9;
   border-radius: 10px;
- 
-  
 }
 
 .comment-author {
@@ -640,6 +659,8 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: groove;
 }
 
 .comment-actions button {

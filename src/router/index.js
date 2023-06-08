@@ -16,6 +16,30 @@ const routes = [
     }
   },
   {
+    path: '/Admin/managePostAndChat',
+    name: 'managePostAndChat',
+    component: () => import('../views/Admin/managePostAndChat.vue'),
+    meta: {
+      //mainNavShow: true
+    }
+  },
+  {
+    path: '/Admin/manageResource',
+    name: 'manageResource',
+    component: () => import('../views/Admin/manageResource.vue'),
+    meta: {
+      //mainNavShow: true
+    }
+  },
+  {
+    path: '/Admin/manageUserInfo',
+    name: 'manageUserInfo',
+    component: () => import('../views/Admin/manageUserInfo.vue'),
+    meta: {
+      //mainNavShow: true
+    }
+  },
+  {
     path: '/',
     name: 'Home',
     component: home,

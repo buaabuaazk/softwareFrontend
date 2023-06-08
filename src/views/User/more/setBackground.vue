@@ -1,28 +1,29 @@
 <template>
-    <div style="min-height: 100vh; height:auto; border: 1px ;hidden #121313 ;z-index: 0 ;margin-top: 10px;display: flex;">
-      <div style="width: 250px; height: 100%; margin-left: 250px;">
-        <!--引入自定义左侧菜单栏-->
-        <!-- <router-view name="leftNav" style="opacity:0.7"></router-view> -->
-        <LeftNav />
+  <div class="main-container">
+    <div class="left-nav-container">
+      <LeftNav />
+    </div>
+    <div class="right-container">
+      <div class="action-container">
+        <el-button size="large" class="action-button" type="primary" @click="register">
+          申请成为管理员
+        </el-button>
+        <el-button class="action-button" type="warning" size="large" @click="logout">
+          退出登录
+        </el-button>
+        <el-button class="action-button" type="danger" size="large" @click="delete1">
+          注销账号
+        </el-button>
       </div>
-      <div style="width: 600px; min-height: 100vh; height: auto;margin-left: 10px;background-color:#E9EEF3; display: flex; flex-direction: column">
-        <div style="width:100%;height:100px">
-          <p>申请成为管理员</p>
-          <button class="button" @click="register"><p>申请成为管理员</p></button>
-        </div>
-        <div style="width:100%;height:100px">
-          <p>退出登录</p>
-          <button class="button" @click="logout">退出登录</button>
-        </div>
-        <div style="width:100%;height:100px">
-          <p>
-            注销账号
-          </p>
-          <button class="button" @click="delete1">注销账号</button>
-        </div>
+      <div class="intro-container">
+        <h3>操作说明</h3>
+        <p>申请成为管理员：点击此按钮可以申请成为管理员。</p>
+        <p>退出登录：点击此按钮可以退出当前登录账号。</p>
+        <p>注销账号：点击此按钮可以注销当前账号并删除所有相关信息。</p>
       </div>
     </div>
-  </template>
+  </div>
+</template>
   
   <script>
   import LeftNav from './components/leftNav.vue';
@@ -179,9 +180,40 @@
   </script>
 
   <style lang="less" scoped>
-  .el-menu-vertical-demo{
-    height: 100vh
-  }
+  .main-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.left-nav-container {
+  flex: 1;
+}
+.right-container {
+  flex: 3;
+  padding-left: 2rem;
+}
+
+.action-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 50px;
+  margin-left: 150px;
+}
+
+.action-button {
+  margin-bottom: 1rem;
+}
+.tooltip {
+  margin-left: 10px;
+}
+
+.action-button {
+  background: linear-gradient(to right, #108ff0, #84c6f2);
+  color: white;
+  margin-right: 10px;
+}
   .button {
     /* 基础样式 */
   display: inline-block;
@@ -214,4 +246,23 @@
   cursor: not-allowed;
   }
   }
+
+  .intro-container {
+  margin-top: -200px;
+  margin-left: 50px;
+}
+
+.intro-container h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  margin-left: 50px;
+}
+
+.intro-container p {
+  font-size: 16px;
+  line-height: 30px;
+  margin: 20px;
+  margin-left: 50px;
+}
+
   </style>

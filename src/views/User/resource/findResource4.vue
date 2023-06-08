@@ -371,13 +371,13 @@ import { mapState, mapMutations } from 'vuex'
                 // if (res.code !== 200)
                 //     return this.$message.error("获取用户列表失败");
                 console.log(res);
-                console.log(res.url);
-                window.open(res.url)
+                console.log('url:'+res.url);
+                window.open(res.url);
                 //var decodedString = decodeURIComponent(res);
                 //console.log(decodedString);
-                var element = document.getElementById("yourElementId");
-                //res_utf8 = res.decode('utf-8');
-                element.innerText = res;
+                // var element = document.getElementById("yourElementId");
+                // //res_utf8 = res.decode('utf-8');
+                // element.innerText = res;
                 //this.queryInfo.total = res.resource_info_list.length;
                 //console.log(res.resource_info_list);
                 //console.log(res.resource_info_list.length);
