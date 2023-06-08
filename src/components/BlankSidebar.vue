@@ -1,10 +1,12 @@
 <!-- BlankSidebar.vue -->
 <template>
   <aside class="sidebar">
+    <div class="middle">
     <div class="sidebar-content">
       <ul>
         <li><router-link to="/profile/release">发布帖子</router-link></li>
       </ul>
+    </div>  
     </div>
   </aside>
   
@@ -25,7 +27,7 @@ export default {
 .sidebar {
   /* 自定义侧边栏的样式 */
   width: 300px;
-  background-color: #f5f5f3;
+  opacity: 0.6;
   /* ... */
 }
 
@@ -40,6 +42,10 @@ export default {
   padding: 0px; /* 添加内边距，使边框与内容有一定间距 */
 }
 
+.middle{
+  display: flex;
+  justify-content: center;
+}
 
 .sidebar-content {
 width: 65%; /* 侧边栏占 2/3 宽度 */

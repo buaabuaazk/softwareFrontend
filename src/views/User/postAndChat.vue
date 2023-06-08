@@ -4,6 +4,9 @@
           <BlankSidebar></BlankSidebar>
       </div>
     <div class="posts-container">
+      <div>
+        <h2 style="color:aquamarine;margin-top:10px">所有帖子</h2>
+      </div>
       <div class="forum-post" v-for="(post, index) in posts" :key="index">
         <div class="post-info" @click="navigateToPost(post.url,post.level)">
           <img @click.stop="showDialog(post.author)" :src="this.avatar0[index]" alt="发帖人头像" />
@@ -217,6 +220,9 @@ export default {
   display: flex;
   flex-direction: row;
   font-family: Arial, sans-serif;
+  background-image: url('../../assets/images/rain3.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .empty-sidebar {
   width: 33%;
@@ -229,6 +235,7 @@ export default {
   justify-content: center;
 }
 .dialog {
+  background-color: #1e1818;
 position: fixed;
 top: 0;
 left: 0;
@@ -254,8 +261,12 @@ justify-content: center;
 margin: 10px;
 }
 .posts-container {
-  width: 70%;
-  color: #83b2e4;
+  width: 100%;
+  opacity: 0.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .post-info img {
   width: 50px;
@@ -264,13 +275,16 @@ margin: 10px;
   }
 
 .forum-post {
+  width: 70%;
+  background-color:antiquewhite;
   display: flex;
   border: 1px solid #c37272;
   padding: 20px;
-  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  width: 100%;
 }
 
 .post-info {
@@ -295,6 +309,7 @@ margin: 10px;
   display: flex;
   padding-top: 50px;
   background-color: #f3f1f1;
+  opacity: 0.6;
 }
 
 .post-content {

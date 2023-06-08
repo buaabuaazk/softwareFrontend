@@ -1,7 +1,7 @@
 <template>
     <div class="body">
         <div class="block">
-            <p style="font-size: 20px;">收到的点赞</p>    
+            <h2 style="color:aquamarine">收到的点赞</h2>    
         </div>
         <div v-for="(item, index) in likes" :key="index" >
             <div class="border">

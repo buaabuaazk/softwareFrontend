@@ -2,7 +2,7 @@
     <div class="head">
             <div class="title">
                 <div style="width:15%">
-                    通知消息
+                    <h2 style="color:burlywood">通知消息</h2>
                 </div>
                 <div style="width:55%"></div>
                 <div style="width:30%">
@@ -13,7 +13,7 @@
     </div>
     <div class="middle">
         <div style="width:30%">
-            最近收到的评论
+            <h2 style="color:dimgray">最近收到的评论</h2>
         </div>
         <div style="width:70%"></div>
     </div>

@@ -7,20 +7,22 @@
             <span></span>
             <span></span>
             <span></span>
+            <div class="pad">
             <div class="content">
               <h2>常见问题</h2>
               <p class="p1">Q1</p>
-              <div class="rounded-box">****</div>
+              <div class="rounded-box"><p>资源区有什么用</p></div>
               <p class="p2">A1</p>
               <div class="right">
-                <div class="rounded-box2">****</div>
+                <div class="rounded-box2"><p>资源区可以查看海量资源并且可以下载到本地，同时也可以上传自己的文件。对于违规的文件可以进行举报</p></div>
               </div>
               <p class="p1">Q2</p>
-              <div class="rounded-box">****</div>
+              <div class="rounded-box"><p>发帖区有什么用</p></div>
               <p class="p2">A2</p>
               <div class="right">
-                <div class="rounded-box2">****</div>
+                <div class="rounded-box2"><p>发帖区可以进行发帖，查看帖子和相应的评论。有些帖子只有达到一定等级才能查看</p></div>
               </div>
+            </div>
             </div>
           </div>
         </div>
@@ -197,7 +199,7 @@ body {
   padding: 20px;
   border: solid;
   width: 200px;
-  height: 30px;
+  height: auto;
   text-align: left;
 }
 .rounded-box2{
@@ -206,11 +208,31 @@ body {
   padding: 20px;
   border: solid;
   width: 200px;
-  height: 30px;
+  height: auto;
   text-align: right;
 }
 .right{
   display: flex;
   justify-content: flex-end;
+}
+.content{
+  height: auto;
+  overflow: auto;
+}
+.content::-webkit-scrollbar {
+  width: 0.5em; /* 定义滚动条宽度 */
+  background-color: transparent; /* 设置滚动条背景颜色 */
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: #888; /* 设置滚动条的颜色 */
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* 设置鼠标悬停时滚动条的颜色 */
+}
+.pad{
+  height: 500px;
+  overflow: auto;
 }
 </style>

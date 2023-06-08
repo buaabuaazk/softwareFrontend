@@ -45,7 +45,9 @@ import messages from './messages.vue';
       margin: 0px auto;
       padding: 0 16px;
       position: relative;
-      background-color: antiquewhite;
+      background-image: url('../../../assets/images/rain3.gif');
+      background-repeat: no-repeat;
+      background-size: cover;
     }
     .posts{
       width: 50vw;
@@ -53,15 +55,9 @@ import messages from './messages.vue';
       margin-top: 10px;
       margin-left: 100px;
       border: hidden;
-      background-color: azure;
+      opacity: 0.5;
+      background-color: black;
     }
-    .person{
-      background-color: antiquewhite;
-      margin-top: 10px ;
-      width: 25vw;
-      height: 150vh;
-      margin-left: 30px;
-      display: block;
-    }
+
   </style>
   

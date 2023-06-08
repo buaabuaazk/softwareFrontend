@@ -4,7 +4,7 @@
       <el-avatar style="margin-top:5px"
             :src="this.avatar0[index]" alt="头像" class="img"
             ></el-avatar>
-      <div class="title">{{ bubble.post_title }}</div>
+      <div class="title"><p>{{ bubble.conducter }}在{{ bubble.timestamp }} 给你的帖子 {{ bubble.post_id }} 评论了</p></div>
       <div class="post-info" @click="() => $router.push(bubble.post_url)">查看详情</div>
     </div>
 <!--   
@@ -100,22 +100,19 @@ export default {
   margin-inline: auto;
   font-family: sans-serif;
   display: grid;
-  grid-template-areas:
-    'br'
-    'bc'  
-    'bl';
   padding: 2rem;
   gap: 2rem;
 }
 
  .bubble {
-  --bbArrowSize: 1.5rem;
-  --bbBorderRadius: 1rem;
-  --bbPadding: 1rem;
-  background: var(--bbColor);
-  border-radius: var(--bbBorderRadius);
-  padding: var(--bbPadding);
-  position: relative;
+  margin-top: 5px;
+  color: #222;
+  margin-bottom: 40px;
+  width: 80%;
+  transform: translateX(12%);
+  background-color: #FFBB66;
+  border-radius: 10px;
+  display: block;
 } 
 
 .title {

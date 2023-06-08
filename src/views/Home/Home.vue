@@ -67,8 +67,9 @@
           <ul>学习和生活优质平台</ul>
         </div>
       </main>
-      <el-container style="height: 652px; border: 1px hidden #121313 z-index: 0">
-        <el-aside style="width: 250px; height: 100%">
+      <div class="visit">
+      <el-container style="height: 550px; border: 1px hidden #121313 z-index: 0">
+        <el-aside style="width: 250px; height: 100%;margin-top:20px">
           <!--引入自定义左侧菜单栏-->
           <!-- <router-view name="leftNav" style="opacity:0.7"></router-view> -->
           <div style="opacity: 0.7">
@@ -134,7 +135,6 @@
           <router-view style="opacity:0.7" ></router-view>
         </el-main>
       </el-container>
-    </div>
   <el-backtop :bottom="20"
   :width="80" class="backtop">
   <div
@@ -153,11 +153,13 @@
     </div>
   </el-backtop>
     <div class="footbottom">
-      <p>Copyright © 2021  All rights reserved.</p>
-      <p>官方邮箱：</p>
-      <p>粤ICP备2021021248号</p>
+      <p style="color:black">Copyright © 2022  All rights reserved.</p>
+      <p style="color:black">官方邮箱:21371480@buaa.edu.cn</p>
+      <p style="color:black">粤ICP备2021021248号</p>
       <!-- {{ modifiedPath }} -->
     </div>
+  </div>
+  </div>
   </template>
   
   <script>
@@ -346,11 +348,11 @@
     padding: 20px;
   }
   
-  .footer {
+  .footbottom {
     text-align: center;
     padding: 20px;
-    background-color: #f2f2f2;
     margin-top: 20px;
+    opacity: 0.6;
   }
   
   .img1 {
@@ -408,6 +410,11 @@
   .back2{
     height: 200px;
     background-image: url(../../assets/images/home3.jpg);
+  }
+  .visit{
+    background-image: url('../../assets/images/rain3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   </style>
   

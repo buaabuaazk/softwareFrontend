@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="image">
     <!-- 卡片视图区域 -->
-    <el-card>
-      <el-row :gutter="0">
+    <el-card style="opacity:0.8">
+      <el-row :gutter="10">
         <el-col :span="8">
           <!-- 搜索与添加区域 -->
             <el-input placeholder="请输入内容"
@@ -12,12 +12,13 @@
             </template>
             </el-input>
         </el-col>
-        <el-col :span="4">
+        <el-col :span="2">
           <el-button type="primary" @click="getNamedResource">搜索资料</el-button>
         </el-col>
       </el-row>
+      <div style="height:5px"></div>
       <el-row :gutter="20">
-        <el-col :span="2">
+        <el-col :span="4">
         <el-select v-model="options.value" placeholder="选择查找种类" class="left-aligned-select">
           <el-option
             v-for="item in options"
@@ -38,35 +39,37 @@
         <el-button type="primary" @click="getSelectedUserList">查看</el-button>
         </el-col>
       </el-row>
+      <div style="height:5px"></div>
       <!-- 用户列表区域  -->
       <el-table  :data="userlist.slice((queryInfo.pagenum-1)*queryInfo.pagesize,queryInfo.pagenum*queryInfo.pagesize)"
       :border="border" 
       :stripe="stripe"
       @row-click="handleRowClick"
+      class="centered-header"
       >
-        <el-table-column type="index"></el-table-column>
-        <el-table-column label="文件名" prop="name" width="280px"></el-table-column>
-        <el-table-column label="作者" prop="author" width="120px"></el-table-column>
-        <el-table-column label="学科" prop="subject" width="200"></el-table-column>
-        <el-table-column label="修改时间" prop="description"></el-table-column>
-        <el-table-column label="上传时间" prop="upload_time">
+        <el-table-column type="index" width="30px"></el-table-column>
+        <el-table-column label="文件名" prop="name" width="160px"></el-table-column>
+        <el-table-column label="作者" prop="author" width="100px"></el-table-column>
+        <el-table-column label="学科" prop="subject" width="100px"></el-table-column>
+        <el-table-column label="文件描述" prop="description" width="100px"></el-table-column>
+        <el-table-column label="上传时间" prop="upload_time" width="80px">
         </el-table-column>
-        <el-table-column label="操作" width="280px">
+        <el-table-column label="操作" width="200px">
           <template v-slot="scope">
             <!-- 查看按钮 -->
             <el-tooltip effect="dark" content="查看" placement="top" :enterable="false" @click="getResource(scope.row)">
                 <el-button type="success" @click="getResource(scope.row)"><el-icon><Document /></el-icon></el-button> 
             </el-tooltip>
+            <!-- 删除按钮 -->
+        <!-- <el-button type="danger" content="删除" placement="top" :enterable="false" @click="deleteResource(scope.row)"><el-icon><delete /></el-icon></el-button> -->
+        <!-- <el-tooltip effect="dark" content="删除" placement="top" :enterable="false" @click="deleteResource(scope.row)">
+            <el-button type="danger"  @click="deleteResource(scope.row)"><el-icon><delete /></el-icon></el-button> 
+         </el-tooltip> -->
             <!-- 下载按钮 -->
           <!-- <el-button type="primary" content="下载" placement="top" :enterable="false" @click="DownloadResource(scope.row)" ><el-button type="warning" ></el-button><el-icon><Download /></el-icon></el-button> -->
           <el-tooltip effect="dark" content="下载" placement="top" :enterable="false" @click="DownloadResource(scope.row)">
             <el-button type="primary" @click="DownloadResource(scope.row)"><el-icon><Download /></el-icon></el-button> 
             </el-tooltip>
-          <!-- 删除按钮 -->
-          <!-- <el-button type="danger" content="删除" placement="top" :enterable="false" @click="deleteResource(scope.row)"><el-icon><delete /></el-icon></el-button> -->
-          <el-tooltip effect="dark" content="删除" placement="top" :enterable="false" @click="deleteResource(scope.row)">
-            <el-button type="danger"  @click="deleteResource(scope.row)"><el-icon><delete /></el-icon></el-button> 
-         </el-tooltip>
           <!-- 举报按钮 -->
           <el-tooltip effect="dark" content="举报" placement="top" :enterable="false" @click="ReportResource(scope.row)">
             <el-button type="warning" @click="ReportResource(scope.row)"><el-icon><WarnTriangleFilled /></el-icon></el-button> 
@@ -74,6 +77,7 @@
           </template>
         </el-table-column>
       </el-table>
+      <div style="height:5px"></div>
       <!-- 页面区域 -->
       <el-pagination :current-page="queryInfo.pagenum" :page-sizes="[1, 2, 5, 10]"
         :page-size="queryInfo.pagesize" layout="total, sizes, prev, pager, next, jumper"
@@ -168,7 +172,7 @@ import { mapState, mapMutations } from 'vuex'
         };
     },
     created() {
-        this.getPersonalResource()
+        this.getAllResource()
         //this.deleteResource()
         //this.DownloadResource()
         //this.ReportResource()
@@ -190,6 +194,28 @@ import { mapState, mapMutations } from 'vuex'
             return this.token_glo;
         },
         //得到个人资源
+        async getAllResource() {
+            try {
+                const { data: res } = await axios.get(`http://81.70.17.242:8000/source/get_all_resources`
+                    // {headers: {
+                    //     Authorization: this.getToken_glo()
+                    // }
+                    // }
+                );
+                // if (res.code !== 200)
+                //     return this.$message.error("获取用户列表失败");
+                //this.userlist1 = Array.from(res.resource_info_list);
+                //this.queryInfo.total = res.resource_info_list.length;
+                console.log(res);
+                // console.log(res.resource_info_list);
+                // console.log(res.resource_info_list.length);
+                this.userlist = ref([...res.data]);
+                console.log(this.userlist1);
+            }
+            catch (error) {
+                console.log(error);
+            }
+        },
         async getPersonalResource() {
             try {
                 const { data: res } = await axios.get(`http://81.70.17.242:8000/source/get_author`,
@@ -374,7 +400,7 @@ import { mapState, mapMutations } from 'vuex'
                 }
                     );
                     console.log(res)
-                this.getPersonalResource()
+                this.getAllResource()
                 if (res.code == 200)
                     return this.$message.success("删除成功");
                 else{
@@ -471,6 +497,24 @@ import { mapState, mapMutations } from 'vuex'
   </script>
    
   <style lang="less" scoped>
+  .centered-header .el-table__header-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .centered-header .el-table__header {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .centered-header .el-table__header th {
+    text-align: center;
+  }
+  
+  .el-card{
+    background-size: cover;
+    background-position: center;
+  }
     .left-aligned-select .el-input__inner {
       text-align: left !important;
     }

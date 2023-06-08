@@ -1,14 +1,15 @@
 <template>
-    <h1 style="padding: 15px">热门帖子</h1>
+    <h1 style="padding: 15px;color:bisque">热门帖子</h1>
 <ul class="post">
     <li style="--accent-color:#41516C">
         <div class="date">OS上机</div>
-        <div class="title">提示</div>
-        <div class="descr">请同学们在实验课到达指定机房（周一中午在微信的实验群发布机房与座位表）。实验课内容如下：
+        <div class="title"><h2 style="color:aquamarine">提示</h2></div>
+        <div class="descr">
+          请同学们在实验课到达指定机房（周一中午在微信的实验群发布机房与座位表）。实验课内容如下：
 
             Lab5 第一次上机考试
             注意：初始化分支时，请选择正确的代码版本（commit）。系统将基于选择的代码版本来初始化课上考试的分支。若误选，可在 GitLab 的个人仓库中删除分支，然后返回系统重新初始化。</div>
-    </li>
+          </li>
     <li style="--accent-color:#FBCA3E">
         <div class="date">软工大作业</div>
         <div class="title">学习和生活优质平台</div>
@@ -158,6 +159,7 @@ ul li .descr {
   background: var(--bgColor);
   position: relative;
   padding-inline: 1.5rem;
+  color:aliceblue
 }
 ul li .title {
   overflow: hidden;

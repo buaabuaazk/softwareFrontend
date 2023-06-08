@@ -1,20 +1,6 @@
 <template>
   <div>
-  <div>
-    <el-upload
-      ref="formData1"
-      :auto-upload="true"
-      :http-request="upload"
-    >
-      <template #trigger>
-        <el-button type="primary">选择文件</el-button>
-      </template>   
-      <el-button class="ml-3" type="success" @click="submitUpload">
-        上传文件
-      </el-button>
-    </el-upload>
-  </div>
-  <div >
+    <div >
       <el-select v-model="options.value" placeholder="Select" class="left-aligned-select">
         <el-option
           v-for="item in options"
@@ -27,10 +13,25 @@
       <p class="p">选择学科</p>
       <el-input v-model="description" placeholder="对文件的描述" class="input"
       clearable
-      rows="12"
+      rows="10"
       show-word-limit
       maxlength="30"
       type="textarea"/>
+  </div>
+  <div>
+    <el-upload
+      ref="formData1"
+      :auto-upload="true"
+      :http-request="upload"
+    >
+      <template #trigger>
+        <el-button type="primary">选择文件</el-button>
+      </template>   
+      <div style="height:20px"></div>
+      <el-button class="ml-3" type="success" @click="submitUpload">
+        上传文件
+      </el-button>
+    </el-upload>
   </div>
 </div>
   </template>
@@ -89,7 +90,7 @@ import { ref } from 'vue'
     this.formData1.append('name', params.file.name)
     this.formData1.append('file_size',params.file.size)
     // formData1.append('author', null)
-    this.formData1.append('description', params.file.lastModifiedDate)
+    this.formData1.append('description', this.description)
     this.formData1.append('subject', this.options.value)
     //console.log(token_glo)
     //console.log(this.formData1.get('token'));

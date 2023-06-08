@@ -19,8 +19,7 @@
         <el-col :span="12" class="page">
           <el-pagination :current-page="queryInfo.pagenum" :page-sizes="[1, 2, 5, 10]"
         :page-size="queryInfo.pagesize" layout="total, sizes, prev, pager, next, jumper"
-        :total="userlist.length" @size-change="handleSizeChange" @current-change="handleCurrentChange"
-      >
+        :total="userlist.length" @size-change="handleSizeChange" @current-change="handleCurrentChange">
       </el-pagination>
         </el-col>
       </el-row>

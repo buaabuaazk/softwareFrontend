@@ -14,9 +14,8 @@ export default{
 <style>
 .footbottom{
     height: 150px!important;
-    background-color: #ebecec;
-    color: #9b9ea0;
     position: relative;
     padding: 20px;
+    opacity: 0.6;
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="head">
-        已上传资源
+        <h2 style="color:aliceblue">已上传资源</h2>
       </div>
     <el-card>
         <el-table
@@ -13,7 +13,7 @@
         <el-table-column label="文件名" prop="name" width="120px"></el-table-column>
         <el-table-column label="作者" prop="author" width="80px"></el-table-column>
         <el-table-column label="学科" prop="subject" width="80px"></el-table-column>
-        <el-table-column label="修改时间" prop="description" width="120px"></el-table-column>
+        <el-table-column label="文件描述" prop="description" width="120px"></el-table-column>
         <el-table-column label="上传时间" prop="upload_time" width="120px">
         </el-table-column>
         <el-table-column label="操作" width="280px">
@@ -62,49 +62,7 @@ import { mapState, mapMutations } from 'vuex'
             },
             userlist1: [],
             // 用户列表
-            userlist: [{
-                    "name": "1",
-                    "author": "1",
-                    "subject": "1",
-                    "description": "111111",
-                    "upload_time":"1"
-                }, {
-                    "name": "1",
-                    "author": "1",
-                    "subject": "1",
-                    "description": "111111",
-                    "upload_time":"1"
-                }, {
-                    "name": "1",
-                    "author": "1",
-                    "subject": "1",
-                    "description": "111111",
-                    "upload_time":"1"
-                }, {
-                    "name": "1",
-                    "author": "1",
-                    "subject": "1",
-                    "description": "111111",
-                    "upload_time":"1"
-                }, {
-                    "name": "1",
-                    "author": "1",
-                    "subject": "1",
-                    "description": "111111",
-                    "upload_time":"1"
-                }, {
-                    "name": "1",
-                    "author": "1",
-                    "subject": "1",
-                    "description": "111111",
-                    "upload_time":"1"
-                }, {
-                    "name": "1",
-                    "author": "1",
-                    "subject": "1",
-                    "description": "111111",
-                    "upload_time":"1"
-                }
+            userlist: [
             ],
             // 总数据条数
             total: 0,
